@@ -7,25 +7,42 @@ export const metadata: Metadata = {
 };
 
 const navItems = ["Work", "Services", "About", "Contact"];
+const features = [
+  {
+    label: "SYSTEMS",
+    title: "Operating layers that stay quiet",
+    body: "Clean internal structures that reduce manual follow-up, duplicate work, and scattered information.",
+  },
+  {
+    label: "AUTOMATION",
+    title: "Workflows that move without drag",
+    body: "Automations built around real business steps, approvals, handoffs, and customer-facing moments.",
+  },
+  {
+    label: "INFRASTRUCTURE",
+    title: "Data foundations for growth",
+    body: "Practical databases, dashboards, and integrations that make the next decision easier to see.",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#fbfbfa] text-[#15161c]">
-      <nav className="mx-auto flex w-full max-w-[1720px] items-center justify-between px-6 py-8 sm:px-10 lg:px-16">
+    <main className="min-h-screen overflow-hidden bg-white text-[#171321]">
+      <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-6 md:px-8">
         <a
           href="#"
-          className="font-mono text-[0.95rem] font-semibold uppercase tracking-[0.18em] text-[#171820]"
+          className="font-mono text-xs font-medium uppercase text-[#171321]"
           aria-label="YARA LABS home"
         >
           YARA LABS
         </a>
 
-        <div className="hidden items-center gap-11 text-sm font-medium text-[#171820] sm:flex">
+        <div className="hidden items-center gap-8 text-sm font-medium text-[#171321] sm:flex">
           {navItems.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="transition-colors duration-200 hover:text-[#7546ff]"
+              className="transition-colors duration-200 hover:text-[#7C3AED]"
             >
               {item}
             </a>
@@ -33,57 +50,88 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="relative mx-auto flex min-h-[calc(100vh-96px)] w-full max-w-[1720px] items-center justify-center px-6 pb-20 pt-16 sm:px-10 lg:px-16">
-        <div className="hero-grid" aria-hidden="true">
-          <span className="node node-left" />
-          <span className="node node-mid" />
-          <span className="node node-right" />
-          <span className="orb orb-left" />
-          <span className="orb orb-right" />
-          <span className="vertical-line left-line" />
-          <span className="vertical-line right-line" />
-        </div>
+      <section className="px-4 pb-0 md:px-6">
+        <div className="hero-surface relative mx-auto flex min-h-[675px] w-full max-w-[calc(100vw-48px)] items-start justify-center overflow-hidden rounded-[32px] px-6 pb-40 pt-32 md:px-12">
+          <div className="hero-wash" aria-hidden="true" />
 
-        <div className="relative z-10 flex w-full max-w-[980px] flex-col items-center text-center">
-          <p className="mb-10 font-mono text-[0.72rem] uppercase tracking-[0.24em] text-[#8a8f9f] sm:text-sm">
-            Systems <span className="mx-3 text-[#7c4dff]">•</span> Automation
-            <span className="mx-3 text-[#7c4dff]">•</span> Infrastructure
-          </p>
+          <div className="relative z-10 flex w-full max-w-[1000px] flex-col items-center text-center">
+            <p className="mb-6 font-mono text-xs font-normal uppercase text-[#74717A]">
+              Systems <span className="mx-4 text-[#7C3AED]">•</span>{" "}
+              Automation <span className="mx-4 text-[#7C3AED]">•</span>{" "}
+              Infrastructure
+            </p>
 
-          <h1 className="max-w-[920px] font-mono text-[clamp(3rem,7vw,6.75rem)] font-normal leading-[0.98] tracking-normal text-[#15161c]">
-            Good systems should feel almost invisible.
-          </h1>
+            <h1 className="max-w-[980px] text-[48px] font-bold leading-[50px] tracking-normal text-[#171321] md:text-[72px] md:leading-[76px]">
+              Good systems should feel almost invisible.
+            </h1>
 
-          <p className="mt-8 max-w-[760px] text-balance text-lg leading-8 text-[#3f4350] sm:text-[1.35rem]">
-            Complexity is a natural part of growth. Strong systems make sure it
-            never becomes the limit.
-          </p>
+            <p className="mt-6 max-w-[850px] text-[20px] font-normal leading-[25px] tracking-normal text-[#74717A] md:text-2xl md:leading-[27px]">
+              Complexity is a natural part of growth. Strong systems make sure
+              it never becomes the limit.
+            </p>
 
-          <form className="mt-11 flex w-full max-w-[660px] flex-col gap-3 sm:flex-row">
-            <label className="sr-only" htmlFor="hero-email">
-              Email address
-            </label>
-            <input
-              id="hero-email"
-              type="email"
-              placeholder="Enter your email"
-              className="h-16 min-w-0 flex-1 rounded-md border border-[#c8ccda] bg-white/75 px-6 text-base text-[#171820] outline-none transition duration-200 placeholder:text-[#8b90a0] focus:border-[#7c4dff] focus:ring-4 focus:ring-[#7c4dff]/10"
-            />
-            <button
-              type="submit"
-              className="h-16 rounded-md bg-[linear-gradient(120deg,#e93edc_0%,#8a4bff_48%,#1468ff_100%)] px-9 text-base font-semibold text-white shadow-[0_18px_36px_rgba(91,81,255,0.22)] transition duration-200 hover:translate-y-[-1px] hover:shadow-[0_22px_42px_rgba(91,81,255,0.28)]"
+            <form className="mt-6 flex w-full max-w-[620px] flex-col gap-2 sm:flex-row">
+              <label className="sr-only" htmlFor="hero-email">
+                Email address
+              </label>
+              <input
+                id="hero-email"
+                type="email"
+                placeholder="Enter your email"
+                className="h-[52px] min-w-0 flex-1 rounded-lg border border-[#D1D0D3] bg-white/85 px-4 text-base leading-6 text-[#171321] outline-none transition duration-200 placeholder:text-[#A2A1A6] focus:border-[#8B5CF6] focus:ring-4 focus:ring-[#8B5CF6]/10"
+              />
+              <button
+                type="submit"
+                className="h-[52px] rounded-lg bg-[linear-gradient(100deg,#EC4899_0%,#8B5CF6_48%,#4D6BFF_100%)] px-6 text-base font-semibold leading-5 text-white transition duration-200 hover:translate-y-[-1px] hover:brightness-105"
+              >
+                Free Consult
+              </button>
+            </form>
+
+            <a
+              href="#work"
+              className="mt-8 inline-flex h-12 items-center gap-2 rounded-lg px-5 text-base font-semibold leading-5 text-[#171321] transition duration-200 hover:translate-y-[-1px] hover:text-[#7C3AED]"
             >
-              Free Consult
-            </button>
-          </form>
+              Explore Our Work
+              <span aria-hidden="true">-&gt;</span>
+            </a>
+          </div>
+        </div>
+      </section>
 
-          <a
-            href="#work"
-            className="mt-9 inline-flex items-center gap-3 border-b border-[#b9bdc9] pb-1 text-base font-medium text-[#4b5060] transition-colors duration-200 hover:text-[#171820]"
+      <section className="relative z-20 mx-auto grid w-full max-w-[1000px] gap-6 px-6 pb-24 md:-mt-40 md:grid-cols-3 md:px-0">
+        {features.map((feature) => (
+          <article
+            className="rounded-2xl bg-[#171321] p-6 transition duration-200 hover:bg-[#312E3F]"
+            key={feature.label}
           >
-            <span aria-hidden="true">-&gt;</span>
-            Explore Our Work
-          </a>
+            <p className="font-mono text-xs leading-4 text-[#A2A1A6]">
+              {feature.label}
+            </p>
+            <h2 className="mt-4 text-xl font-semibold leading-6 text-white">
+              {feature.title}
+            </h2>
+            <p className="mt-2 text-sm leading-5 text-[#D1D0D3]">
+              {feature.body}
+            </p>
+            <span className="mt-6 block h-1 w-8 rounded-full bg-[#8B5CF6]" />
+          </article>
+        ))}
+      </section>
+
+      <section className="mx-auto max-w-[1200px] px-6 pb-40 pt-16 md:px-8">
+        <div className="max-w-[680px]">
+          <p className="font-mono text-xs leading-4 text-[#A2A1A6]">
+            DESIGN LANGUAGE
+          </p>
+          <h2 className="mt-4 text-[40px] font-bold leading-[42px] tracking-normal text-[#171321] md:text-[60px] md:leading-[63px]">
+            Built around systems, not spectacle.
+          </h2>
+          <p className="mt-6 text-base leading-6 text-[#74717A]">
+            YARA LABS uses structured whitespace, restrained contrast, and
+            practical interface patterns to make complex business operations
+            easier to understand.
+          </p>
         </div>
       </section>
     </main>

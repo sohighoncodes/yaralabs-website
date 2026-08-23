@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #fbfbfa;
-  --foreground: #15161c;
+  --background: #ffffff;
+  --foreground: #171321;
   --font-main: "Roboto Mono", "Courier New", monospace;
-  --font-body: "Roboto", Arial, Helvetica, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 @theme inline {
@@ -28,160 +28,70 @@ select {
   font: inherit;
 }
 
-.hero-grid {
+.hero-surface {
+  background-color: #ebeaec;
+  background-image:
+    radial-gradient(
+      72% 85% at 104% 55%,
+      #4d6bffe6 0%,
+      #637bfff0 10%,
+      #7f8cffcc 22%,
+      #a7b0ff8a 36%,
+      #c7cbff4d 50%,
+      #e5e8ff00 68%
+    ),
+    radial-gradient(
+      85% 100% at 96% 45%,
+      #7c3aedb3 0%,
+      #9b5cf673 22%,
+      #c4b5fd33 44%,
+      #ede9fe00 64%
+    ),
+    radial-gradient(
+      55% 60% at 92% 8%,
+      #60a5fa80 0%,
+      #93c5fd38 35%,
+      #dbeafe00 65%
+    ),
+    radial-gradient(
+      62% 78% at 6% 102%,
+      #ec4899eb 0%,
+      #f472b6b8 12%,
+      #f9a8d480 28%,
+      #fbcfe842 44%,
+      #fce7f314 64%,
+      #fff1f200 78%
+    ),
+    radial-gradient(
+      45% 85% at -5% 70%,
+      #f472b680 0%,
+      #f9a8d440 30%,
+      #fdf2f800 62%
+    ),
+    radial-gradient(
+      25% 90% at 68% 70%,
+      #a78bfa2e 0%,
+      #c4b5fd0f 40%,
+      #ede9fe00 70%
+    );
+}
+
+.hero-wash {
   position: absolute;
   inset: 0;
   pointer-events: none;
-}
-
-.hero-grid::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 14%;
-  width: 140vw;
-  height: 1px;
-  transform: translateX(-50%);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(154, 161, 189, 0.32) 12%,
-    rgba(154, 161, 189, 0.32) 88%,
-    transparent
+  background: radial-gradient(
+    120% 120% at 30% 30%,
+    #ebeaec00 35%,
+    #ebeaec26 75%,
+    #ebeaec40 100%
   );
 }
 
-.hero-grid::after {
-  content: "";
-  position: absolute;
-  left: -3%;
-  bottom: -3%;
-  width: 32vw;
-  min-width: 310px;
-  aspect-ratio: 1;
-  border: 1px solid rgba(168, 175, 207, 0.34);
-  border-radius: 50%;
-}
-
-.node,
-.vertical-line,
-.orb {
-  position: absolute;
-  display: block;
-}
-
-.node {
-  width: 14px;
-  height: 14px;
-  border: 2px solid rgba(154, 161, 189, 0.58);
-  background: rgba(251, 251, 250, 0.78);
-}
-
-.node::after {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border-radius: 999px;
-  background: #8a4bff;
-}
-
-.node-left {
-  left: 18%;
-  bottom: 35%;
-}
-
-.node-mid {
-  left: 35%;
-  bottom: 14%;
-  border-radius: 50%;
-}
-
-.node-right {
-  right: 18%;
-  bottom: 14%;
-  border-radius: 50%;
-}
-
-.orb {
-  border: 1px solid rgba(168, 175, 207, 0.24);
-  border-radius: 50%;
-}
-
-.orb::before {
-  content: "";
-  position: absolute;
-  inset: 35%;
-  border: 1px solid rgba(168, 175, 207, 0.55);
-  border-radius: 50%;
-}
-
-.orb::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 8px;
-  height: 8px;
-  transform: translate(-50%, -50%);
-  border-radius: 999px;
-  background: #9b5cff;
-  box-shadow: 0 0 26px rgba(120, 72, 255, 0.35);
-}
-
-.orb-left {
-  left: 12%;
-  bottom: 11%;
-  width: 58px;
-  height: 58px;
-}
-
-.orb-right {
-  right: 6%;
-  bottom: 21%;
-  width: 128px;
-  height: 128px;
-}
-
-.vertical-line {
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    rgba(154, 161, 189, 0.24),
-    rgba(154, 161, 189, 0.08)
-  );
-}
-
-.left-line {
-  left: 35%;
-  bottom: 0;
-  height: 22%;
-}
-
-.right-line {
-  right: 18%;
-  bottom: 14%;
-  height: 32%;
-}
-
-@media (max-width: 760px) {
-  .hero-grid::before {
-    bottom: 9%;
-  }
-
-  .hero-grid::after,
-  .orb-right,
-  .node-left,
-  .left-line {
-    display: none;
-  }
-
-  .node-mid {
-    left: 18%;
-    bottom: 9%;
-  }
-
-  .node-right {
-    right: 12%;
-    bottom: 9%;
+@media (max-width: 767px) {
+  .hero-surface {
+    min-height: 620px;
+    max-width: calc(100vw - 32px);
+    border-radius: 24px;
   }
 }

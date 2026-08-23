@@ -39,6 +39,10 @@ test("server-renders the YARA LABS landing hero", async () => {
   assert.match(html, /Enter your email/);
   assert.match(html, /Free Consult/);
   assert.match(html, /Explore Our Work/);
+  assert.match(html, /Operating layers that stay quiet/);
+  assert.match(html, /Workflows that move without drag/);
+  assert.match(html, /Data foundations for growth/);
+  assert.match(html, /Built around systems, not spectacle\./);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/i);
 });
 
@@ -52,12 +56,17 @@ test("documents the selected brand system and removes starter-only UI", async ()
   ]);
 
   assert.match(page, /const navItems = \["Work", "Services", "About", "Contact"\]/);
-  assert.match(page, /bg-\[linear-gradient\(120deg,#e93edc_0%,#8a4bff_48%,#1468ff_100%\)\]/);
+  assert.match(page, /const features = \[/);
+  assert.match(page, /bg-\[linear-gradient\(100deg,#EC4899_0%,#8B5CF6_48%,#4D6BFF_100%\)\]/);
+  assert.match(page, /hero-surface/);
+  assert.match(page, /bg-\[#171321\]/);
   assert.match(layout, /title:\s*"YARA LABS"/);
+  assert.match(css, /Inter/);
   assert.match(css, /Roboto Mono/);
-  assert.match(css, /Roboto/);
-  assert.match(css, /--background:\s*#fbfbfa/);
-  assert.match(css, /--foreground:\s*#15161c/);
+  assert.match(css, /--background:\s*#ffffff/);
+  assert.match(css, /--foreground:\s*#171321/);
+  assert.match(css, /72% 85% at 104% 55%/);
+  assert.doesNotMatch(css, /hero-grid|\\.orb|\\.node|vertical-line/);
   assert.match(packageJson, /"name": "yaralabs-website"/);
   assert.match(packageJson, /"packageManager": "pnpm@11\.19\.0"/);
   assert.match(readme, /Work From Another Device/);
