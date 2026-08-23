@@ -82,7 +82,7 @@ export default function Home() {
               />
               <button
                 type="submit"
-                className="h-[52px] rounded-lg bg-[linear-gradient(100deg,#EC4899_0%,#8B5CF6_48%,#4D6BFF_100%)] px-6 text-base font-semibold leading-5 text-white transition duration-200 hover:translate-y-[-1px] hover:brightness-105"
+                className="h-[52px] rounded-lg bg-[linear-gradient(100deg,#EC4899_0%,#F59E0B_42%,#C084FC_72%,#7C3AED_100%)] px-6 text-base font-semibold leading-5 text-white transition duration-200 hover:translate-y-[-1px] hover:brightness-105"
               >
                 Free Consult
               </button>
