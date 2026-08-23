@@ -38,12 +38,14 @@ Use this only when automation is preferred.
 
 For the future CMS/database integration:
 
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SUPABASE_URL=https://euahhliojookeumcvpem.supabase.co`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_DvTvvzcP6Xdr3SBeFGRH1A_lki34n0g`
 - `SUPABASE_SERVICE_ROLE_KEY`
 
 Do not commit real Supabase keys. Store production values in the hosting
-provider's environment variable or secret manager.
+provider's environment variable or secret manager. The publishable Supabase
+key is safe for browser use when Row Level Security is configured; service-role
+keys and direct database connection strings are not safe to expose.
 
 ## Local Verification
 
@@ -70,6 +72,12 @@ static assets from `dist/client`, both produced by `pnpm run build`.
 
 If the build fails during cloning, reconnect the GitHub integration and confirm
 Cloudflare has access to the exact repository selected for this project.
+
+For this project, the expected GitHub repository is:
+
+```text
+sohighoncodes/yaralabs-website
+```
 
 ## Custom Domain Notes
 
