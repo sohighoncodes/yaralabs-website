@@ -67,8 +67,10 @@ Build command: pnpm run build
 Deploy command: pnpm run deploy
 ```
 
-The `wrangler.deploy.jsonc` file deploys `dist/server/index.js` and serves
-static assets from `dist/client`, both produced by `pnpm run build`.
+The deploy script uses the generated `dist/server/wrangler.json` file and runs
+Wrangler from `dist/server`. This is important because the built Worker imports
+server chunk files relative to that directory, and static assets are served from
+`dist/client`.
 
 `pnpm-workspace.yaml` is intentionally present even though this is a
 single-package app. Cloudflare's build environment uses pnpm's dependency

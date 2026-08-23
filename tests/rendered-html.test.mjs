@@ -58,7 +58,7 @@ test("documents the selected brand system and removes starter-only UI", async ()
   assert.match(css, /Roboto/);
   assert.match(css, /--background:\s*#fbfbfa/);
   assert.match(css, /--foreground:\s*#15161c/);
-  assert.match(packageJson, /"name": "yara-labs-website"/);
+  assert.match(packageJson, /"name": "yaralabs-website"/);
   assert.match(packageJson, /"packageManager": "pnpm@11\.19\.0"/);
   assert.match(readme, /Work From Another Device/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
