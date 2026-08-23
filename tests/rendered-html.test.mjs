@@ -57,7 +57,7 @@ test("documents the selected brand system and removes starter-only UI", async ()
 
   assert.match(page, /const navItems = \["Work", "Services", "About", "Contact"\]/);
   assert.match(page, /const features = \[/);
-  assert.match(page, /bg-\[linear-gradient\(100deg,#EC4899_0%,#F59E0B_42%,#C084FC_72%,#7C3AED_100%\)\]/);
+  assert.match(page, /cta-gradient/);
   assert.match(page, /hero-surface/);
   assert.match(page, /bg-\[#171321\]/);
   assert.match(layout, /title:\s*"YARA LABS"/);
@@ -66,6 +66,9 @@ test("documents the selected brand system and removes starter-only UI", async ()
   assert.match(css, /--background:\s*#ffffff/);
   assert.match(css, /--foreground:\s*#171321/);
   assert.match(css, /72% 85% at 104% 55%/);
+  assert.match(css, /\.cta-gradient/);
+  assert.match(css, /120% 150% at 50% 52%/);
+  assert.match(css, /#f59e0b/);
   assert.doesNotMatch(css, /hero-grid|\\.orb|\\.node|vertical-line/);
   assert.match(packageJson, /"name": "yaralabs-website"/);
   assert.match(packageJson, /"packageManager": "pnpm@11\.19\.0"/);
