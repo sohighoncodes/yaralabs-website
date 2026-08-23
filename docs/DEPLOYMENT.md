@@ -19,6 +19,7 @@ This is the simplest path for a human to manage long term.
 - Cloudflare account access where `yaralabs.io` is managed
 - Cloudflare Pages project connected to the GitHub repository
 - Build command: `pnpm run build`
+- Deploy command: `pnpm run deploy`
 - Production branch: `main`
 
 ### Option B: Cloudflare API Automation
@@ -51,6 +52,24 @@ pnpm install
 pnpm run build
 pnpm test
 ```
+
+## Cloudflare Workers Build Settings
+
+If deploying through Cloudflare Workers & Pages with a connected GitHub
+repository, use:
+
+```text
+Production branch: main
+Root directory: /
+Build command: pnpm run build
+Deploy command: pnpm run deploy
+```
+
+The `wrangler.deploy.jsonc` file deploys `dist/server/index.js` and serves
+static assets from `dist/client`, both produced by `pnpm run build`.
+
+If the build fails during cloning, reconnect the GitHub integration and confirm
+Cloudflare has access to the exact repository selected for this project.
 
 ## Custom Domain Notes
 
