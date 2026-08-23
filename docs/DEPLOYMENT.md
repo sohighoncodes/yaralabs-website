@@ -70,6 +70,11 @@ Deploy command: pnpm run deploy
 The `wrangler.deploy.jsonc` file deploys `dist/server/index.js` and serves
 static assets from `dist/client`, both produced by `pnpm run build`.
 
+`pnpm-workspace.yaml` is intentionally present even though this is a
+single-package app. Cloudflare's build environment uses pnpm's dependency
+build-script approval policy, so the file explicitly allows native setup for
+`esbuild`, `sharp`, and `workerd`.
+
 If the build fails during cloning, reconnect the GitHub integration and confirm
 Cloudflare has access to the exact repository selected for this project.
 
