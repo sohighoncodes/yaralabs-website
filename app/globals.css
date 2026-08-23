@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+:root {
+  --background: #fbfbfa;
+  --foreground: #15161c;
+  --font-main: "Roboto Mono", "Courier New", monospace;
+  --font-body: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-main);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-grid::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 14%;
+  width: 140vw;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(154, 161, 189, 0.32) 12%,
+    rgba(154, 161, 189, 0.32) 88%,
+    transparent
+  );
+}
+
+.hero-grid::after {
+  content: "";
+  position: absolute;
+  left: -3%;
+  bottom: -3%;
+  width: 32vw;
+  min-width: 310px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(168, 175, 207, 0.34);
+  border-radius: 50%;
+}
+
+.node,
+.vertical-line,
+.orb {
+  position: absolute;
+  display: block;
+}
+
+.node {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(154, 161, 189, 0.58);
+  background: rgba(251, 251, 250, 0.78);
+}
+
+.node::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 999px;
+  background: #8a4bff;
+}
+
+.node-left {
+  left: 18%;
+  bottom: 35%;
+}
+
+.node-mid {
+  left: 35%;
+  bottom: 14%;
+  border-radius: 50%;
+}
+
+.node-right {
+  right: 18%;
+  bottom: 14%;
+  border-radius: 50%;
+}
+
+.orb {
+  border: 1px solid rgba(168, 175, 207, 0.24);
+  border-radius: 50%;
+}
+
+.orb::before {
+  content: "";
+  position: absolute;
+  inset: 35%;
+  border: 1px solid rgba(168, 175, 207, 0.55);
+  border-radius: 50%;
+}
+
+.orb::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: #9b5cff;
+  box-shadow: 0 0 26px rgba(120, 72, 255, 0.35);
+}
+
+.orb-left {
+  left: 12%;
+  bottom: 11%;
+  width: 58px;
+  height: 58px;
+}
+
+.orb-right {
+  right: 6%;
+  bottom: 21%;
+  width: 128px;
+  height: 128px;
+}
+
+.vertical-line {
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(154, 161, 189, 0.24),
+    rgba(154, 161, 189, 0.08)
+  );
+}
+
+.left-line {
+  left: 35%;
+  bottom: 0;
+  height: 22%;
+}
+
+.right-line {
+  right: 18%;
+  bottom: 14%;
+  height: 32%;
+}
+
+@media (max-width: 760px) {
+  .hero-grid::before {
+    bottom: 9%;
+  }
+
+  .hero-grid::after,
+  .orb-right,
+  .node-left,
+  .left-line {
+    display: none;
+  }
+
+  .node-mid {
+    left: 18%;
+    bottom: 9%;
+  }
+
+  .node-right {
+    right: 12%;
+    bottom: 9%;
+  }
+}
