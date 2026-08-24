@@ -57,6 +57,7 @@ test("documents the selected brand system and removes starter-only UI", async ()
 
   assert.match(page, /const navItems = \["Work", "Services", "About", "Contact"\]/);
   assert.match(page, /const features = \[/);
+  assert.match(page, /cta-glow/);
   assert.match(page, /cta-gradient/);
   assert.match(page, /hero-surface/);
   assert.match(page, /bg-\[#171321\]/);
@@ -66,12 +67,18 @@ test("documents the selected brand system and removes starter-only UI", async ()
   assert.match(css, /--background:\s*#ffffff/);
   assert.match(css, /--foreground:\s*#171321/);
   assert.match(css, /72% 85% at 104% 55%/);
+  assert.match(css, /@property --angle/);
+  assert.match(css, /@keyframes spin/);
+  assert.match(css, /\.cta-glow/);
   assert.match(css, /\.cta-gradient/);
   assert.match(css, /\.cta-gradient::before/);
   assert.match(css, /\.cta-gradient::after/);
-  assert.match(css, /321deg/);
-  assert.match(css, /#ffb0c1/);
-  assert.match(css, /#d994e9/);
+  assert.match(css, /#fd9233/);
+  assert.match(css, /#46b7da/);
+  assert.match(css, /#6c5ce7/);
+  assert.match(css, /#ffd166/);
+  assert.match(css, /#8b5cf6/);
+  assert.match(css, /conic-gradient/);
   assert.match(css, /transition:\s*opacity 1\.1s ease/);
   assert.doesNotMatch(css, /hero-grid|\\.orb|\\.node|vertical-line/);
   assert.match(packageJson, /"name": "yaralabs-website"/);

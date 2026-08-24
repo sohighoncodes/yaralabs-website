@@ -8,9 +8,10 @@ This project follows the YaraLabs design system v1 supplied on August 23, 2026.
 - Roboto Mono limited to technical labels and the wordmark
 - White page background and `#171321` primary text
 - Large rounded hero surface with the specified pink, violet, blue, and neutral multi-radial lighting
-- Primary CTA gradient: warm rose, peach, coral, and lavender. It uses
-  stacked pseudo-element gradient layers that crossfade on hover, preserving
-  the supplied palette while adding soft motion and polish.
+- Primary CTA gradient: stacked crossfade layers using orange, cyan, mint,
+  pale blue, yellow, coral, purple, gold, magenta, green, blue, and lavender
+  stops. On hover, a rotating purple-indigo-blue border glow appears around
+  the button.
 - 1200px structured content rhythm
 - 32px hero radius on desktop, 24px on mobile
 - Three overlapping dark feature cards using `#171321`

@@ -80,12 +80,14 @@ export default function Home() {
                 placeholder="Enter your email"
                 className="h-[52px] min-w-0 flex-1 rounded-lg border border-[#D1D0D3] bg-white/85 px-4 text-base leading-6 text-[#171321] outline-none transition duration-200 placeholder:text-[#A2A1A6] focus:border-[#8B5CF6] focus:ring-4 focus:ring-[#8B5CF6]/10"
               />
-              <button
-                type="submit"
-                className="cta-gradient h-[52px] rounded-lg px-6 text-base font-semibold leading-5 text-[#171321] transition duration-200 hover:translate-y-[-1px]"
-              >
-                <span>Free Consult</span>
-              </button>
+              <span className="cta-glow">
+                <button
+                  type="submit"
+                  className="cta-gradient h-[52px] rounded-[12px] px-6 text-base font-semibold leading-5 text-white transition duration-200"
+                >
+                  <span>Free Consult</span>
+                </button>
+              </span>
             </form>
 
             <a

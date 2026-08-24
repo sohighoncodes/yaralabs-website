@@ -28,6 +28,18 @@ select {
   font: inherit;
 }
 
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
 .hero-surface {
   background-color: #ebeaec;
   background-image:
@@ -88,14 +100,48 @@ select {
   );
 }
 
+.cta-glow {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  border-radius: 14px;
+  padding: 2px;
+  background: transparent;
+  animation: spin 3.5s linear infinite;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cta-glow:hover,
+.cta-glow:focus-within {
+  background: conic-gradient(
+    from var(--angle),
+    #8b5cf6,
+    #6366f1,
+    #38bdf8,
+    #6366f1,
+    #8b5cf6
+  );
+  box-shadow:
+    0 0 18px #6366f159,
+    0 0 34px #38bdf833;
+  transform: translateY(-1px);
+}
+
 .cta-gradient {
   position: relative;
+  z-index: 2;
   isolation: isolate;
+  display: block;
   overflow: hidden;
-  background-color: #ffb0c1;
+  border: 0;
+  cursor: pointer;
+  background-color: #fd9233;
   box-shadow:
     inset 0 1px 0 #ffffff66,
-    0 12px 28px #f8837833;
+    0 12px 28px #e4604933;
 }
 
 .cta-gradient::before,
@@ -107,72 +153,39 @@ select {
 }
 
 .cta-gradient::before {
-  background-color: #ffb0c1;
+  background-color: #fd9233;
   background-image:
-    radial-gradient(
-      85% 140% at 22% 12%,
-      #fff4f6a6 0%,
-      #fff4f64f 28%,
-      #fff4f600 58%
-    ),
-    radial-gradient(
-      80% 120% at 68% 82%,
-      #f88378d9 0%,
-      #f8837866 34%,
-      #f8837800 66%
-    ),
-    radial-gradient(
-      85% 140% at 100% 0%,
-      #d994e9e6 0%,
-      #d994e95c 38%,
-      #d994e900 70%
-    ),
-    linear-gradient(
-      321deg,
-      #ffb0c1 13%,
-      #ffc073 38%,
-      #f88378 52%,
-      #eda680 74%,
-      #d994e9 100%
-    );
+    radial-gradient(at 88% 10%, #46b7da 0%, transparent 48%),
+    radial-gradient(at 55% 2%, #7ceeae 0%, transparent 52%),
+    radial-gradient(at 15% 5%, #dff2ff 0%, transparent 45%),
+    radial-gradient(at 95% 95%, #dad991 0%, transparent 60%),
+    radial-gradient(at 45% 85%, #fd9233 0%, transparent 65%),
+    radial-gradient(at 5% 90%, #e46049 0%, transparent 70%);
 }
 
 .cta-gradient::after {
-  background-color: #d994e9;
+  background-color: #6c5ce7;
   background-image:
-    radial-gradient(
-      95% 140% at 12% 88%,
-      #ffc073f2 0%,
-      #ffc07373 36%,
-      #ffc07300 68%
-    ),
-    radial-gradient(
-      90% 125% at 60% 8%,
-      #ffb0c1e6 0%,
-      #ffb0c15c 34%,
-      #ffb0c100 66%
-    ),
-    radial-gradient(
-      80% 120% at 96% 76%,
-      #f88378cc 0%,
-      #f8837866 42%,
-      #f8837800 72%
-    ),
-    linear-gradient(
-      321deg,
-      #d994e9 8%,
-      #eda680 34%,
-      #f88378 54%,
-      #ffc073 72%,
-      #ffb0c1 100%
-    );
+    radial-gradient(at 10% 90%, #ffd166 0%, transparent 50%),
+    radial-gradient(at 50% 100%, #ef476f 0%, transparent 55%),
+    radial-gradient(at 90% 80%, #06d6a0 0%, transparent 50%),
+    radial-gradient(at 85% 5%, #118ab2 0%, transparent 55%),
+    radial-gradient(at 40% 0%, #6c5ce7 0%, transparent 60%),
+    radial-gradient(at 5% 10%, #a29bfe 0%, transparent 55%);
   opacity: 0;
   transition: opacity 1.1s ease;
 }
 
-.cta-gradient:hover::after,
-.cta-gradient:focus-visible::after {
+.cta-glow:hover .cta-gradient::after,
+.cta-glow:focus-within .cta-gradient::after {
   opacity: 1;
+}
+
+.cta-glow:hover .cta-gradient,
+.cta-glow:focus-within .cta-gradient {
+  box-shadow:
+    inset 0 1px 0 #ffffff66,
+    0 12px 28px #6c5ce733;
 }
 
 .cta-gradient span {
@@ -181,6 +194,10 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cta-glow {
+    animation: none;
+  }
+
   .cta-gradient::after {
     transition: none;
   }
