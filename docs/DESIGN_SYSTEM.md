@@ -9,8 +9,8 @@ This project follows the YaraLabs design system v1 supplied on August 23, 2026.
 - White page background and `#171321` primary text
 - Large rounded hero surface with the specified pink, violet, blue, and neutral multi-radial lighting
 - Primary CTA gradient: warm rose, peach, coral, and lavender. It uses
-  layered radial highlights over a `321deg` linear base so the button keeps the
-  supplied palette while gaining soft depth and polish.
+  stacked pseudo-element gradient layers that crossfade on hover, preserving
+  the supplied palette while adding soft motion and polish.
 - 1200px structured content rhythm
 - 32px hero radius on desktop, 24px on mobile
 - Three overlapping dark feature cards using `#171321`
