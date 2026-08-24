@@ -57,6 +57,10 @@ test("documents the selected brand system and removes starter-only UI", async ()
 
   assert.match(page, /const navItems = \["Work", "Services", "About", "Contact"\]/);
   assert.match(page, /const features = \[/);
+  assert.match(page, /\/brand\/yara-labs-icon\.svg/);
+  assert.match(page, /\/brand\/yara-labs-wordmark\.svg/);
+  assert.match(page, /width="180"/);
+  assert.match(page, /height="320"/);
   assert.match(page, /cta-glow/);
   assert.match(page, /cta-gradient/);
   assert.match(page, /hero-surface/);

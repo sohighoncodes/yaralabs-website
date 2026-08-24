@@ -6,6 +6,8 @@ This project follows the YaraLabs design system v1 supplied on August 23, 2026.
 
 - Inter Tight as the primary website typeface
 - Roboto Mono limited to technical labels and the wordmark
+- Header brand uses the supplied black YARA LABS icon and wordmark SVGs with
+  fixed height-based scaling.
 - White page background and `#171321` primary text
 - Large rounded hero surface with the specified pink, violet, blue, and neutral multi-radial lighting
 - Primary CTA gradient: stacked crossfade layers using orange, cyan, mint,

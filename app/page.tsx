@@ -31,10 +31,23 @@ export default function Home() {
       <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-6 md:px-8">
         <a
           href="#"
-          className="font-mono text-xs font-medium uppercase text-[#171321]"
+          className="flex shrink-0 items-center gap-2.5"
           aria-label="YARA LABS home"
         >
-          YARA LABS
+          <img
+            src="/brand/yara-labs-icon.svg"
+            alt=""
+            width="180"
+            height="167"
+            className="h-7 w-auto sm:h-8"
+          />
+          <img
+            src="/brand/yara-labs-wordmark.svg"
+            alt="YARA LABS"
+            width="2452"
+            height="320"
+            className="h-4 w-auto max-w-[122px] sm:h-[18px] sm:max-w-[138px]"
+          />
         </a>
 
         <div className="hidden items-center gap-8 text-sm font-medium text-[#171321] sm:flex">
