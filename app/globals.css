@@ -28,18 +28,6 @@ select {
   font: inherit;
 }
 
-@property --angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-@keyframes spin {
-  to {
-    --angle: 360deg;
-  }
-}
-
 .hero-surface {
   background-color: #ebeaec;
   background-image:
@@ -107,7 +95,6 @@ select {
   border-radius: 14px;
   padding: 2px;
   background: transparent;
-  animation: spin 3.5s linear infinite;
   transition:
     background 0.2s ease,
     box-shadow 0.2s ease,
@@ -116,16 +103,10 @@ select {
 
 .cta-glow:hover,
 .cta-glow:focus-within {
-  background: conic-gradient(
-    from var(--angle),
-    #8b5cf6,
-    #6366f1,
-    #38bdf8,
-    #6366f1,
-    #8b5cf6
-  );
+  background: #38bdf8;
   box-shadow:
-    0 0 18px #6366f159,
+    0 0 0 1px #dff2ff,
+    0 0 18px #38bdf859,
     0 0 34px #38bdf833;
   transform: translateY(-1px);
 }
@@ -194,10 +175,6 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cta-glow {
-    animation: none;
-  }
-
   .cta-gradient::after {
     transition: none;
   }

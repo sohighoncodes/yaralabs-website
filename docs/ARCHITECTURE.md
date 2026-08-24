@@ -21,7 +21,7 @@ data model are built in stages.
 - Background: white, `#ffffff`
 - Primary text: very dark gray, `#171321`
 - Supporting text: muted premium gray
-- Accent: saturated gradient morph with an animated blue-violet border glow, used sparingly for calls to action
+- Accent: saturated gradient morph with a static light-blue hover border, used sparingly for calls to action
 
 ## Future Supabase Usage
 
