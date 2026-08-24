@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 167" fill="none">
+  <!-- Top Left -->
+  <path d="M75 39H48A8 8 0 0 0 40 47V74"
+        stroke="#000"
+        stroke-width="4"
+        stroke-linecap="butt"
+        stroke-linejoin="round"
+        fill="none"/>
+
+  <!-- Top Right -->
+  <path d="M105 39H132A8 8 0 0 1 140 47V74"
+        stroke="#000"
+        stroke-width="4"
+        stroke-linecap="butt"
+        stroke-linejoin="round"
+        fill="none"/>
+
+  <!-- Bottom Left -->
+  <path d="M40 113V139A8 8 0 0 0 48 147H75"
+        stroke="#000"
+        stroke-width="4"
+        stroke-linecap="butt"
+        stroke-linejoin="round"
+        fill="none"/>
+
+  <!-- Bottom Right -->
+  <path d="M140 113V139A8 8 0 0 1 132 147H105"
+        stroke="#000"
+        stroke-width="4"
+        stroke-linecap="butt"
+        stroke-linejoin="round"
+        fill="none"/>
+
+  <!-- Y -->
+  <path d="M66 75L90 99L114 75M90 99V123"
+        stroke="#000"
+        stroke-width="6"
+        stroke-linecap="butt"
+        stroke-linejoin="round"/>
+</svg>

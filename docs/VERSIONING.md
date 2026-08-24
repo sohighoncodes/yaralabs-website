@@ -23,6 +23,6 @@ Track important public changes here until a formal changelog is needed.
 ### 0.1.0
 
 - Created initial YARA LABS landing hero and navbar
-- Added Roboto Mono and Roboto typography
+- Added Inter Tight and Roboto Mono typography
 - Added deployment, architecture, and versioning documentation
 - Prepared Supabase and Cloudflare environment variable template

@@ -31,10 +31,23 @@ export default function Home() {
       <nav className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-6 md:px-8">
         <a
           href="#"
-          className="font-mono text-xs font-medium uppercase text-[#171321]"
+          className="flex shrink-0 items-center gap-2.5"
           aria-label="YARA LABS home"
         >
-          YARA LABS
+          <img
+            src="/brand/yara-labs-icon.svg"
+            alt=""
+            width="180"
+            height="167"
+            className="h-7 w-auto sm:h-8"
+          />
+          <img
+            src="/brand/yara-labs-wordmark.svg"
+            alt="YARA LABS"
+            width="2452"
+            height="320"
+            className="h-4 w-auto max-w-[122px] sm:h-[18px] sm:max-w-[138px]"
+          />
         </a>
 
         <div className="hidden items-center gap-8 text-sm font-medium text-[#171321] sm:flex">
@@ -80,12 +93,14 @@ export default function Home() {
                 placeholder="Enter your email"
                 className="h-[52px] min-w-0 flex-1 rounded-lg border border-[#D1D0D3] bg-white/85 px-4 text-base leading-6 text-[#171321] outline-none transition duration-200 placeholder:text-[#A2A1A6] focus:border-[#8B5CF6] focus:ring-4 focus:ring-[#8B5CF6]/10"
               />
-              <button
-                type="submit"
-                className="cta-gradient h-[52px] rounded-lg px-6 text-base font-semibold leading-5 text-white transition duration-200 hover:translate-y-[-1px] hover:brightness-105"
-              >
-                Free Consult
-              </button>
+              <span className="cta-glow">
+                <button
+                  type="submit"
+                  className="cta-gradient h-[52px] rounded-[12px] px-6 text-base font-semibold leading-5 text-white transition duration-200"
+                >
+                  <span>Free Consult</span>
+                </button>
+              </span>
             </form>
 
             <a

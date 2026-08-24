@@ -5,11 +5,11 @@ and Cloudflare-compatible output.
 
 ## Design Notes
 
-- Main/display font: Roboto Mono
-- Body/content font: Roboto
-- Background: warm white
+- Primary website font: Inter Tight
+- Technical label/wordmark font: Roboto Mono
+- Background: white
 - Text: very dark premium gray
-- Accent/CTA: pink, violet, and blue gradient
+- Accent/CTA: saturated gradient morph with a static light-blue hover border
 - Current scope: landing page navbar and hero section
 
 ## Work From Another Device
