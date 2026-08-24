@@ -61,7 +61,7 @@ test("documents the selected brand system and removes starter-only UI", async ()
   assert.match(page, /hero-surface/);
   assert.match(page, /bg-\[#171321\]/);
   assert.match(layout, /title:\s*"YARA LABS"/);
-  assert.match(css, /Inter/);
+  assert.match(css, /Inter Tight/);
   assert.match(css, /Roboto Mono/);
   assert.match(css, /--background:\s*#ffffff/);
   assert.match(css, /--foreground:\s*#171321/);

@@ -4,7 +4,7 @@ This project follows the YaraLabs design system v1 supplied on August 23, 2026.
 
 ## Implemented In Current Landing Page
 
-- Inter as the primary website typeface
+- Inter Tight as the primary website typeface
 - Roboto Mono limited to technical labels and the wordmark
 - White page background and `#171321` primary text
 - Large rounded hero surface with the specified pink, violet, blue, and neutral multi-radial lighting

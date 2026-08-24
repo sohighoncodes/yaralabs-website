@@ -16,10 +16,10 @@ data model are built in stages.
 
 ## Brand System
 
-- Display/main font: Roboto Mono
-- Body/content font: Roboto
-- Background: warm white, `#fbfbfa`
-- Primary text: very dark gray, `#15161c`
+- Primary website font: Inter Tight
+- Technical label/wordmark font: Roboto Mono
+- Background: white, `#ffffff`
+- Primary text: very dark gray, `#171321`
 - Supporting text: muted premium gray
 - Accent: pink-violet-blue gradient used sparingly for calls to action
 
