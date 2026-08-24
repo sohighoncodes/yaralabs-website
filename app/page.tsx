@@ -82,7 +82,7 @@ export default function Home() {
               />
               <button
                 type="submit"
-                className="cta-gradient h-[52px] rounded-lg px-6 text-base font-semibold leading-5 text-white transition duration-200 hover:translate-y-[-1px] hover:brightness-105"
+                className="cta-gradient h-[52px] rounded-lg px-6 text-base font-semibold leading-5 text-[#171321] transition duration-200 hover:translate-y-[-1px] hover:brightness-105"
               >
                 Free Consult
               </button>

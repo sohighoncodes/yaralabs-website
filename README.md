@@ -9,7 +9,7 @@ and Cloudflare-compatible output.
 - Technical label/wordmark font: Roboto Mono
 - Background: white
 - Text: very dark premium gray
-- Accent/CTA: pink, violet, and blue gradient
+- Accent/CTA: warm rose, peach, coral, and lavender gradient
 - Current scope: landing page navbar and hero section
 
 ## Work From Another Device

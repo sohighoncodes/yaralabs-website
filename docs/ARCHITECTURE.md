@@ -21,7 +21,7 @@ data model are built in stages.
 - Background: white, `#ffffff`
 - Primary text: very dark gray, `#171321`
 - Supporting text: muted premium gray
-- Accent: pink-violet-blue gradient used sparingly for calls to action
+- Accent: warm rose-peach-lavender gradient used sparingly for calls to action
 
 ## Future Supabase Usage
 

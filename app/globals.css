@@ -89,35 +89,37 @@ select {
 }
 
 .cta-gradient {
-  background-color: #f59e0b;
+  background-color: #ffb0c1;
   background-image:
     radial-gradient(
-      120% 150% at 50% 52%,
-      #f59e0b 0%,
-      #f59e0bf2 30%,
-      #f59e0bba 48%,
-      #f59e0b00 68%
+      85% 140% at 22% 12%,
+      #fff4f6a6 0%,
+      #fff4f64f 28%,
+      #fff4f600 58%
     ),
     radial-gradient(
-      70% 130% at 4% 50%,
-      #ec4899e6 0%,
-      #f472b68a 40%,
-      #f472b600 70%
+      80% 120% at 68% 82%,
+      #f88378d9 0%,
+      #f8837866 34%,
+      #f8837800 66%
     ),
     radial-gradient(
-      80% 130% at 108% 50%,
-      #7c3aedf2 0%,
-      #a855f7bf 42%,
-      #c084fc00 76%
+      85% 140% at 100% 0%,
+      #d994e9e6 0%,
+      #d994e95c 38%,
+      #d994e900 70%
     ),
     linear-gradient(
-      100deg,
-      #ec4899 0%,
-      #f97316 34%,
-      #f59e0b 55%,
-      #c084fc 78%,
-      #7c3aed 100%
+      321deg,
+      #ffb0c1 13%,
+      #ffc073 38%,
+      #f88378 52%,
+      #eda680 74%,
+      #d994e9 100%
     );
+  box-shadow:
+    inset 0 1px 0 #ffffff66,
+    0 12px 28px #f8837833;
 }
 
 @media (max-width: 767px) {
