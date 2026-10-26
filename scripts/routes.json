@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Home",
+    "route": "/",
+    "title": "Systems that run themselves"
+  },
+  {
+    "name": "Services",
+    "route": "/services",
+    "title": "Services"
+  },
+  {
+    "name": "Service-Automation",
+    "route": "/services/automation",
+    "title": "Business Automation"
+  },
+  {
+    "name": "Service-AI-Agents",
+    "route": "/services/ai-agents",
+    "title": "AI Agents"
+  },
+  {
+    "name": "Service-CRM",
+    "route": "/services/crm",
+    "title": "CRM Setup"
+  },
+  {
+    "name": "Service-Custom-Apps",
+    "route": "/services/custom-apps",
+    "title": "Custom Apps"
+  },
+  {
+    "name": "Projects",
+    "route": "/projects",
+    "title": "Our Projects"
+  },
+  {
+    "name": "Case-Colliers",
+    "route": "/projects/colliers-catering",
+    "title": "Colliers Catering Case Study"
+  },
+  {
+    "name": "Case-USMD",
+    "route": "/projects/us-medical-directors",
+    "title": "US Medical Directors Case Study"
+  },
+  {
+    "name": "Case-Inka",
+    "route": "/projects/inka-arthouse",
+    "title": "Inka Arthouse Case Study"
+  }
+]

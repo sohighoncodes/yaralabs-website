@@ -14,6 +14,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    ".wrangler/**",
+    ".vinext/**",
+    "outputs/**",
   ]),
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
@@ -23,6 +26,15 @@ const eslintConfig = defineConfig([
   jsxA11y.flatConfigs.recommended,
   next.configs["core-web-vitals"],
   {
+    files: ["**/*.{js,mjs,jsx,ts,tsx}"],
+    rules: {
+      "react/prop-types": "off",
+      "@typescript-eslint/no-unused-expressions": ["error", { allowShortCircuit: true }],
+      // Full document navigation resets the handoff's page-level animation lifecycle.
+      "@next/next/no-html-link-for-pages": "off",
+      // Avatars are pre-sized, compressed local assets with native lazy loading.
+      "@next/next/no-img-element": "off",
+    },
     languageOptions: {
       globals: {
         ...globals.browser,

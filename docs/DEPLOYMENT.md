@@ -53,6 +53,8 @@ keys and direct database connection strings are not safe to expose.
 pnpm install
 pnpm run build
 pnpm test
+pnpm run lint
+pnpm exec tsc --noEmit
 ```
 
 ## Cloudflare Workers Build Settings
@@ -87,6 +89,11 @@ sohighoncodes/yaralabs-website
 ```
 
 ## Custom Domain Notes
+
+After pushing `main`, verify all ten routes listed in `scripts/routes.json`
+on the production domain. Browser checks accept `QA_BASE_URL=https://yaralabs.io`.
+The contact dialog opens an email draft; there is no form backend or scheduler
+to configure in this release.
 
 Cloudflare Pages can serve `yaralabs.io` after the Pages project is connected
 to the zone. DNS should remain managed in Cloudflare. Keep proxy/SSL settings

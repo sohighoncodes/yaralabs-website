@@ -1,16 +1,39 @@
 # YARA LABS Website
 
-Minimal landing page for YARA LABS, built with Vinext, React, Tailwind CSS,
-and Cloudflare-compatible output.
+YARA LABS marketing website, built with Vinext and React and deployed to
+Cloudflare through GitHub. The October 2026 redesign includes ten pages:
+home, services, four service details, projects and three case studies.
 
 ## Design Notes
 
-- Primary website font: Inter Tight
-- Technical label/wordmark font: Roboto Mono
-- Background: white
-- Text: very dark premium gray
-- Accent/CTA: saturated gradient morph with a static light-blue hover border
-- Current scope: landing page navbar and hero section
+- Typeface: Geist with Instrument Serif italic accents
+- Background: cool white with scroll-driven dark sections
+- Accent: blue, with glossy dark and blue calls to action
+- Motion: native Web Animations API; reduced-motion preferences respected
+- Mobile navigation, FAQ accordions, service recommendations and project demos
+
+## Contact
+
+The shared booking dialog validates name, email and project details and opens
+a prepared email to `hello@yaralabs.io`. Visitors must send it in their email
+app. No data is silently stored and no successful submission is simulated.
+Connecting an automatic booking provider is a separate integration.
+
+## Source and Verification
+
+`components/pages/` contains normal React JSX and the animation logic adapted
+from the supplied design handoff. `components/SiteNav.jsx` and
+`components/BookingDialog.jsx` are shared. No prototype runtime is deployed.
+
+`scripts/import-handoff.mjs <directory>` is the one-time migration utility;
+edit the generated React source for ongoing development. Rerunning it replaces
+page components and route metadata. Keep the original handoff ZIP separately.
+
+`pnpm test` builds and checks all ten rendered routes and internal links.
+`pnpm exec tsc --noEmit` checks types. With the local server running,
+`node scripts/qa.mjs` checks every page at desktop and phone widths;
+`node scripts/qa-interactions.mjs` checks interactive behavior. Browser checks
+need `pnpm exec playwright install chromium`. Reports are ignored in `outputs/`.
 
 ## Work From Another Device
 

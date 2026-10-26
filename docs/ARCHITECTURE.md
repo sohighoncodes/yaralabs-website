@@ -2,9 +2,9 @@
 
 ## Current Scope
 
-The current site is a minimal YARA LABS landing page with a navbar and hero
-section. It is intentionally static while the brand, copy, CMS, analytics, and
-data model are built in stages.
+The October 2026 site has ten server-rendered routes, client-side React
+interactions, local assets and a shared accessible booking dialog. The dialog
+prepares an email to hello@yaralabs.io; it does not submit to a database.
 
 ## Application Stack
 
@@ -16,12 +16,11 @@ data model are built in stages.
 
 ## Brand System
 
-- Primary website font: Inter Tight
-- Technical label/wordmark font: Roboto Mono
-- Background: white, `#ffffff`
-- Primary text: very dark gray, `#171321`
-- Supporting text: muted premium gray
-- Accent: saturated gradient morph with a static light-blue hover border, used sparingly for calls to action
+- Primary website font: Geist
+- Accent typeface: Instrument Serif italic
+- Background: `#F6F7F9`, transitioning to `#070B16` in dark sections
+- Primary text: `#0D1321`; secondary text: `#5B6272`
+- Accent: `#2A62F5`, glossy dark and blue calls to action
 
 ## Future Supabase Usage
 

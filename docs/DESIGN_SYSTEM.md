@@ -1,26 +1,22 @@
 # YARA LABS Design System
 
-This project follows the YaraLabs design system v1 supplied on August 23, 2026.
+The October 2026 website follows the supplied `Yara Labs website project.zip` handoff, replacing the earlier landing page.
 
-## Implemented In Current Landing Page
+## Current design
 
-- Inter Tight as the primary website typeface
-- Roboto Mono limited to technical labels and the wordmark
-- Header brand uses the supplied black YARA LABS icon and wordmark SVGs with
-  fixed height-based scaling.
-- White page background and `#171321` primary text
-- Large rounded hero surface with the specified pink, violet, blue, and neutral multi-radial lighting
-- Primary CTA gradient: reference-inspired purple/pink into orange/coral/red
-  using `#C884FA`, `#FF98E2`, `#D49422`, `#DE5F31`, `#F96656`, and `#EC5252`.
-  It keeps the stacked crossfade layer structure and light-blue hover border
-  glow while making the warm orange/coral field dominant.
-- 1200px structured content rhythm
-- 32px hero radius on desktop, 24px on mobile
-- Three overlapping dark feature cards using `#171321`
-- Minimal shadows and restrained decorative treatment
+- Geist for headings and interface text; Instrument Serif italic for editorial accents.
+- Light canvas `#F6F7F9`, dark sections `#070B16`, primary blue `#2A62F5`.
+- Blue dimensional buttons with inset highlights and shadows.
+- Glossy blue and peach objects, rounded panels, and a subtle grain overlay.
+- Floating shared navigation with a collapsible mobile menu.
+- Responsive service cards, project scenes, and case-study layouts.
+- Scroll-driven dark sections, floating objects, project hover tilt, FAQs, and a service recommendation picker.
+- Large decorative hero objects are hidden on small phones to keep content readable.
+- Reduced-motion preferences disable continuous decorative animation and transitions.
+- Visible keyboard focus, labeled contact fields, native dialog focus handling, and Escape dismissal.
 
-## Notes
+## Implementation
 
-The design system specifies negative letter spacing for some headings. The
-current implementation keeps letter spacing neutral to preserve consistency with
-the local frontend rendering guidance for this project.
+Letter spacing remains neutral; hero sizes use explicit breakpoints. Page components are in `components/pages/`, shared controls in `components/`, and global styles in `app/globals.css`. The prototype runtime is not shipped.
+
+Book a call opens a contact dialog that prepares an email to `hello@yaralabs.io`. It does not claim to send or schedule a meeting; connect a booking provider before changing that promise.
