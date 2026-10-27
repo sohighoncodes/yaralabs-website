@@ -19,6 +19,18 @@ The October 2026 website follows the supplied `Yara Labs website project.zip` ha
 
 Letter spacing remains neutral; hero sizes use explicit breakpoints. Page components are in `components/pages/`, shared controls in `components/`, and global styles in `app/globals.css`. The prototype runtime is not shipped.
 
+The home page's `#work` section follows the second handoff's project-panel design,
+directly after How we work and before testimonials. `components/WorkSection.jsx`
+and `app/work.css` contain its responsive layout; `components/work-projects.js`
+is the single source for the supplied copy, metrics and illustrative bar lengths.
+It retains the reference's tighter title spacing. Panels expand on hover/focus
+at 1140px and above and stack fully open below that width. Before bars fill,
+then After bars grow/shrink from the old value, then change badges appear.
+Each mobile chart starts when its card enters view. Labels follow actual animated
+widths. Reduced motion, keyboard focus and a readable no-JavaScript fallback are
+supported. The existing dark scroll zone supplies `--yl-accent` from brand blue
+to `#8FB0FF`, alongside its ink, secondary text, border and card colors.
+
 Scroll-driven dark sections use `lib/dark-section.js`. The entrance fade starts
 at a nonnegative document scroll position so tall screens never load with a
 partially dark hero. `node scripts/qa-hero.mjs` checks phone, desktop and 4K

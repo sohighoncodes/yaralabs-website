@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap");
 @import "./hover.css";
+@import "./work.css";
 
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 body { margin: 0; background: #f6f7f9; color: #0d1321; font-family: 'Geist', system-ui, sans-serif; -webkit-font-smoothing: antialiased; text-wrap: pretty; }

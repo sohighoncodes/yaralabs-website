@@ -46,6 +46,7 @@ page components and route metadata. Keep the original handoff ZIP separately.
 `pnpm exec tsc --noEmit` checks types. With the local server running,
 `node scripts/qa.mjs` checks every page at desktop and phone widths;
 `node scripts/qa-interactions.mjs` checks interactive behavior;
+`node scripts/qa-work.mjs` checks the homepage project panels and before/after charts;
 `node scripts/qa-milo.mjs` checks tours, booking, dragging and hide/restore;
 `node scripts/qa-booking.mjs` checks both modal flows, and
 `node scripts/qa-calendar.mjs` checks custom calendar conflicts, retries and time zones. Browser checks

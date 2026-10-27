@@ -4,6 +4,7 @@ import { darkSectionProgress } from "../../lib/dark-section";
 import AppBrand from "../AppBrand";
 import BookingLink from "../BookingLink";
 import SiteNav from "../SiteNav";
+import WorkSection from "../WorkSection";
 
 const STACK = ['Zapier', 'GoHighLevel', 'HubSpot', 'Make', 'OpenAI', 'Claude', 'Airtable', 'Slack', 'Stripe', 'Google Workspace', 'Supabase', 'Cursor', 'Any API'];
 const APPS = ['Stripe', 'Airtable', 'Slack'];
@@ -20,7 +21,7 @@ const FAQS = [
   ['Do I own what you build?', 'Yes. Everything lives in your accounts.']
 ];
 const EASE = 'cubic-bezier(.16,1,.3,1)';
-const DARK = { ink: [[13,19,33,1],[243,245,250,1]], sub: [[91,98,114,1],[168,177,196,1]], line: [[228,231,236,1],[255,255,255,0.12]], card: [[255,255,255,1],[22,30,52,0.7]], bg: [[246,247,249,1],[7,11,22,1]] };
+const DARK = { accent: [[42,98,245,1],[143,176,255,1]], ink: [[13,19,33,1],[243,245,250,1]], sub: [[91,98,114,1],[168,177,196,1]], line: [[228,231,236,1],[255,255,255,0.12]], card: [[255,255,255,1],[22,30,52,0.7]], bg: [[246,247,249,1],[7,11,22,1]] };
 
 export default class DesignPage extends React.Component {
   state = { tick: 0, chars: 0, openFaq: 0, scrolled: false, compactNav: false };
@@ -683,6 +684,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 {" "}
 </section>
 {" "}
+<WorkSection />
 {(showTestimonials) && <>{" "}
 <section data-screen-label={"Testimonials"} style={{"maxWidth":"1200px","margin":"0 auto","padding":"clamp(90px, 12vw, 160px) clamp(20px, 5vw, 64px) 0"}}>
 {" "}

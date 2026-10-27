@@ -20,6 +20,12 @@ chore: update project metadata
 
 Track important public changes here until a formal changelog is needed.
 
+### October 2026 — Homepage project results
+
+- Added the supplied Work that paid off section between the process and testimonials.
+- Included Colliers, USMD and Inka results, animated before/after metrics and case-study links.
+- Adapted the expanding panels for the existing dark theme, stacked mobile layout, keyboard and reduced motion.
+
 ### October 2026 — Pricing button alignment
 
 - Centered pricing CTA labels with consistent padding on all four service pages.
