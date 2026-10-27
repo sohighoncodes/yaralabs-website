@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { darkSectionProgress } from "../../lib/dark-section";
 import AppBrand from "../AppBrand";
 import BookingLink from "../BookingLink";
 import SiteNav from "../SiteNav";
@@ -50,7 +51,7 @@ export default class DesignPage extends React.Component {
     const z = this.zoneRef.current, d = this.darkRef.current;
     if (z && d) {
       const r = z.getBoundingClientRect();
-      const p = Math.min(cl((vh * 0.75 - r.top) / (vh * 0.45)), cl((r.bottom - vh * 0.35) / (vh * 0.4)));
+      const p = darkSectionProgress(r, vh, window.scrollY);
       d.style.opacity = p.toFixed(3);
       for (const k in DARK) { const [a, b] = DARK[k]; const c = a.map((v, i) => v + (b[i] - v) * p); z.style.setProperty('--yl-' + k, `rgba(${Math.round(c[0])},${Math.round(c[1])},${Math.round(c[2])},${c[3].toFixed(3)})`); }
     }
