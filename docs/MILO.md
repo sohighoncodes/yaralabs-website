@@ -16,7 +16,8 @@ route-change and teardown handling before using this script unchanged.
 The route introductions use the actual nine non-home URL slugs. Tours discover
 the existing `data-screen-label` sections. Home has six curated stops; other
 pages use up to seven sections. Booking uses the shared `[data-booking-link]`
-anchor, with a fallback URL passed from `lib/booking.js` on the script element.
+anchor, which opens the shared booking modal. A fallback URL is passed from
+`lib/booking.js` on the script element.
 There are no prototype `.dc.html` destinations or external asset requests.
 
 ## Interaction and accessibility
@@ -38,7 +39,7 @@ are tolerated. No visitor data is sent by the guide.
 
 Run `pnpm test`, `pnpm run lint`, `pnpm exec tsc --noEmit`, and with the local
 server running, `node scripts/qa-milo.mjs`. Browser coverage includes all ten
-pages on desktop and mobile, the complete home tour, intercepted booking
-navigation, keyboard dismissal, hide persistence, restoration, reduced motion,
+pages on desktop and mobile, the complete home tour, booking-modal opening,
+keyboard dismissal, hide persistence, restoration, reduced motion,
 dragging and cancellation during an active Yara scene. Screenshots are saved in
 ignored `outputs/qa/`. Set `QA_BASE_URL` to check the deployed version.

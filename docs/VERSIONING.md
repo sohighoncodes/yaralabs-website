@@ -20,6 +20,13 @@ chore: update project metadata
 
 Track important public changes here until a formal changelog is needed.
 
+### October 2026 — Quote and calendar modal
+
+- Added a discreet Get a quote link and shared two-step modal for booking CTAs.
+- Saved contact details, current tools and project messages privately in Supabase.
+- Embedded the updated Google appointment schedule after intake, with a new-tab fallback.
+- Verified all ten routes at desktop/mobile sizes, API validation, storage permissions and the real calendar embed.
+
 ### October 2026 — Milo guide and booking
 
 - Integrated the supplied pixel kitten guide on all ten pages, with page tours,

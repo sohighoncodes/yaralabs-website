@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { BOOKING_URL } from "../lib/booking";
+import BookingModal from "../components/BookingModal";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
+        <BookingModal />
         <Script src="/assets/yara-pet.js?v=1" strategy="afterInteractive" data-booking-url={BOOKING_URL} />
       </body>
     </html>

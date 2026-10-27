@@ -92,10 +92,15 @@ sohighoncodes/yaralabs-website
 
 After pushing `main`, verify all ten routes listed in `scripts/routes.json`
 on the production domain. Browser checks accept `QA_BASE_URL=https://yaralabs.io`.
-Booking links point to the Google Calendar schedule in `lib/booking.js`; no
-server credentials are required. `public/assets/yara-pet.js` is a local static
+Booking links open the intake/calendar modal. The database must be active with
+the migrations in `supabase/migrations/` applied. The server uses the project's
+publishable key with insert-only RLS; no service-role key or Google OAuth token
+is deployed. `public/assets/yara-pet.js` is a local static
 asset loaded after hydration. Run `node scripts/qa-milo.mjs` against production
-to check the guide and booking links without submitting a real appointment.
+to check the guide and booking modal without submitting a real appointment.
+`qa-booking.mjs` tests the modal with mocked saves; `qa-calendar.mjs` loads the
+real public Google schedule without making a booking. See `BOOKING.md` for
+server/storage verification.
 
 Cloudflare Pages can serve `yaralabs.io` after the Pages project is connected
 to the zone. DNS should remain managed in Cloudflare. Keep proxy/SSL settings

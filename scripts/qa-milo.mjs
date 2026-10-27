@@ -23,8 +23,6 @@ try {
   for (const width of [1440, 390]) {
     const context = await browser.newContext({ viewport: { width, height: 844 }, reducedMotion: 'reduce' });
     const page = await context.newPage(); observe(page);
-    // Intercept the booking destination: QA never submits or schedules a meeting.
-    await page.route(BOOKING_URL, route => route.fulfill({ contentType: 'text/html', body: '<h1>Booking destination verified</h1>' }));
     for (const route of routes) {
       await page.goto(base + route.route, { waitUntil: 'networkidle' });
       await startTour(page);
@@ -42,7 +40,8 @@ try {
         await expect(tour).toContainText("That's everything");
         await page.screenshot({ path: `outputs/qa/milo-tour-${width}.png` });
         await tour.getByRole('button', { name: 'Book a call', exact: true }).click();
-        await expect(page).toHaveURL(BOOKING_URL);
+        await expect(page.getByRole('dialog')).toBeVisible();
+        await page.getByRole('button', { name: 'Close booking window' }).click();
         await page.goto(base, { waitUntil: 'networkidle' });
         await startTour(page);
       } else {
@@ -72,7 +71,8 @@ try {
     assert.equal(after.x, before.x, 'Reduced motion disables autonomous wandering');
     assert.equal(after.y, before.y, 'Reduced motion disables autonomous jumping');
     await page.locator('.nav-book').click();
-    await expect(page).toHaveURL(BOOKING_URL);
+    await expect(page.getByRole('dialog')).toBeVisible();
+    await page.getByRole('button', { name: 'Close booking window' }).click();
     await context.close();
   }
 
@@ -102,5 +102,5 @@ try {
   await page.getByRole('button', { name: 'Bring Milo back' }).click();
   await expect(petOn(page)).toBeVisible();
   assert.deepEqual(errors, []);
-  console.log('PASS: full home tour, direct booking navigation, persisted hide/restore, reduced motion, drag and Yara scene cancellation.');
+  console.log('PASS: full home tour, booking modal, persisted hide/restore, reduced motion, drag and Yara scene cancellation.');
 } finally { await browser.close(); }

@@ -3,8 +3,11 @@
 ## Current Scope
 
 The October 2026 site has ten server-rendered routes, client-side React
-interactions, local assets and shared booking links to the Google Calendar
-schedule configured in `lib/booking.js`. No booking data is stored by this site.
+interactions, local assets and a shared two-step booking modal. Contact and
+project details are validated by `POST /api/inquiries` and stored in Supabase
+with insert-only public permissions. Calendar availability, reservations,
+confirmation and Google Meet remain managed by the embedded Google schedule
+configured in `lib/booking.js`. See `BOOKING.md`.
 The supplied Milo canvas guide loads through `next/script` after hydration;
 see `MILO.md` for its lifecycle and browser-only storage.
 

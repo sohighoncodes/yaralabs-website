@@ -24,6 +24,10 @@ at a nonnegative document scroll position so tall screens never load with a
 partially dark hero. `node scripts/qa-hero.mjs` checks phone, desktop and 4K
 viewports, scrolling back to the top, reloads and hero entrance animations.
 
-Book a call links directly to the Google Calendar schedule configured in `lib/booking.js`. Visitors select and confirm their meeting in Google Calendar.
+Book a call and Get a quote open the same native modal dialog. The quote CTA
+is a quiet text link in desktop navigation and a mobile menu item. The modal
+collects contact/project details, then embeds the schedule in `lib/booking.js`.
+Google confirms the appointment. Modal controls keep a visible close button,
+focus containment/restoration and Escape dismissal; background scrolling is locked.
 
 Milo's pixel artwork and tour bubbles use the supplied handoff design. Navigation stays above the guide. Reduced motion disables wandering, entrance drops, particles, idle sprite animation and Yara scenes; tours remain available without smooth scrolling. Closed bubbles are inert and Escape dismisses the tour.

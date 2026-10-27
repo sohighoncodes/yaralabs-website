@@ -6,6 +6,19 @@
 - Project URL: `https://euahhliojookeumcvpem.supabase.co`
 - Public key type: publishable key
 
+## Website enquiries
+
+The project was restored from its paused state for the October 2026 booking
+integration. `public.website_inquiries` stores the contact/project intake before
+Google Calendar booking. Review submissions in the Supabase Table Editor, using
+the appointment email to match the enquiry. Public visitors can insert validated
+rows but cannot select, update or delete them. Only project administrators or
+server-side service-role credentials can read these details.
+
+The website's server uses the existing publishable key through an insert-only
+REST call. No service-role key is required or exposed. Local migrations are in
+`supabase/migrations/`. See `BOOKING.md` for the complete flow and limitations.
+
 ## Environment Variables
 
 Browser-safe values:
