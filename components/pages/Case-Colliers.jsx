@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import AppBrand from "../AppBrand";
 import BookingDialog from "../BookingDialog";
 import SiteNav from "../SiteNav";
 
@@ -885,7 +886,7 @@ render() { const {c1,darkRef,zoneRef,tiltMove,tiltLeave,bookOpen,openBook,closeB
 <span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
 
 </span>
-{"GoHighLevel"}
+<AppBrand name="GoHighLevel" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>

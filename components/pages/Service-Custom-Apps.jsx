@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import AppBrand from "../AppBrand";
 import BookingDialog from "../BookingDialog";
 import SiteNav from "../SiteNav";
 
@@ -248,7 +249,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 </span>
 {" "}
 <span style={{"fontSize":"12px","color":"#5B6272"}}>
-{(st.tool)}
+<AppBrand name={st.tool} />
 </span>
 {" "}
 </div>
@@ -309,10 +310,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {" "}
 {(stackLoop).map((t, itemIndex4) => <React.Fragment key={itemIndex4}>{" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"10px","padding":"12px 20px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"15px","fontWeight":"500","whiteSpace":"nowrap"}}>
-<span style={{"width":"8px","height":"8px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
-{(t)}
+<AppBrand name={t} />
 </span>
 {" "}</React.Fragment>)}
 {" "}
@@ -367,7 +365,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {" "}
 <div style={{"display":"flex","gap":"8px","flexWrap":"wrap"}}>
 {(ix.tools).map((tl, itemIndex9) => <React.Fragment key={itemIndex9}><span style={{"padding":"7px 14px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"13px","fontWeight":"500"}}>
-{(tl)}
+<AppBrand name={tl} />
 </span></React.Fragment>)}
 </div>
 {" "}
@@ -476,7 +474,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {"Files and invoices"}
 </span>
 <span style={{"marginLeft":"auto","fontSize":"13px","color":"#5B6272"}}>
-{"Stripe"}
+<AppBrand name="Stripe" />
 </span>
 </div>
 </div>

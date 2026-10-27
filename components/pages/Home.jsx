@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import AppBrand from "../AppBrand";
 import BookingDialog from "../BookingDialog";
 import SiteNav from "../SiteNav";
 
@@ -315,7 +316,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 {" "}
 {(autoApps).map((ap, itemIndex6) => <React.Fragment key={itemIndex6}>{" "}
 <span style={{"position":"relative","padding":"10px 14px","borderRadius":"14px","background":"#FFFFFF","fontSize":"13px","fontWeight":"500","boxShadow":"0 10px 30px -14px rgba(13,19,33,0.35)","outline":(ap.ring),"transition":"outline-color 400ms ease"}}>
-{(ap.name)}
+<AppBrand name={ap.name} />
 </span>
 {" "}</React.Fragment>)}
 {" "}
@@ -508,10 +509,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 {" "}
 {(stackLoop).map((t, itemIndex4) => <React.Fragment key={itemIndex4}>{" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"10px","padding":"12px 20px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"15px","fontWeight":"500","whiteSpace":"nowrap"}}>
-<span style={{"width":"8px","height":"8px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
-{(t)}
+<AppBrand name={t} />
 </span>
 {" "}</React.Fragment>)}
 {" "}
@@ -606,10 +604,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 {" "}
 {(buildBlocks).map((bb, itemIndex7) => <React.Fragment key={itemIndex7}>{" "}
 <div style={{"display":"flex","alignItems":"center","gap":"10px","padding":"10px 12px","borderRadius":"14px","background":"#FFFFFF","fontSize":"13px","fontWeight":"500","boxShadow":"0 10px 24px -14px rgba(13,19,33,0.35)","opacity":(bb.op),"transform":(bb.tf),"filter":(bb.fl),"transition":"all 700ms cubic-bezier(.16,1,.3,1)"}}>
-<span style={{"width":"22px","height":"22px","borderRadius":"7px","background":(bb.c)}}>
-
-</span>
-{(bb.name)}
+<AppBrand name={bb.name} />
 <span style={{"marginLeft":"auto","color":"#2A62F5"}}>
 {"✓"}
 </span>

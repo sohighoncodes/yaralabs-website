@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import AppBrand from "../AppBrand";
 import BookingDialog from "../BookingDialog";
 import SiteNav from "../SiteNav";
 
@@ -373,10 +374,7 @@ render() { const {darkRef,zoneRef,resRef,stackPos,stackCols,autoDot,autoSteps,ai
 {" "}
 {(autoSteps).map((st, itemIndex7) => <React.Fragment key={itemIndex7}>{" "}
 <div style={{"position":"relative","marginLeft":"52px","display":"flex","alignItems":"center","gap":"10px","padding":"12px 14px","borderRadius":"14px","background":"#FFFFFF","fontSize":"14px","fontWeight":"500","boxShadow":"0 12px 30px -14px rgba(13,19,33,0.35)","outline":(st.ring),"transition":"outline-color 400ms ease"}}>
-<span style={{"width":"24px","height":"24px","borderRadius":"8px","background":(st.c)}}>
-
-</span>
-{(st.name)}
+<AppBrand name={st.name} />
 <span style={{"marginLeft":"auto","color":"#2A62F5","opacity":(st.ck),"transition":"opacity 400ms ease"}}>
 {"✓"}
 </span>

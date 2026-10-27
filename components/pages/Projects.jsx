@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import AppBrand from "../AppBrand";
 import BookingDialog from "../BookingDialog";
 import SiteNav from "../SiteNav";
 
@@ -601,10 +602,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 {" "}
 {(u.chips).map((ch, itemIndex10) => <React.Fragment key={itemIndex10}>{" "}
 <div style={{"position":"absolute","left":String(ch.x) + "%","top":String(ch.y) + "%","transform":"translate(-50%, -50%) scale(" + String(ch.s) + ")","opacity":(ch.o),"display":"flex","alignItems":"center","gap":"0.8cqw","whiteSpace":"nowrap","padding":"0.9cqw 1.4cqw","borderRadius":"999px","background":"#FFFFFF","fontSize":"1.5cqw","fontWeight":"500","boxShadow":"0 1.2cqw 2.6cqw -1.2cqw rgba(13,19,33,0.35)","transition":"all 1000ms cubic-bezier(.65,0,.35,1)"}}>
-<span style={{"width":"1.2cqw","height":"1.2cqw","borderRadius":"0.4cqw","background":(ch.c)}}>
-
-</span>
-{(ch.name)}
+<AppBrand name={ch.name} />
 </div>
 {" "}</React.Fragment>)}
 {" "}

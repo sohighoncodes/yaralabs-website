@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import AppBrand from "../AppBrand";
 import BookingDialog from "../BookingDialog";
 import SiteNav from "../SiteNav";
 
@@ -370,10 +371,7 @@ render() { const {u,darkRef,zoneRef,tiltMove,tiltLeave,bookOpen,openBook,closeBo
 {" "}
 {(u.chips).map((ch, itemIndex8) => <React.Fragment key={itemIndex8}>{" "}
 <div style={{"position":"absolute","left":String(ch.x) + "%","top":String(ch.y) + "%","transform":"translate(-50%, -50%) scale(" + String(ch.s) + ")","opacity":(ch.o),"display":"flex","alignItems":"center","gap":"0.8cqw","whiteSpace":"nowrap","padding":"0.9cqw 1.4cqw","borderRadius":"999px","background":"#FFFFFF","fontSize":"1.5cqw","fontWeight":"500","boxShadow":"0 1.2cqw 2.6cqw -1.2cqw rgba(13,19,33,0.35)","transition":"all 1000ms cubic-bezier(.65,0,.35,1)"}}>
-<span style={{"width":"1.2cqw","height":"1.2cqw","borderRadius":"0.4cqw","background":(ch.c)}}>
-
-</span>
-{(ch.name)}
+<AppBrand name={ch.name} />
 </div>
 {" "}</React.Fragment>)}
 {" "}
@@ -791,14 +789,14 @@ render() { const {u,darkRef,zoneRef,tiltMove,tiltLeave,bookOpen,openBook,closeBo
 <span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
 
 </span>
-{"GoHighLevel"}
+<AppBrand name="GoHighLevel" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
 <span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
 
 </span>
-{"Stripe"}
+<AppBrand name="Stripe" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
