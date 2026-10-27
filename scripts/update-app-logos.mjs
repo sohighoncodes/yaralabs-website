@@ -4,6 +4,7 @@ import path from 'node:path';
 const source = process.argv[2];
 if (!source) throw new Error('Pass the logos-apps checkout directory.');
 const component = await readFile('components/AppBrand.jsx', 'utf8');
+const brandNames = [...component.slice(component.indexOf('const logos'),component.indexOf('const wordmarks')).matchAll(/(?:'([^']+)'|\b([A-Za-z][A-Za-z0-9]*)):\s*'[a-z0-9-]+'/g)].map(m=>m[1]||m[2]);
 const filenames = [...new Set([...component.matchAll(/:\s*'([a-z0-9-]+)'/g)].map(m=>m[1]))];
 await mkdir('public/assets/apps', {recursive:true});
 for (const file of filenames) {
@@ -21,7 +22,22 @@ for (const file of await readdir('components/pages')) {
   // Remove only the colored placeholder immediately preceding a known app label.
   text = text.replace(/<span style=\{\{[^\n]+\}\}>\s*<\/span>\s*\{\((t|bb\.name|ch\.name|st\.name)\)\}/g, (_,expr)=>`<AppBrand name={${expr}} />`);
   for (const expr of dynamic) text = text.replaceAll(`{(${expr})}`,`<AppBrand name={${expr}} />`);
-  for (const name of ['HubSpot','GoHighLevel','Make','Slack','Stripe','Google Drive','Xero','Google Ads','Meta Ads','Google Apps Script','Shopify','Dropbox','Google Sheets']) text=text.replaceAll('{'+JSON.stringify(name)+'}',`<AppBrand name=${JSON.stringify(name)} />`);
+  for (const name of [...brandNames,'GoHighLevel']) text=text.replaceAll('{'+JSON.stringify(name)+'}',`<AppBrand name=${JSON.stringify(name)} />`);
+  const labels = {
+    'New Google review': ['New ', ['Google'], ' review'],
+    'Shopify orders': [['Shopify'], ' orders'],
+    'Dropbox · Production': [['Dropbox'], ' · Production'],
+    'Stripe · payment received': [['Stripe'], ' · payment received'],
+    'GoHighLevel · Google & Meta ads': ['GoHighLevel · ', ['Google Ads'], ' · ', ['Meta Ads']],
+    'GoHighLevel · Stripe': ['GoHighLevel · ', ['Stripe']],
+    'Shopify · Make · Dropbox · Slack': [['Shopify'], ' · ', ['Make'], ' · ', ['Dropbox'], ' · ', ['Slack']],
+    'OpenAI · Claude · Agents': [['OpenAI'], ' · ', ['Claude'], ' · Agents'],
+    'Zapier · Make · APIs': [['Zapier'], ' · ', ['Make'], ' · APIs'],
+    'Acme Co. · via Stripe': ['Acme Co. · via ', ['Stripe']],
+    'Slack and email alerts': [['Slack'], ' and email alerts'],
+  };
+  for (const [label, parts] of Object.entries(labels)) text = text.replaceAll('{'+JSON.stringify(label)+'}',
+    '<span className="app-label">' + parts.map(part => Array.isArray(part) ? `<AppBrand name=${JSON.stringify(part[0])} />` : '{'+JSON.stringify(part)+'}').join('') + '</span>');
   // Case-study value badges are static, unlike the mapped tool strips above.
   // Remove their old dots, including duplicates beside an existing brand logo.
   text = text.replace(/(<section data-screen-label=\{"Value"\}[\s\S]*?<\/section>)/g,

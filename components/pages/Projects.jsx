@@ -406,7 +406,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 {" "}
 <div style={{"marginTop":"0.4cqw"}}>
 <span style={{"fontWeight":"500"}}>
-{"New Google review"}
+<span className="app-label">{"New "}<AppBrand name="Google" />{" review"}</span>
 </span>
 {" · “Food was amazing.”"}
 </div>
@@ -446,7 +446,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 {"CRM + lead gen"}
 </span>
 <span style={{"padding":"6px 12px","borderRadius":"999px","fontSize":"13px","border":"1px solid var(--yl-line, #E4E7EC)","color":"var(--yl-sub, #5B6272)"}}>
-{"GoHighLevel · Google & Meta ads"}
+<span className="app-label">{"GoHighLevel · "}<AppBrand name="Google Ads" />{" · "}<AppBrand name="Meta Ads" /></span>
 </span>
 </div>
 {" "}
@@ -638,7 +638,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 <span style={{"width":"1.2cqw","height":"1.2cqw","borderRadius":"0.4cqw","background":"#635BFF"}}>
 
 </span>
-{"Stripe · payment received"}
+<span className="app-label"><AppBrand name="Stripe" />{" · payment received"}</span>
 </div>
 {" "}
 <div style={{"marginTop":"0.5cqw"}}>
@@ -683,7 +683,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 {"CRM migration"}
 </span>
 <span style={{"padding":"6px 12px","borderRadius":"999px","fontSize":"13px","border":"1px solid var(--yl-line, #E4E7EC)","color":"var(--yl-sub, #5B6272)"}}>
-{"GoHighLevel · Stripe"}
+<span className="app-label">{"GoHighLevel · "}<AppBrand name="Stripe" /></span>
 </span>
 </div>
 {" "}
@@ -823,7 +823,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 {" "}
 <div style={{"display":"flex","justifyContent":"space-between","alignItems":"baseline"}}>
 <span style={{"fontWeight":"500","fontSize":"2cqw"}}>
-{"Shopify orders"}
+<span className="app-label"><AppBrand name="Shopify" />{" orders"}</span>
 </span>
 <span style={{"fontSize":"1.3cqw","color":"#8A91A0"}}>
 {"Batch 214"}
@@ -865,7 +865,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 {" "}
 <div style={{"display":"flex","justifyContent":"space-between","alignItems":"baseline"}}>
 <span style={{"fontWeight":"500","fontSize":"2cqw"}}>
-{"Dropbox · Production"}
+<span className="app-label"><AppBrand name="Dropbox" />{" · Production"}</span>
 </span>
 <span style={{"fontSize":"1.3cqw","color":"#8A91A0"}}>
 {String(k.total) + " files"}
@@ -951,7 +951,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 {"Business automation"}
 </span>
 <span style={{"padding":"6px 12px","borderRadius":"999px","fontSize":"13px","border":"1px solid var(--yl-line, #E4E7EC)","color":"var(--yl-sub, #5B6272)"}}>
-{"Shopify · Make · Dropbox · Slack"}
+<span className="app-label"><AppBrand name="Shopify" />{" · "}<AppBrand name="Make" />{" · "}<AppBrand name="Dropbox" />{" · "}<AppBrand name="Slack" /></span>
 </span>
 </div>
 {" "}

@@ -693,7 +693,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {"5.0"}
 </span>
 <span style={{"marginLeft":"auto","padding":"3px 10px","borderRadius":"999px","background":"rgba(20,168,0,0.12)","color":"#14A800","fontWeight":"500","fontSize":"12px"}}>
-{"Upwork"}
+<AppBrand name="Upwork" />
 </span>
 </div>
 {" "}

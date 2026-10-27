@@ -159,7 +159,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {"Automation"}
 </span>
 <span style={{"whiteSpace":"nowrap"}}>
-{"Zapier · Make · APIs"}
+<span className="app-label"><AppBrand name="Zapier" />{" · "}<AppBrand name="Make" />{" · APIs"}</span>
 </span>
 <span style={{"color":"#2A62F5"}}>
 {"→"}
@@ -447,7 +447,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {"$2,400"}
 </div>
 <div style={{"fontSize":"14px","color":"#5B6272"}}>
-{"Acme Co. · via Stripe"}
+<span className="app-label">{"Acme Co. · via "}<AppBrand name="Stripe" /></span>
 </div>
 <div style={{"alignSelf":"flex-start","padding":"6px 12px","borderRadius":"999px","background":"#E9EFFE","color":"#1B47C4","fontSize":"13px","fontWeight":"500"}}>
 {"Paid"}
@@ -476,7 +476,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {"Client added"}
 </span>
 <span style={{"marginLeft":"auto","fontSize":"13px","color":"#5B6272"}}>
-{"Airtable"}
+<AppBrand name="Airtable" />
 </span>
 </div>
 <div style={{"display":"flex","alignItems":"center","gap":"12px","padding":"12px 0","borderBottom":"1px solid #EEF1F5"}}>
@@ -674,7 +674,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {"5.0"}
 </span>
 <span style={{"marginLeft":"auto","padding":"3px 10px","borderRadius":"999px","background":"rgba(20,168,0,0.12)","color":"#14A800","fontWeight":"500","fontSize":"12px"}}>
-{"Upwork"}
+<AppBrand name="Upwork" />
 </span>
 </div>
 {" "}

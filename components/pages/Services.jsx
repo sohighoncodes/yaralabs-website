@@ -334,7 +334,7 @@ render() { const {darkRef,zoneRef,resRef,stackPos,stackCols,autoDot,autoSteps,ai
 <span style={{"flex":"none","width":"20px","height":"20px","borderRadius":"999px","background":"rgba(42,98,245,0.14)","color":"#2A62F5","display":"grid","placeItems":"center","fontSize":"11px"}}>
 {"✓"}
 </span>
-{"Slack and email alerts"}
+<span className="app-label"><AppBrand name="Slack" />{" and email alerts"}</span>
 </span>
 {" "}
 <span style={{"display":"flex","gap":"10px","alignItems":"center"}}>

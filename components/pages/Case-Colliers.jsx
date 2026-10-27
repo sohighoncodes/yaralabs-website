@@ -458,7 +458,7 @@ render() { const {c1,darkRef,zoneRef,tiltMove,tiltLeave,bookOpen,openBook,closeB
 {" "}
 <div style={{"marginTop":"0.4cqw"}}>
 <span style={{"fontWeight":"500"}}>
-{"New Google review"}
+<span className="app-label">{"New "}<AppBrand name="Google" />{" review"}</span>
 </span>
 {" · “Food was amazing.”"}
 </div>

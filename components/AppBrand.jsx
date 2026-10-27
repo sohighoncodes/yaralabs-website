@@ -12,10 +12,17 @@ const logos = {
   'Google Drive': 'google-drive', Xero: 'xero',
   Shopify: 'shopify', Dropbox: 'dropbox', 'Meta Ads': 'meta',
   'Google Apps Script': 'google-apps-script',
+  Upwork: 'upwork', Google: 'google', Meta: 'meta',
 };
 const wordmarks = new Set(['hubspot', 'google-workspace', 'google-gemini', 'wix']);
 
 export default function AppBrand({ name }) {
+  // Demo events include app names inside short labels rather than standalone badges.
+  const eventBrands = { 'Added to HubSpot': ['Added to ', 'HubSpot', ''], 'Ping #sales in Slack': ['Ping #sales in ', 'Slack', ''] };
+  if (eventBrands[name]) {
+    const [before, brand, after] = eventBrands[name];
+    return <span className="app-event-label">{before}<AppBrand name={brand} />{after}</span>;
+  }
   const logo = logos[name];
   if (!logo) return <>{name}</>;
   const wordmark = wordmarks.has(logo);

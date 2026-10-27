@@ -159,7 +159,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {"AI"}
 </span>
 <span style={{"whiteSpace":"nowrap"}}>
-{"OpenAI · Claude · Agents"}
+<span className="app-label"><AppBrand name="OpenAI" />{" · "}<AppBrand name="Claude" />{" · Agents"}</span>
 </span>
 <span style={{"color":"#2A62F5"}}>
 {"→"}
@@ -645,7 +645,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {"5.0"}
 </span>
 <span style={{"marginLeft":"auto","padding":"3px 10px","borderRadius":"999px","background":"rgba(20,168,0,0.12)","color":"#14A800","fontWeight":"500","fontSize":"12px"}}>
-{"Upwork"}
+<AppBrand name="Upwork" />
 </span>
 </div>
 {" "}

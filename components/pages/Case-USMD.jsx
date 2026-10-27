@@ -407,7 +407,7 @@ render() { const {u,darkRef,zoneRef,tiltMove,tiltLeave,bookOpen,openBook,closeBo
 <span style={{"width":"1.2cqw","height":"1.2cqw","borderRadius":"0.4cqw","background":"#635BFF"}}>
 
 </span>
-{"Stripe · payment received"}
+<span className="app-label"><AppBrand name="Stripe" />{" · payment received"}</span>
 </div>
 {" "}
 <div style={{"marginTop":"0.5cqw"}}>

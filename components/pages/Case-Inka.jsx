@@ -351,7 +351,7 @@ render() { const {k,darkRef,zoneRef,tiltMove,tiltLeave,bookOpen,openBook,closeBo
 {" "}
 <div style={{"display":"flex","justifyContent":"space-between","alignItems":"baseline"}}>
 <span style={{"fontWeight":"500","fontSize":"2cqw"}}>
-{"Shopify orders"}
+<span className="app-label"><AppBrand name="Shopify" />{" orders"}</span>
 </span>
 <span style={{"fontSize":"1.3cqw","color":"#8A91A0"}}>
 {"Batch 214"}
@@ -393,7 +393,7 @@ render() { const {k,darkRef,zoneRef,tiltMove,tiltLeave,bookOpen,openBook,closeBo
 {" "}
 <div style={{"display":"flex","justifyContent":"space-between","alignItems":"baseline"}}>
 <span style={{"fontWeight":"500","fontSize":"2cqw"}}>
-{"Dropbox · Production"}
+<span className="app-label"><AppBrand name="Dropbox" />{" · Production"}</span>
 </span>
 <span style={{"fontSize":"1.3cqw","color":"#8A91A0"}}>
 {String(k.total) + " files"}
