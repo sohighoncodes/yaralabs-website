@@ -597,7 +597,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {" "}
 </ul>
 {" "}
-<BookingLink style={{"border":"0","cursor":"pointer","font":"inherit","fontSize":"15px","fontWeight":"500","minHeight":"48px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":(p.btnBg),"color":(p.btnFg),"boxShadow":(p.btnShadow),"transition":"filter 300ms ease"}} className={"yl-hover-26"}>
+<BookingLink style={{"border":"0","cursor":"pointer","font":"inherit","fontSize":"15px","fontWeight":"500","minHeight":"48px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":(p.btnBg),"color":(p.btnFg),"boxShadow":(p.btnShadow),"transition":"filter 300ms ease"}} className={"pricing-cta yl-hover-26"}>
 <span data-yl-shine={""} aria-hidden={"true"} style={{"position":"absolute","top":"0","bottom":"0","left":"-60%","width":"45%","zIndex":"-1","pointerEvents":"none","background":"linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)","transform":"skewX(-20deg)"}}>
 
 </span>

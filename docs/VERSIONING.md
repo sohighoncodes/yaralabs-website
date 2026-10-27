@@ -20,6 +20,11 @@ chore: update project metadata
 
 Track important public changes here until a formal changelog is needed.
 
+### October 2026 — Pricing button alignment
+
+- Centered pricing CTA labels with consistent padding on all four service pages.
+- Checked all ten routes from 320px phones through 1440px desktops for clipped CTA text and horizontal overflow.
+
 ### October 2026 — Native calendar booking
 
 - Replaced Google's iframe with Yara's own responsive calendar and confirmation UI.
