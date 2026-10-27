@@ -883,51 +883,30 @@ render() { const {c1,darkRef,zoneRef,tiltMove,tiltLeave,bookOpen,openBook,closeB
 <div data-yl-reveal={"220"} style={{"display":"flex","flexWrap":"wrap","justifyContent":"center","gap":"8px","marginTop":"12px"}}>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
 <AppBrand name="GoHighLevel" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
-{"Google Ads"}
+<AppBrand name="Google Ads" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
-{"Meta Ads"}
+<AppBrand name="Meta Ads" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
-{"Google Apps Script"}
+<AppBrand name="Google Apps Script" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
 {"Custom webhooks"}
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
 {"Chat widget"}
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
 {"Google Business Profile"}
 </span>
 {" "}

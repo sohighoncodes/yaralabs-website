@@ -10,6 +10,8 @@ const logos = {
   'Google Ads': 'google-ads', 'Facebook Lead Ads': 'facebook', Figma: 'figma',
   GitHub: 'github', Vercel: 'vercel', 'Next.js': 'nextjs', Drive: 'google-drive',
   'Google Drive': 'google-drive', Xero: 'xero',
+  Shopify: 'shopify', Dropbox: 'dropbox', 'Meta Ads': 'meta',
+  'Google Apps Script': 'google-apps-script',
 };
 const wordmarks = new Set(['hubspot', 'google-workspace', 'google-gemini', 'wix']);
 

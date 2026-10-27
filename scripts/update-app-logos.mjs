@@ -21,7 +21,11 @@ for (const file of await readdir('components/pages')) {
   // Remove only the colored placeholder immediately preceding a known app label.
   text = text.replace(/<span style=\{\{[^\n]+\}\}>\s*<\/span>\s*\{\((t|bb\.name|ch\.name|st\.name)\)\}/g, (_,expr)=>`<AppBrand name={${expr}} />`);
   for (const expr of dynamic) text = text.replaceAll(`{(${expr})}`,`<AppBrand name={${expr}} />`);
-  for (const name of ['HubSpot','GoHighLevel','Make','Slack','Stripe','Google Drive','Xero']) text=text.replaceAll('{'+JSON.stringify(name)+'}',`<AppBrand name=${JSON.stringify(name)} />`);
+  for (const name of ['HubSpot','GoHighLevel','Make','Slack','Stripe','Google Drive','Xero','Google Ads','Meta Ads','Google Apps Script','Shopify','Dropbox','Google Sheets']) text=text.replaceAll('{'+JSON.stringify(name)+'}',`<AppBrand name=${JSON.stringify(name)} />`);
+  // Case-study value badges are static, unlike the mapped tool strips above.
+  // Remove their old dots, including duplicates beside an existing brand logo.
+  text = text.replace(/(<section data-screen-label=\{"Value"\}[\s\S]*?<\/section>)/g,
+    section => section.replace(/<span style=\{\{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"\}\}>\s*<\/span>\s*/g, ''));
   if (text !== before && !text.includes('import AppBrand')) text=text.replace('import React from "react";', 'import React from "react";\nimport AppBrand from "../AppBrand";');
   await writeFile(target,text);
 }

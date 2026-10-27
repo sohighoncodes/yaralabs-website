@@ -786,51 +786,30 @@ render() { const {u,darkRef,zoneRef,tiltMove,tiltLeave,bookOpen,openBook,closeBo
 <div data-yl-reveal={"220"} style={{"display":"flex","flexWrap":"wrap","justifyContent":"center","gap":"8px","marginTop":"12px"}}>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
 <AppBrand name="GoHighLevel" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
 <AppBrand name="Stripe" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
-{"Google Ads"}
+<AppBrand name="Google Ads" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
-{"Meta Ads"}
+<AppBrand name="Meta Ads" />
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
 {"Website forms"}
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
 {"Calendars"}
 </span>
 {" "}
 <span style={{"display":"inline-flex","alignItems":"center","gap":"8px","padding":"9px 16px","borderRadius":"999px","background":"#FFFFFF","border":"1px solid #E4E7EC","fontSize":"14px","fontWeight":"500"}}>
-<span style={{"width":"7px","height":"7px","borderRadius":"3px","background":"#2A62F5"}}>
-
-</span>
 {"Email campaigns"}
 </span>
 {" "}
