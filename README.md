@@ -14,16 +14,21 @@ home, services, four service details, projects and three case studies.
 
 ## Contact
 
-The shared booking dialog validates name, email and project details and opens
-a prepared email to `hello@yaralabs.io`. Visitors must send it in their email
-app. No data is silently stored and no successful submission is simulated.
-Connecting an automatic booking provider is a separate integration.
+Every booking CTA opens the Google Calendar appointment schedule at
+https://calendar.app.google/oFoc5HX736V5vbZbA. The destination is defined in
+`lib/booking.js`; `BookingLink` renders ordinary anchors that also work without
+JavaScript. General email contact remains `hello@yaralabs.io`.
 
 ## Source and Verification
 
 `components/pages/` contains normal React JSX and the animation logic adapted
 from the supplied design handoff. `components/SiteNav.jsx` and
-`components/BookingDialog.jsx` are shared. No prototype runtime is deployed.
+`components/BookingLink.jsx` are shared. No prototype runtime is deployed.
+
+Milo, the supplied pixel kitten guide, loads after hydration on every page.
+Click or focus him and press Enter to start a tour. Drag him, hide him, or
+bring him back using the bottom-left control. See `docs/MILO.md` for integration
+details, motion behavior and local browser storage.
 
 `scripts/import-handoff.mjs <directory>` is the one-time migration utility;
 edit the generated React source for ongoing development. Rerunning it replaces
@@ -32,7 +37,8 @@ page components and route metadata. Keep the original handoff ZIP separately.
 `pnpm test` builds and checks all ten rendered routes and internal links.
 `pnpm exec tsc --noEmit` checks types. With the local server running,
 `node scripts/qa.mjs` checks every page at desktop and phone widths;
-`node scripts/qa-interactions.mjs` checks interactive behavior. Browser checks
+`node scripts/qa-interactions.mjs` checks interactive behavior;
+`node scripts/qa-milo.mjs` checks tours, booking, dragging and hide/restore. Browser checks
 need `pnpm exec playwright install chromium`. Reports are ignored in `outputs/`.
 
 ## Work From Another Device

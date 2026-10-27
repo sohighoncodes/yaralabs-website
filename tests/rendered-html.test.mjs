@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, access } from 'node:fs/promises';
 import test from 'node:test';
 import { parse } from 'parse5';
+import { BOOKING_URL } from '../lib/booking.js';
 const routes = JSON.parse(await readFile(new URL('../scripts/routes.json', import.meta.url)));
 const { default: worker } = await import('../dist/server/index.js');
 const env = { ASSETS: { fetch: async () => new Response('Not found', { status: 404 }) } };
@@ -19,6 +20,9 @@ for (const route of routes) {
     assert.ok(title?.childNodes[0]?.value.includes(route.title));
     assert.ok(nodes.some(n => n.tagName === 'nav'));
     assert.ok(nodes.some(n => n.tagName === 'footer'));
+    const bookings = nodes.filter(n => n.tagName === 'a' && n.attrs?.some(a => a.name === 'data-booking-link'));
+    assert.ok(bookings.length >= 2, 'Booking links work before JavaScript loads');
+    assert.ok(bookings.every(n => n.attrs.some(a => a.name === 'href' && a.value === BOOKING_URL)));
     assert.doesNotMatch(html, /<x-dc|<sc-for|<sc-if|support\.js/);
     const ids = new Set(nodes.flatMap(n => n.attrs?.filter(a => a.name === 'id').map(a => a.value) || []));
     for (const node of nodes) {

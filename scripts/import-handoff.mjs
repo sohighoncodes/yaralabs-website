@@ -67,10 +67,14 @@ for (const [name, route, title, description] of pages) {
   function render(node, level = 0) {
     if (node.nodeName === '#text') return '{' + expression(node.value.replace(/\s+/g, ' ')) + '}';
     if (!node.tagName) return '';
-    const tag = node.tagName, attrs = Object.fromEntries(node.attrs.map(a => [a.name, a.value]));
+    let tag = node.tagName;
+    const attrs = Object.fromEntries(node.attrs.map(a => [a.name, a.value]));
     if (['helmet', 'script'].includes(tag)) return '';
-    if (tag === 'nav') return '<SiteNav onBook={openBook} scrolled={this.state.scrolled} />';
-    if (tag === 'sc-if' && attrs.value === '{{ bookOpen }}') return '{bookOpen && <BookingDialog onClose={closeBook} />}';
+    if (tag === 'nav') return '<SiteNav scrolled={this.state.scrolled} />';
+    if (tag === 'sc-if' && attrs.value === '{{ bookOpen }}') return '';
+    if (tag === 'button' && attrs.onclick === '{{ openBook }}') {
+      tag = 'BookingLink'; delete attrs.onclick; delete attrs.type;
+    }
     const children = (node.childNodes || []).map(n => render(n, level + 1)).join('\n');
     if (tag === 'sc-if') return '{' + expression(attrs.value) + ' && <>' + children + '</>}';
     if (tag === 'sc-for') return '{' + expression(attrs.list) + '.map((' + attrs.as + ', itemIndex' + level + ') => <React.Fragment key={itemIndex' + level + '}>' + children + '</React.Fragment>)}';
@@ -113,7 +117,7 @@ for (const [name, route, title, description] of pages) {
   // Honor reduced motion for demo timers as well as visual transitions.
   logic = logic.replaceAll('= setInterval(', '= this.motion() && setInterval(');
   await mkdir('components/pages', { recursive: true });
-  await writeFile('components/pages/' + name + '.jsx', '"use client";\nimport React from "react";\nimport BookingDialog from "../BookingDialog";\nimport SiteNav from "../SiteNav";\n' + logic);
+  await writeFile('components/pages/' + name + '.jsx', '"use client";\nimport React from "react";\nimport BookingLink from "../BookingLink";\nimport SiteNav from "../SiteNav";\n' + logic);
   const dir = 'app' + (route === '/' ? '' : route);
   await mkdir(dir, { recursive: true });
   await writeFile(dir + '/page.tsx', 'import DesignPage from "@/components/pages/' + name + '";\nexport const metadata = ' + JSON.stringify({title: title + ' | Yara Labs', description, alternates:{canonical:route}, openGraph:{title:title+' | Yara Labs',description,url:route}}) + ';\nexport default function Page() { return <DesignPage />; }\n');

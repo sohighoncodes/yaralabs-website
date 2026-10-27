@@ -1,3 +1,4 @@
+import { BOOKING_URL } from '../lib/booking.js';
 import assert from 'node:assert/strict';
 import { chromium } from '@playwright/test';
 const browser = await chromium.launch();
@@ -41,11 +42,7 @@ try {
   assert.ok(await page.locator('#mobile-menu').isVisible());
   await page.locator('#mobile-menu').getByRole('link', { name: 'Services', exact: true }).click();
   await page.waitForURL('**/services');
-  await page.getByRole('button', { name: 'Book a call', exact: true }).click();
-  await page.getByRole('dialog').waitFor();
-  await page.screenshot({ path: 'outputs/qa/contact-mobile.png' });
-  await page.keyboard.press('Escape');
-  assert.equal(await page.getByRole('dialog').count(), 0);
+  assert.equal(await page.getByRole('link', { name: 'Book a call', exact: true }).getAttribute('href'), BOOKING_URL);
   assert.deepEqual(errors, []);
-  console.log('PASS: animations, FAQ, picker, project hover, mobile menu and contact dialog.');
+  console.log('PASS: animations, FAQ, picker, project hover, mobile menu and booking link.');
 } finally { await browser.close(); }

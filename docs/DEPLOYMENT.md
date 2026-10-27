@@ -92,8 +92,10 @@ sohighoncodes/yaralabs-website
 
 After pushing `main`, verify all ten routes listed in `scripts/routes.json`
 on the production domain. Browser checks accept `QA_BASE_URL=https://yaralabs.io`.
-The contact dialog opens an email draft; there is no form backend or scheduler
-to configure in this release.
+Booking links point to the Google Calendar schedule in `lib/booking.js`; no
+server credentials are required. `public/assets/yara-pet.js` is a local static
+asset loaded after hydration. Run `node scripts/qa-milo.mjs` against production
+to check the guide and booking links without submitting a real appointment.
 
 Cloudflare Pages can serve `yaralabs.io` after the Pages project is connected
 to the zone. DNS should remain managed in Cloudflare. Keep proxy/SSL settings

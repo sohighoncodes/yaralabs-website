@@ -3,8 +3,10 @@
 ## Current Scope
 
 The October 2026 site has ten server-rendered routes, client-side React
-interactions, local assets and a shared accessible booking dialog. The dialog
-prepares an email to hello@yaralabs.io; it does not submit to a database.
+interactions, local assets and shared booking links to the Google Calendar
+schedule configured in `lib/booking.js`. No booking data is stored by this site.
+The supplied Milo canvas guide loads through `next/script` after hydration;
+see `MILO.md` for its lifecycle and browser-only storage.
 
 ## Application Stack
 

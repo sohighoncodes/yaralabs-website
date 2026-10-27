@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import AppBrand from "../AppBrand";
-import BookingDialog from "../BookingDialog";
+import BookingLink from "../BookingLink";
 import SiteNav from "../SiteNav";
 
 const EASE = 'cubic-bezier(.16,1,.3,1)';
@@ -12,7 +12,7 @@ const ORDERS = [['#4821', 'Set of 3 · 50×70', 2, 3], ['#4822', 'Framed · A3',
 const cl = (v) => Math.min(1, Math.max(0, v));
 
 export default class DesignPage extends React.Component {
-  state = { tick: 0, scrolled: false, compactNav: false, bookOpen: false, sent: false };
+  state = { tick: 0, scrolled: false, compactNav: false };
   darkRef = React.createRef(); zoneRef = React.createRef();
   mx = 0; my = 0; cx = 0; cy = 0;
   motion() { return (this.props.motion ?? 'Full') !== 'Off' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
@@ -118,15 +118,10 @@ export default class DesignPage extends React.Component {
       projColsAlt: compactNav ? 'minmax(0, 1fr)' : 'minmax(0, 1fr) minmax(0, 1.35fr)',
       altOrder: compactNav ? 0 : 2,
       tiltMove: this.tiltMove, tiltLeave: this.tiltLeave,
-      bookOpen: this.state.bookOpen, sent: this.state.sent, notSent: !this.state.sent,
-      openBook: () => this.setState({ bookOpen: true, sent: false }),
-      closeBook: () => this.setState({ bookOpen: false }),
-      send: () => this.setState({ sent: true }),
-      stop: (e) => e.stopPropagation()
     };
   }
 
-render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,tiltLeave,bookOpen,openBook,closeBook} = this.renderVals(); return (<>{" "}
+render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,tiltLeave} = this.renderVals(); return (<>{" "}
 
 {" "}
 <div style={{"overflowX":"clip","position":"relative"}}>
@@ -163,7 +158,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 
 </div>
 {" "}
-<SiteNav onBook={openBook} scrolled={this.state.scrolled} />
+<SiteNav scrolled={this.state.scrolled} />
 {" "}
 <header data-screen-label={"Projects hero"} style={{"position":"relative","maxWidth":"1200px","margin":"0 auto","padding":"clamp(150px, 18vw, 210px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 80px)","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center"}}>
 {" "}
@@ -1099,7 +1094,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 </span>
 </h2>
 {" "}
-<button type={"button"} data-yl-reveal={"300"} onClick={(openBook)} style={{"marginTop":"40px","border":"0","cursor":"pointer","font":"inherit","fontSize":"16px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"8px 8px 8px 24px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","transition":"transform 400ms cubic-bezier(.16,1,.3,1)","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)"}} className={"yl-hover-52"}>
+<BookingLink data-yl-reveal={"300"} style={{"marginTop":"40px","border":"0","cursor":"pointer","font":"inherit","fontSize":"16px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"8px 8px 8px 24px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","transition":"transform 400ms cubic-bezier(.16,1,.3,1)","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)"}} className={"yl-hover-52"}>
 <span data-yl-shine={""} aria-hidden={"true"} style={{"position":"absolute","top":"0","bottom":"0","left":"-60%","width":"45%","zIndex":"-1","pointerEvents":"none","background":"linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)","transform":"skewX(-20deg)"}}>
 
 </span>
@@ -1107,7 +1102,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 <span style={{"width":"38px","height":"38px","borderRadius":"999px","background":"linear-gradient(180deg, #5A88FF, #2453E0)","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 6px -1px rgba(42,98,245,0.6)","display":"grid","placeItems":"center"}}>
 {"→"}
 </span>
-</button>
+</BookingLink>
 {" "}
 </section>
 {" "}
@@ -1150,7 +1145,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 {" "}
 </footer>
 {" "}
-{bookOpen && <BookingDialog onClose={closeBook} />}
+
 {" "}
 </div>
 {" "}</>); }

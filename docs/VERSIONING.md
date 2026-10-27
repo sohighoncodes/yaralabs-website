@@ -20,6 +20,14 @@ chore: update project metadata
 
 Track important public changes here until a formal changelog is needed.
 
+### October 2026 — Milo guide and booking
+
+- Integrated the supplied pixel kitten guide on all ten pages, with page tours,
+  dragging, hide/restore and Yara's end-of-page scenes.
+- Connected all booking CTAs and the guide to the Google Calendar schedule.
+- Added keyboard dismissal, inert closed controls, scene cancellation when hidden,
+  reduced-motion behavior and desktop/mobile browser checks.
+
 ### October 2026 redesign
 
 - Replaced the original landing page with the ten-page supplied design.

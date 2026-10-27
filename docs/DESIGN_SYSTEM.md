@@ -19,4 +19,6 @@ The October 2026 website follows the supplied `Yara Labs website project.zip` ha
 
 Letter spacing remains neutral; hero sizes use explicit breakpoints. Page components are in `components/pages/`, shared controls in `components/`, and global styles in `app/globals.css`. The prototype runtime is not shipped.
 
-Book a call opens a contact dialog that prepares an email to `hello@yaralabs.io`. It does not claim to send or schedule a meeting; connect a booking provider before changing that promise.
+Book a call links directly to the Google Calendar schedule configured in `lib/booking.js`. Visitors select and confirm their meeting in Google Calendar.
+
+Milo's pixel artwork and tour bubbles use the supplied handoff design. Navigation stays above the guide. Reduced motion disables wandering, entrance drops, particles, idle sprite animation and Yara scenes; tours remain available without smooth scrolling. Closed bubbles are inert and Escape dismisses the tour.

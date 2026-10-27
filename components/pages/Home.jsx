@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import AppBrand from "../AppBrand";
-import BookingDialog from "../BookingDialog";
+import BookingLink from "../BookingLink";
 import SiteNav from "../SiteNav";
 
 const STACK = ['Zapier', 'GoHighLevel', 'HubSpot', 'Make', 'OpenAI', 'Claude', 'Airtable', 'Slack', 'Stripe', 'Google Workspace', 'Supabase', 'Cursor', 'Any API'];
@@ -22,7 +22,7 @@ const EASE = 'cubic-bezier(.16,1,.3,1)';
 const DARK = { ink: [[13,19,33,1],[243,245,250,1]], sub: [[91,98,114,1],[168,177,196,1]], line: [[228,231,236,1],[255,255,255,0.12]], card: [[255,255,255,1],[22,30,52,0.7]], bg: [[246,247,249,1],[7,11,22,1]] };
 
 export default class DesignPage extends React.Component {
-  state = { tick: 0, chars: 0, openFaq: 0, scrolled: false, compactNav: false, bookOpen: false, sent: false };
+  state = { tick: 0, chars: 0, openFaq: 0, scrolled: false, compactNav: false };
   bentoRef = React.createRef(); howRef = React.createRef(); darkRef = React.createRef(); zoneRef = React.createRef();
   mx = 0; my = 0; cx = 0; cy = 0;
   motion() { return (this.props.motion ?? 'Full') !== 'Off' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
@@ -135,15 +135,10 @@ export default class DesignPage extends React.Component {
       tCols: [0, 1, 2].map(c => { const items = TQ.filter((_, i) => i % 3 === c); return { dir: c === 1 ? 'down' : 'up', items: [...items, ...items] }; }),
       testimonials: TESTIMONIALS.map((q, i) => ({ ...q, delay: i * 110 })),
       faqs: FAQS.map(([q, a], i) => ({ q, a, rows: openFaq === i ? '1fr' : '0fr', rot: openFaq === i ? 45 : 0, toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })) })),
-      bookOpen: this.state.bookOpen, sent: this.state.sent, notSent: !this.state.sent,
-      openBook: () => this.setState({ bookOpen: true, sent: false }),
-      closeBook: () => this.setState({ bookOpen: false }),
-      send: () => this.setState({ sent: true }),
-      stop: (e) => e.stopPropagation()
     };
   }
 
-render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLoop,howRef,darkRef,zoneRef,trackDisplay,howCols,howFill,howNodes,hc0,hc1,hc2,buildBlocks,uptime,runRing,showTestimonials,tCols,faqs,bookOpen,openBook,closeBook} = this.renderVals(); return (<>{" "}
+render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLoop,howRef,darkRef,zoneRef,trackDisplay,howCols,howFill,howNodes,hc0,hc1,hc2,buildBlocks,uptime,runRing,showTestimonials,tCols,faqs} = this.renderVals(); return (<>{" "}
 
 {" "}
 <div style={{"overflowX":"clip","position":"relative"}}>
@@ -180,7 +175,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 
 </div>
 {" "}
-<SiteNav onBook={openBook} scrolled={this.state.scrolled} />
+<SiteNav scrolled={this.state.scrolled} />
 {" "}
 <header id={"top"} data-screen-label={"Hero"} style={{"position":"relative","maxWidth":"1200px","margin":"0 auto","padding":"clamp(150px, 18vw, 210px) clamp(20px, 5vw, 64px) 0","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center"}}>
 {" "}
@@ -278,7 +273,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 {" "}
 <div data-yl-reveal={"640"} style={{"position":"relative","zIndex":"1","display":"flex","gap":"10px","flexWrap":"wrap","justifyContent":"center","marginTop":"32px"}}>
 {" "}
-<button type={"button"} onClick={(openBook)} style={{"border":"0","cursor":"pointer","font":"inherit","fontSize":"15px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"7px 7px 7px 22px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)","transition":"transform 400ms cubic-bezier(.16,1,.3,1)"}} className={"yl-hover-0"}>
+<BookingLink style={{"border":"0","cursor":"pointer","font":"inherit","fontSize":"15px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"7px 7px 7px 22px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)","transition":"transform 400ms cubic-bezier(.16,1,.3,1)"}} className={"yl-hover-0"}>
 <span data-yl-shine={""} aria-hidden={"true"} style={{"position":"absolute","top":"0","bottom":"0","left":"-60%","width":"45%","zIndex":"-1","pointerEvents":"none","background":"linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)","transform":"skewX(-20deg)"}}>
 
 </span>
@@ -286,7 +281,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 <span style={{"width":"34px","height":"34px","borderRadius":"999px","background":"linear-gradient(180deg, #5A88FF, #2453E0)","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 6px -1px rgba(42,98,245,0.6)","display":"grid","placeItems":"center"}}>
 {"→"}
 </span>
-</button>
+</BookingLink>
 {" "}
 <a href={"#services"} style={{"display":"inline-flex","alignItems":"center","padding":"0 22px","minHeight":"48px","borderRadius":"999px","background":"linear-gradient(180deg, #FFFFFF, #F1F3F7)","border":"1px solid #DDE1E8","color":"#0D1321","fontSize":"15px","fontWeight":"500","boxShadow":"inset 0 1px 0 #FFFFFF, 0 1px 2px rgba(13,19,33,0.06), 0 8px 18px -10px rgba(13,19,33,0.25)"}} className={"yl-hover-1"}>
 {"Explore services"}
@@ -824,7 +819,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 </span>
 </h2>
 {" "}
-<button type={"button"} data-yl-reveal={"300"} onClick={(openBook)} style={{"position":"relative","marginTop":"40px","border":"0","cursor":"pointer","font":"inherit","fontSize":"16px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"8px 8px 8px 24px","borderRadius":"999px","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)","transition":"transform 400ms cubic-bezier(.16,1,.3,1)"}} className={"yl-hover-6"}>
+<BookingLink data-yl-reveal={"300"} style={{"position":"relative","marginTop":"40px","border":"0","cursor":"pointer","font":"inherit","fontSize":"16px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"8px 8px 8px 24px","borderRadius":"999px","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)","transition":"transform 400ms cubic-bezier(.16,1,.3,1)"}} className={"yl-hover-6"}>
 <span data-yl-shine={""} aria-hidden={"true"} style={{"position":"absolute","top":"0","bottom":"0","left":"-60%","width":"45%","zIndex":"-1","pointerEvents":"none","background":"linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)","transform":"skewX(-20deg)"}}>
 
 </span>
@@ -832,7 +827,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 <span style={{"width":"38px","height":"38px","borderRadius":"999px","background":"linear-gradient(180deg, #5A88FF, #2453E0)","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 6px -1px rgba(42,98,245,0.6)","display":"grid","placeItems":"center"}}>
 {"→"}
 </span>
-</button>
+</BookingLink>
 {" "}
 </section>
 {" "}
@@ -875,7 +870,7 @@ render() { const {bentoRef,autoDot,autoApps,aiText,caret,crmCols,appBars,stackLo
 {" "}
 </footer>
 {" "}
-{bookOpen && <BookingDialog onClose={closeBook} />}
+
 {" "}
 </div>
 {" "}</>); }

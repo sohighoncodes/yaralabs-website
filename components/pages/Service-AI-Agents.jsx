@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import AppBrand from "../AppBrand";
-import BookingDialog from "../BookingDialog";
+import BookingLink from "../BookingLink";
 import SiteNav from "../SiteNav";
 
 const SVC = [ { "n": "01", "title": "Lead qualifier", "line": "Scores and summarises every enquiry.", "tools": [ "OpenAI", "CRM" ] }, { "n": "02", "title": "Inbox assistant", "line": "Sorts email and drafts replies in your voice.", "tools": [ "Gmail", "Outlook" ] }, { "n": "03", "title": "Website chat", "line": "Answers questions and books calls, 24/7.", "tools": [ "Chat", "Calendars" ] }, { "n": "04", "title": "Call summaries", "line": "Notes and next steps, straight into your CRM.", "tools": [ "Transcripts", "HubSpot" ] } ];
@@ -17,7 +17,7 @@ const OTHER = [ { "n": "01", "title": "Automation", "line": "Your apps, talking 
 const EASE = 'cubic-bezier(.16,1,.3,1)';
 
 export default class DesignPage extends React.Component {
-  state = { step: 0, log: [], open: -1, openFaq: 0, story: 0, storyPct: 0, scrolled: false, pulse: true, bookOpen: false, sent: false };
+  state = { step: 0, log: [], open: -1, openFaq: 0, story: 0, storyPct: 0, scrolled: false, pulse: true };
   heroOuter = React.createRef(); heroInner = React.createRef(); storyRef = React.createRef();
   motion() { return (this.props.motion ?? 'Full') !== 'Off' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
   componentDidMount() {
@@ -124,15 +124,10 @@ export default class DesignPage extends React.Component {
       tCols: [0, 1, 2].map(c => { const items = TQ.filter((_, i) => i % 3 === c); return { dir: c === 1 ? 'down' : 'up', items: [...items, ...items] }; }),
       testimonials: TESTIMONIALS.map((q, i) => ({ ...q, delay: i * 110 })),
       faqs: FAQS.map(([q, a], i) => ({ q, a, rows: openFaq === i ? '1fr' : '0fr', rot: openFaq === i ? 45 : 0, toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })) })),
-      bookOpen: this.state.bookOpen, sent: this.state.sent, notSent: !this.state.sent,
-      openBook: () => this.setState({ bookOpen: true, sent: false }),
-      closeBook: () => this.setState({ bookOpen: false }),
-      send: () => this.setState({ sent: true }),
-      stop: (e) => e.stopPropagation()
     };
   }
 
-render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,steps,log,stackLoop,index,story,storyPct,storyCols,storyCardH,v0,v1,v2,v3,packages,others,showTestimonials,tCols,faqs,bookOpen,openBook,closeBook} = this.renderVals(); return (<>{" "}
+render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,steps,log,stackLoop,index,story,storyPct,storyCols,storyCardH,v0,v1,v2,v3,packages,others,showTestimonials,tCols,faqs} = this.renderVals(); return (<>{" "}
 
 {" "}
 <div style={{"overflowX":"clip","position":"relative"}}>
@@ -149,7 +144,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 
 </div>
 {" "}
-<SiteNav onBook={openBook} scrolled={this.state.scrolled} />
+<SiteNav scrolled={this.state.scrolled} />
 {" "}
 <header id={"top"} data-screen-label={"Hero"} style={{"position":"relative","maxWidth":"1200px","margin":"0 auto","padding":"clamp(150px, 18vw, 210px) clamp(20px, 5vw, 64px) 0","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center"}}>
 {" "}
@@ -202,7 +197,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {" "}
 <div data-yl-reveal={"640"} style={{"display":"flex","gap":"10px","flexWrap":"wrap","justifyContent":"center","marginTop":"32px"}}>
 {" "}
-<button type={"button"} onClick={(openBook)} style={{"border":"0","cursor":"pointer","font":"inherit","fontSize":"15px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"7px 7px 7px 22px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)","transition":"transform 400ms cubic-bezier(.16,1,.3,1), box-shadow 400ms ease"}} className={"yl-hover-23"}>
+<BookingLink style={{"border":"0","cursor":"pointer","font":"inherit","fontSize":"15px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"7px 7px 7px 22px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)","transition":"transform 400ms cubic-bezier(.16,1,.3,1), box-shadow 400ms ease"}} className={"yl-hover-23"}>
 <span data-yl-shine={""} aria-hidden={"true"} style={{"position":"absolute","top":"0","bottom":"0","left":"-60%","width":"45%","zIndex":"-1","pointerEvents":"none","background":"linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)","transform":"skewX(-20deg)"}}>
 
 </span>
@@ -210,7 +205,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 <span style={{"width":"34px","height":"34px","borderRadius":"999px","background":"linear-gradient(180deg, #5A88FF, #2453E0)","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 6px -1px rgba(42,98,245,0.6)","display":"grid","placeItems":"center"}}>
 {"→"}
 </span>
-</button>
+</BookingLink>
 {" "}
 <a href={"#how"} style={{"display":"inline-flex","alignItems":"center","padding":"0 22px","minHeight":"48px","borderRadius":"999px","background":"linear-gradient(180deg, #FFFFFF, #F1F3F7)","border":"1px solid #DDE1E8","color":"#0D1321","fontSize":"15px","fontWeight":"500","boxShadow":"inset 0 1px 0 #FFFFFF, 0 1px 2px rgba(13,19,33,0.06), 0 8px 18px -10px rgba(13,19,33,0.25)","transition":"border-color 300ms ease"}} className={"yl-hover-24"}>
 {"See how it works"}
@@ -602,12 +597,12 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {" "}
 </ul>
 {" "}
-<button type={"button"} onClick={(openBook)} style={{"border":"0","cursor":"pointer","font":"inherit","fontSize":"15px","fontWeight":"500","minHeight":"48px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":(p.btnBg),"color":(p.btnFg),"boxShadow":(p.btnShadow),"transition":"filter 300ms ease"}} className={"yl-hover-26"}>
+<BookingLink style={{"border":"0","cursor":"pointer","font":"inherit","fontSize":"15px","fontWeight":"500","minHeight":"48px","borderRadius":"999px","position":"relative","overflow":"hidden","isolation":"isolate","background":(p.btnBg),"color":(p.btnFg),"boxShadow":(p.btnShadow),"transition":"filter 300ms ease"}} className={"yl-hover-26"}>
 <span data-yl-shine={""} aria-hidden={"true"} style={{"position":"absolute","top":"0","bottom":"0","left":"-60%","width":"45%","zIndex":"-1","pointerEvents":"none","background":"linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)","transform":"skewX(-20deg)"}}>
 
 </span>
 {(p.cta)}
-</button>
+</BookingLink>
 {" "}
 </div>
 {" "}</React.Fragment>)}
@@ -796,7 +791,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 </span>
 </h2>
 {" "}
-<button type={"button"} data-yl-reveal={"300"} onClick={(openBook)} style={{"position":"relative","marginTop":"40px","border":"0","cursor":"pointer","font":"inherit","fontSize":"16px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"8px 8px 8px 24px","borderRadius":"999px","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)","transition":"transform 400ms cubic-bezier(.16,1,.3,1)"}} className={"yl-hover-29"}>
+<BookingLink data-yl-reveal={"300"} style={{"position":"relative","marginTop":"40px","border":"0","cursor":"pointer","font":"inherit","fontSize":"16px","fontWeight":"500","display":"inline-flex","alignItems":"center","gap":"12px","padding":"8px 8px 8px 24px","borderRadius":"999px","overflow":"hidden","isolation":"isolate","background":"linear-gradient(180deg, #2B3550 0%, #131B2E 55%, #0B1120 100%)","color":"#FFFFFF","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -2px 0 rgba(0,0,0,0.35), 0 0 0 1px #0B1120, 0 2px 4px rgba(13,19,33,0.22), 0 12px 26px -10px rgba(13,19,33,0.6)","transition":"transform 400ms cubic-bezier(.16,1,.3,1)"}} className={"yl-hover-29"}>
 <span data-yl-shine={""} aria-hidden={"true"} style={{"position":"absolute","top":"0","bottom":"0","left":"-60%","width":"45%","zIndex":"-1","pointerEvents":"none","background":"linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)","transform":"skewX(-20deg)"}}>
 
 </span>
@@ -804,7 +799,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 <span style={{"width":"38px","height":"38px","borderRadius":"999px","background":"linear-gradient(180deg, #5A88FF, #2453E0)","boxShadow":"inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 6px -1px rgba(42,98,245,0.6)","display":"grid","placeItems":"center"}}>
 {"→"}
 </span>
-</button>
+</BookingLink>
 {" "}
 </section>
 {" "}
@@ -841,7 +836,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {" "}
 </footer>
 {" "}
-{bookOpen && <BookingDialog onClose={closeBook} />}
+
 {" "}
 </div>
 {" "}</>); }
