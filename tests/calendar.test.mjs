@@ -15,11 +15,11 @@ function harness() {
   const properties = {}, events = {}, counts = {};
   const state = { busy: [], calendarError: false, inserts: 0, locked: false, insertUnknown: false, held: false };
   const context = vm.createContext({
-    console, Date: class extends Date { static now() { return now; } },
+    console: { warn() {}, log() {} }, Date: class extends Date { static now() { return now; } },
     Utilities: {
       formatDate: (d, zone) => new Intl.DateTimeFormat('en-CA', { timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d),
-      computeHmacSha256Signature: (data, key) => [...createHmac('sha256', key).update(data).digest()],
-      computeDigest: (_, data) => [...createHash('sha256').update(data).digest()], DigestAlgorithm: { SHA_256: 'SHA-256' },
+      computeHmacSha256Signature: (data, key, charset) => { assert.equal(charset, 'utf8'); return [...createHmac('sha256', key).update(data, charset).digest()]; },
+      computeDigest: (_, data, charset) => { assert.equal(charset, 'utf8'); return [...createHash('sha256').update(data, charset).digest()]; }, DigestAlgorithm: { SHA_256: 'SHA-256' }, Charset: { UTF_8: 'utf8' },
     },
     PropertiesService: { getScriptProperties: () => ({ getProperty: key => properties[key], getProperties: () => ({ ...properties }), setProperty: (key, value) => { properties[key] = value; }, deleteProperty: key => { delete properties[key]; } }) },
     CacheService: { getScriptCache: () => ({ get: k => counts[k], put: (k, v) => { counts[k] = v; } }) },
@@ -27,6 +27,7 @@ function harness() {
     ContentService: { MimeType: { JSON: 'json' }, createTextOutput: text => ({ setMimeType: () => JSON.parse(text) }) },
     ScriptApp: { getOAuthToken: () => 'test-google-token' },
     UrlFetchApp: { fetch: (url, options) => {
+      if (options.method === 'get') assert.equal(Object.hasOwn(options, 'payload'), false, 'Apps Script rejects undefined payload attributes');
       const body = options.payload ? JSON.parse(options.payload) : null;
       let code = 200, output;
       if (url.endsWith('/freeBusy')) output = { calendars: Object.fromEntries(body.items.map(({ id }) => [id, state.calendarError ? { errors: [{ reason: 'notFound' }] } : { busy: state.busy }])) };
@@ -94,7 +95,7 @@ test('rechecks busy times before booking and serializes website reservations eve
 });
 
 test('retries recover a lost confirmation without duplicate invitations; includes project details', () => {
-  const h = harness(), details = sample(), request = { action: 'book', details, start: '2026-11-04T03:00:00.000Z' };
+  const h = harness(), details = { ...sample(), name: 'José — 測試', message: 'Unicode project notes: let’s connect our tools ✓' }, request = { action: 'book', details, start: '2026-11-04T03:00:00.000Z' };
   h.state.insertUnknown = true;
   assert.equal(h.call(request).ok, false);
   assert.ok(!h.call({ action: 'availability' }).slots.includes(request.start));

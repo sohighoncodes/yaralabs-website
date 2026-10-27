@@ -14,7 +14,7 @@ function doPost(e) {
     var envelope = JSON.parse(e.postData.contents);
     var secret = PropertiesService.getScriptProperties().getProperty('CALENDAR_SHARED_SECRET');
     if (!secret || typeof envelope.data !== 'string' || !Number.isFinite(envelope.timestamp) || Math.abs(Date.now() - envelope.timestamp) > 120000) throw problem_('unauthorized');
-    var expected = hex_(Utilities.computeHmacSha256Signature(envelope.timestamp + '.' + envelope.data, secret));
+    var expected = hex_(Utilities.computeHmacSha256Signature(envelope.timestamp + '.' + envelope.data, secret, Utilities.Charset.UTF_8));
     if (!equal_(expected, envelope.signature)) throw problem_('unauthorized');
     var input = JSON.parse(envelope.data);
     if (!/^[a-f0-9]{64}$/.test(input.client)) throw problem_('invalid');
@@ -27,7 +27,11 @@ function doPost(e) {
       try { pruneHolds_(); throttle_(input.client + ':book', 8, 900); result = book_(input); }
       finally { lock.releaseLock(); }
     } else throw problem_('invalid');
-  } catch (error) { result = { ok: false, code: error.bookingCode || 'unavailable' }; }
+  } catch (error) {
+    // Operational diagnostics only: never log request bodies, contact details or tokens.
+    console.warn(JSON.stringify({ action: input && input.action, code: error.bookingCode || 'unavailable', status: error.httpStatus || null, reason: error.googleReason || null, type: error.name, location: String(error.stack || '').split('\n').slice(1, 3).join(' ') }));
+    result = { ok: false, code: error.bookingCode || 'unavailable' };
+  }
   return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
 }
 
@@ -36,19 +40,27 @@ function doGet() { return ContentService.createTextOutput('Yara Labs booking ser
 // Run manually once to authorize and verify read access. Does not create an event.
 function checkConnection() {
   busy_(Date.now(), Date.now() + 86400000);
+  try { google_('get', '/calendars/' + encodeURIComponent(BOOKING_CONFIG.calendar) + '/events?maxResults=1'); }
+  catch (error) { console.error(JSON.stringify({ status: error.httpStatus, reason: error.googleReason, type: error.name, message: error.message })); throw error; }
   console.log('Calendar access verified for Yara Labs. No appointment created.');
 }
 
 function google_(method, path, body) {
-  var response = UrlFetchApp.fetch('https://www.googleapis.com/calendar/v3' + path, {
+  var options = {
     method: method, contentType: 'application/json',
     headers: { Authorization: 'Bearer ' + ScriptApp.getOAuthToken() },
-    payload: body ? JSON.stringify(body) : undefined, muteHttpExceptions: true
-  });
+    muteHttpExceptions: true
+  };
+  if (body) options.payload = JSON.stringify(body);
+  var response = UrlFetchApp.fetch('https://www.googleapis.com/calendar/v3' + path, options);
   var status = response.getResponseCode();
   if (status === 404) return null;
   if (status === 410 && method === 'get') return { status: 'cancelled' };
-  if (status < 200 || status >= 300) { var error = problem_('unavailable'); error.httpStatus = status; throw error; }
+  if (status < 200 || status >= 300) {
+    var error = problem_('unavailable'); error.httpStatus = status;
+    try { var reason = JSON.parse(response.getContentText()).error.errors[0].reason; if (/^[a-zA-Z_]+$/.test(reason)) error.googleReason = reason; } catch (_) { /* no raw response logging */ }
+    throw error;
+  }
   return JSON.parse(response.getContentText());
 }
 
@@ -110,7 +122,7 @@ function book_(input) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email) || ['quote', 'call'].indexOf(d.intent) < 0 || !Number.isFinite(start)) throw problem_('invalid');
   var eventId = 'b' + d.id.toLowerCase().replace(/-/g, '');
   var path = '/calendars/' + encodeURIComponent(BOOKING_CONFIG.calendar) + '/events';
-  var fingerprint = hex_(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, JSON.stringify([d.id, d.email.toLowerCase(), input.start, d.name, d.phone, d.tools, d.message, d.intent, d.source])));
+  var fingerprint = hex_(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, JSON.stringify([d.id, d.email.toLowerCase(), input.start, d.name, d.phone, d.tools, d.message, d.intent, d.source]), Utilities.Charset.UTF_8));
   var existing = google_('get', path + '/' + eventId);
   if (existing) {
     if (existing.status === 'cancelled' || !existing.extendedProperties || !existing.extendedProperties.private || existing.extendedProperties.private.fingerprint !== fingerprint) throw problem_('existing');
