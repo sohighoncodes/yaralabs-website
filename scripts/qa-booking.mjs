@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { chromium, expect } from '@playwright/test';
 import { readFile, mkdir } from 'node:fs/promises';
-import { BOOKING_EMBED_URL } from '../lib/booking.js';
+import { calendarFixture } from './booking-fixture.mjs';
 
 const base = process.env.QA_BASE_URL || 'http://localhost:3000';
 const routes = JSON.parse(await readFile('scripts/routes.json', 'utf8'));
@@ -18,7 +18,8 @@ try {
       saves++; payload = route.request().postDataJSON();
       await route.fulfill({ status: fail ? 503 : 201, contentType: 'application/json', body: JSON.stringify(fail ? { error: 'Unavailable' } : { saved: true }) });
     });
-    await page.route(BOOKING_EMBED_URL, route => route.fulfill({ contentType: 'text/html', body: '<h1>Calendar booking test fixture</h1><button>Choose a time</button>' }));
+    await page.route('**/api/booking/availability', route => route.fulfill({ json: calendarFixture() }));
+    await page.route('**/api/booking/reserve', route => { const input = route.request().postDataJSON(); return route.fulfill({ json: { confirmed: true, start: input.start, end: new Date(Date.parse(input.start) + 1800000).toISOString(), meet: null } }); });
     for (const { route } of routes) {
       await page.goto(base + route, { waitUntil: 'networkidle' });
       await page.locator('.nav-book').click();
@@ -51,10 +52,13 @@ try {
         fail = false;
       }
       await dialog.getByRole('button', { name: 'Continue to booking' }).click();
-      await expect(dialog).toContainText('Your details are saved.');
+      await expect(dialog.locator('.native-calendar')).toBeVisible();
       assert.equal(payload.intent, 'quote'); assert.equal(payload.source, route);
       assert.equal(payload.email, 'qa@example.com'); assert.equal(payload.tools, 'Slack, HubSpot and spreadsheets');
-      await expect(page.locator('.booking-calendar')).toHaveAttribute('src', BOOKING_EMBED_URL);
+      await expect(dialog.locator('iframe')).toHaveCount(0);
+      await dialog.locator('.calendar-slots button').first().click();
+      await dialog.getByRole('button', { name: 'Confirm booking' }).click();
+      await expect(dialog).toContainText('You’re booked.');
       assert.ok(await dialog.evaluate(e => e.scrollWidth <= e.clientWidth + 1), 'No horizontal modal overflow');
       await dialog.getByRole('button', { name: 'Close booking window' }).click();
       assert.notEqual(await page.evaluate(() => document.body.style.overflow), 'hidden');

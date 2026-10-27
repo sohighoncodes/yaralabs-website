@@ -15,10 +15,10 @@ home, services, four service details, projects and three case studies.
 ## Contact
 
 Booking CTAs open a shared two-step modal. Visitors enter their name, email,
-phone, current tools and message, then choose a time in the embedded Google
-Calendar schedule at https://calendar.app.google/BEKk213nkobDqUM47.
-Google creates the appointment after its own booking confirmation. Saving the
-intake form alone does not reserve a time. Details are stored privately in
+phone, current tools and message, then choose a time in a custom Yara calendar.
+The backend checks live Google Calendar availability and creates the appointment
+and invitation when the visitor confirms. Saving intake alone does not reserve
+a time. Details are stored privately in
 Supabase; see `docs/BOOKING.md` for access and verification.
 
 The subtle Get a quote navigation link uses the same flow with quote-specific
@@ -48,7 +48,7 @@ page components and route metadata. Keep the original handoff ZIP separately.
 `node scripts/qa-interactions.mjs` checks interactive behavior;
 `node scripts/qa-milo.mjs` checks tours, booking, dragging and hide/restore;
 `node scripts/qa-booking.mjs` checks both modal flows, and
-`node scripts/qa-calendar.mjs` verifies the real Google Calendar embed. Browser checks
+`node scripts/qa-calendar.mjs` checks custom calendar conflicts, retries and time zones. Browser checks
 need `pnpm exec playwright install chromium`. Reports are ignored in `outputs/`.
 
 ## Work From Another Device

@@ -20,6 +20,13 @@ chore: update project metadata
 
 Track important public changes here until a formal changelog is needed.
 
+### October 2026 — Native calendar booking
+
+- Replaced Google's iframe with Yara's own responsive calendar and confirmation UI.
+- Added live busy-time filtering, a final conflict check, serialized reservations and safe retries.
+- Included project details in Google Calendar events with attendee invitations and Meet links.
+- Set 30-minute weekday calls from 11am–11pm Manila, with two hours' notice.
+
 ### October 2026 — Quote and calendar modal
 
 - Added a discreet Get a quote link and shared two-step modal for booking CTAs.

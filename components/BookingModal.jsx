@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import { BOOKING_URL, BOOKING_EMBED_URL } from '../lib/booking';
+import BookingCalendar from './BookingCalendar';
 
 export default function BookingModal() {
   const [request, setRequest] = useState(null);
@@ -24,11 +24,9 @@ function BookingWindow({ request, onClose }) {
   const controller = useRef(null);
   const submissionId = useRef(null);
   const [step, setStep] = useState('details');
-  const [email, setEmail] = useState('');
+  const [details, setDetails] = useState(null);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
-  const [calendarLoaded, setCalendarLoaded] = useState(false);
-  const [calendarSlow, setCalendarSlow] = useState(false);
   const quote = request.intent === 'quote';
 
   useEffect(() => {
@@ -45,11 +43,9 @@ function BookingWindow({ request, onClose }) {
   }, [request]);
 
   useEffect(() => {
-    if (step !== 'calendar' || calendarLoaded) return;
+    if (step !== 'calendar') return;
     dialog.current.querySelector('#booking-heading')?.focus({ preventScroll: true });
-    const timer = setTimeout(() => setCalendarSlow(true), 12000);
-    return () => clearTimeout(timer);
-  }, [step, calendarLoaded]);
+  }, [step]);
 
   async function submit(event) {
     event.preventDefault();
@@ -59,18 +55,19 @@ function BookingWindow({ request, onClose }) {
     submissionId.current ??= crypto.randomUUID();
     controller.current = new AbortController();
     const timer = setTimeout(() => controller.current?.abort(), 15000);
+    const contact = {
+      id: submissionId.current, intent: request.intent,
+      name: form.get('name'), email: String(form.get('email')).trim(), phone: form.get('phone'),
+      tools: form.get('tools'), message: form.get('message'), website: form.get('website'),
+      source: location.pathname,
+    };
     try {
       const response = await fetch('/api/inquiries', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.current.signal,
-        body: JSON.stringify({
-          id: submissionId.current, intent: request.intent,
-          name: form.get('name'), email: form.get('email'), phone: form.get('phone'),
-          tools: form.get('tools'), message: form.get('message'), website: form.get('website'),
-          source: location.pathname,
-        }),
+        body: JSON.stringify(contact),
       });
       if (!response.ok) throw new Error('Unable to save your details. Please try again.');
-      setEmail(String(form.get('email')).trim());
+      setDetails(contact);
       setStep('calendar');
     } catch {
       setError('We couldn’t save your details. Please try again, or email cjgomba@yaralabs.io.');
@@ -103,10 +100,7 @@ function BookingWindow({ request, onClose }) {
       {error && <p className="booking-error" role="alert">{error} <a href="mailto:cjgomba@yaralabs.io">Email CJ</a></p>}
       <div className="booking-form-footer"><span>Free · 30 minutes · Google Meet</span><button type="submit" className="booking-continue" disabled={pending}>{pending ? 'Saving…' : 'Continue to booking'}<span aria-hidden="true"> →</span></button></div>
     </form> : <div className="booking-calendar-step">
-      <p className="booking-intro" role="status">Your details are saved. Choose a time below and confirm with <strong>{email}</strong>. Your appointment is booked when Google shows its confirmation.</p>
-      {!calendarLoaded && <p className="booking-loading" role="status">{calendarSlow ? 'The calendar is taking longer than usual. You can also open it in a new tab below.' : 'Loading available times…'}</p>}
-      <iframe title="Choose a time for your Yara Labs call" src={BOOKING_EMBED_URL} className="booking-calendar" onLoad={() => setCalendarLoaded(true)} referrerPolicy="strict-origin-when-cross-origin" />
-      <p className="booking-calendar-help">Calendar not loading? <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Open booking in a new tab ↗</a></p>
+      <BookingCalendar details={details} />
     </div>}
   </dialog>;
 }

@@ -98,9 +98,12 @@ publishable key with insert-only RLS; no service-role key or Google OAuth token
 is deployed. `public/assets/yara-pet.js` is a local static
 asset loaded after hydration. Run `node scripts/qa-milo.mjs` against production
 to check the guide and booking modal without submitting a real appointment.
-`qa-booking.mjs` tests the modal with mocked saves; `qa-calendar.mjs` loads the
-real public Google schedule without making a booking. See `BOOKING.md` for
-server/storage verification.
+`qa-booking.mjs` tests the modal with mocked saves; `qa-calendar.mjs` verifies
+custom calendar states with fixtures without making a booking. See `BOOKING.md`
+for server/storage verification. The custom calendar also requires Worker
+secrets `CALENDAR_SCRIPT_URL` and `CALENDAR_SHARED_SECRET`, with the matching
+shared secret in the owner-authorized Apps Script project. Keep its deployed
+version in sync with `integrations/google-calendar/` when backend code changes.
 
 Cloudflare Pages can serve `yaralabs.io` after the Pages project is connected
 to the zone. DNS should remain managed in Cloudflare. Keep proxy/SSL settings

@@ -26,8 +26,10 @@ viewports, scrolling back to the top, reloads and hero entrance animations.
 
 Book a call and Get a quote open the same native modal dialog. The quote CTA
 is a quiet text link in desktop navigation and a mobile menu item. The modal
-collects contact/project details, then embeds the schedule in `lib/booking.js`.
-Google confirms the appointment. Modal controls keep a visible close button,
+collects contact/project details, then displays a native date grid, available
+time buttons, visitor time-zone selector and confirmation panel. Blue selected
+states, soft borders and the site's fonts carry through the calendar; no iframe.
+Modal controls keep a visible close button,
 focus containment/restoration and Escape dismissal; background scrolling is locked.
 
 Milo's pixel artwork and tour bubbles use the supplied handoff design. Navigation stays above the guide. Reduced motion disables wandering, entrance drops, particles, idle sprite animation and Yara scenes; tours remain available without smooth scrolling. Closed bubbles are inert and Escape dismisses the tour.
