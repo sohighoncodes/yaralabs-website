@@ -2,6 +2,14 @@
 
 ## Visitor flow
 
+Social/profile links: `https://yaralabs.io/quote` opens Get a quote and
+`https://yaralabs.io/book` opens Book a call automatically after hydration.
+Both use the existing intake and calendar flow over the homepage, with dedicated
+page titles and social metadata. Refreshing the link reopens the correct form.
+Closing it returns the URL to `/`, preserving query parameters such as UTMs,
+so refreshing afterward does not reopen a dismissed form. Intake source records
+the entry path; no form data is placed in the URL. Existing site CTAs are unchanged.
+
 All quote/call CTAs open the same Yara-designed modal. The first step saves
 name, email, phone, current tools and message privately in Supabase. The second
 step is a native React calendar, with date selection, available times, a time-zone

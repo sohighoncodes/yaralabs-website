@@ -2,10 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 import BookingCalendar from './BookingCalendar';
+import { sharedBookingIntent } from '../lib/booking';
 
 export default function BookingModal() {
   const [request, setRequest] = useState(null);
   useEffect(() => {
+    const arrival = requestAnimationFrame(() => {
+      const intent = sharedBookingIntent(window.location.pathname);
+      if (intent) setRequest({ intent, trigger: null });
+    });
     function open(event) {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const link = event.target.closest?.('[data-booking-link]');
@@ -14,9 +19,20 @@ export default function BookingModal() {
       setRequest({ intent: link.dataset.bookingIntent === 'quote' || /quote/i.test(link.textContent) ? 'quote' : 'call', trigger: link });
     }
     document.addEventListener('click', open);
-    return () => document.removeEventListener('click', open);
+    return () => {
+      cancelAnimationFrame(arrival);
+      document.removeEventListener('click', open);
+    };
   }, []);
-  return request && <BookingWindow request={request} onClose={() => setRequest(null)} />;
+  function close() {
+    if (sharedBookingIntent(window.location.pathname)) {
+      const url = new URL(window.location.href);
+      url.pathname = '/';
+      window.history.replaceState(window.history.state, '', url);
+    }
+    setRequest(null);
+  }
+  return request && <BookingWindow request={request} onClose={close} />;
 }
 
 function BookingWindow({ request, onClose }) {
@@ -37,7 +53,7 @@ function BookingWindow({ request, onClose }) {
     return () => {
       controller.current?.abort();
       document.body.style.overflow = previousOverflow;
-      const focusTarget = request.trigger.isConnected ? request.trigger : document.querySelector('.nav-book');
+      const focusTarget = request.trigger?.isConnected ? request.trigger : document.querySelector('.nav-book');
       focusTarget?.focus({ preventScroll: true });
     };
   }, [request]);

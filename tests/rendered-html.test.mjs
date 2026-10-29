@@ -3,7 +3,11 @@ import { readFile, access } from 'node:fs/promises';
 import test from 'node:test';
 import { parse } from 'parse5';
 import { BOOKING_URL } from '../lib/booking.js';
-const routes = JSON.parse(await readFile(new URL('../scripts/routes.json', import.meta.url)));
+const routes = [
+  ...JSON.parse(await readFile(new URL('../scripts/routes.json', import.meta.url))),
+  { route: '/quote', title: 'Get a quote' },
+  { route: '/book', title: 'Book a free call' },
+];
 const { default: worker } = await import('../dist/server/index.js');
 const env = { ASSETS: { fetch: async () => new Response('Not found', { status: 404 }) } };
 const ctx = { waitUntil() {}, passThroughOnException() {} };

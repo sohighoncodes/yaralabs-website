@@ -14,6 +14,9 @@ home, services, four service details, projects and three case studies.
 
 ## Contact
 
+Share `https://yaralabs.io/quote` for Get a quote, or `https://yaralabs.io/book`
+for Book a call. Each link opens its form automatically over the homepage.
+
 Booking CTAs open a shared two-step modal. Visitors enter their name, email,
 phone, current tools and message, then choose a time in a custom Yara calendar.
 The backend checks live Google Calendar availability and creates the appointment
@@ -49,6 +52,7 @@ page components and route metadata. Keep the original handoff ZIP separately.
 `node scripts/qa-work.mjs` checks the homepage project panels and before/after charts;
 `node scripts/qa-milo.mjs` checks tours, booking, dragging and hide/restore;
 `node scripts/qa-booking.mjs` checks both modal flows, and
+`node scripts/qa-shared-booking.mjs` checks social links, auto-opening, refresh and dismissal.
 `node scripts/qa-calendar.mjs` checks custom calendar conflicts, retries and time zones. Browser checks
 need `pnpm exec playwright install chromium`. Reports are ignored in `outputs/`.
 

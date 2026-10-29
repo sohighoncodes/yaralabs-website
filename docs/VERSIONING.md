@@ -20,6 +20,11 @@ chore: update project metadata
 
 Track important public changes here until a formal changelog is needed.
 
+### October 2026 — Shareable forms
+
+- Added `/quote` and `/book` links that open the matching form for social visitors.
+- Preserved the existing intake/calendar flow, mobile layout, and close/focus behavior.
+
 ### October 2026 — Homepage project results
 
 - Added the supplied Work that paid off section between the process and testimonials.
