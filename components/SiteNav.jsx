@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import BookingLink from './BookingLink';
+import BrandLogo from './BrandLogo';
 
 export default function SiteNav({ scrolled }) {
   const [open, setOpen] = useState(false);
@@ -10,7 +11,7 @@ export default function SiteNav({ scrolled }) {
     return () => window.removeEventListener('keydown', escape);
   }, []);
   return <nav className={`site-nav${scrolled ? ' is-scrolled' : ''}`} aria-label="Main navigation">
-    <a href="/" className="site-brand" aria-label="Yara Labs home">Yara<span> Labs</span></a>
+    <BrandLogo className="site-brand" />
     <div className="site-links"><a href="/services">Services</a><a href="/projects">Projects</a><BookingLink intent="quote" className="nav-quote">Get a quote</BookingLink></div>
     <button className="menu-toggle" aria-label={open ? 'Close menu' : 'Open menu'} title={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}><span aria-hidden="true">{open ? '×' : '☰'}</span></button>
     <BookingLink className="nav-book" onClick={() => setOpen(false)}>Book a call</BookingLink>

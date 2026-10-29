@@ -84,6 +84,7 @@ Future Supabase keys, Cloudflare settings, and CMS notes should be added to
 - `docs/ARCHITECTURE.md`: current stack, brand system, and planned Supabase use
 - `docs/DEPLOYMENT.md`: Cloudflare, GitHub, domain, and Supabase access notes
 - `docs/DESIGN_SYSTEM.md`: implemented design-system rules for the landing page
+- `docs/BRAND.md`: supplied logos, favicon/app icons and social preview metadata
 - `docs/SUPABASE.md`: Supabase project, enquiry storage and future CMS notes
 - `docs/BOOKING.md`: booking flow, private enquiries and calendar integration
 - `docs/VERSIONING.md`: branch, commit, and release-note conventions

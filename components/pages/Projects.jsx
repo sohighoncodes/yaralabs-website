@@ -4,6 +4,7 @@ import { darkSectionProgress } from "../../lib/dark-section";
 import AppBrand from "../AppBrand";
 import BookingLink from "../BookingLink";
 import SiteNav from "../SiteNav";
+import BrandLogo from "../BrandLogo";
 
 const EASE = 'cubic-bezier(.16,1,.3,1)';
 const DARK = { ink: [[13,19,33,1],[243,245,250,1]], sub: [[91,98,114,1],[168,177,196,1]], line: [[228,231,236,1],[255,255,255,0.12]], frame: [[255,255,255,1],[22,30,52,0.75]] };
@@ -1109,12 +1110,7 @@ render() { const {c1,u,k,darkRef,zoneRef,projCols,projColsAlt,altOrder,tiltMove,
 {" "}
 <footer style={{"maxWidth":"1200px","margin":"0 auto","padding":"32px clamp(20px, 5vw, 64px) 40px","display":"flex","gap":"20px","flexWrap":"wrap","justifyContent":"space-between","alignItems":"center","fontSize":"14px","color":"#5B6272","borderTop":"1px solid #E4E7EC"}}>
 {" "}
-<a href={"/"} style={{"fontWeight":"600","color":"#0D1321","letterSpacing":"0"}}>
-{"Yara"}
-<span style={{"fontFamily":"'Instrument Serif', serif","fontStyle":"italic","fontWeight":"400","color":"#2A62F5"}}>
-{" Labs"}
-</span>
-</a>
+<BrandLogo />
 {" "}
 <div style={{"display":"flex","gap":"24px","flexWrap":"wrap"}}>
 <a href={"/services"} style={{"color":"#5B6272"}}>

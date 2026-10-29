@@ -3,6 +3,7 @@ import React from "react";
 import AppBrand from "../AppBrand";
 import BookingLink from "../BookingLink";
 import SiteNav from "../SiteNav";
+import BrandLogo from "../BrandLogo";
 
 const SVC = [ { "n": "01", "title": "Workflow audit", "line": "We find every copy-paste in your week.", "tools": [ "Mapping" ] }, { "n": "02", "title": "Zaps & scenarios", "line": "Built in Zapier or Make, whichever fits best.", "tools": [ "Zapier", "Make" ] }, { "n": "03", "title": "Custom APIs", "line": "No integration? We write one.", "tools": [ "REST", "Webhooks" ] }, { "n": "04", "title": "Monitoring", "line": "Alerts if anything fails. Fixes included.", "tools": [ "Alerts", "Docs" ] } ];
 const STACK = [ "Zapier", "Make", "n8n", "Airtable", "Google Sheets", "Slack", "Stripe", "QuickBooks", "Gmail", "Notion", "Asana", "Webhooks" ];
@@ -834,12 +835,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {" "}
 <footer style={{"maxWidth":"1200px","margin":"0 auto","padding":"32px clamp(20px, 5vw, 64px) 40px","display":"flex","gap":"20px","flexWrap":"wrap","justifyContent":"space-between","alignItems":"center","fontSize":"14px","color":"#5B6272","borderTop":"1px solid #E4E7EC"}}>
 {" "}
-<span style={{"fontWeight":"600","color":"#0D1321","letterSpacing":"0"}}>
-{"Yara"}
-<span style={{"fontFamily":"'Instrument Serif', serif","fontStyle":"italic","fontWeight":"400","color":"#2A62F5"}}>
-{" Labs"}
-</span>
-</span>
+<BrandLogo />
 {" "}
 <div style={{"display":"flex","gap":"24px","flexWrap":"wrap"}}>
 <a href={"/"} style={{"color":"#5B6272"}}>

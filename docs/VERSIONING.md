@@ -20,6 +20,12 @@ chore: update project metadata
 
 Track important public changes here until a formal changelog is needed.
 
+### October 2026 — Brand asset rollout
+
+- Replaced header/footer branding with the supplied logo and responsive symbol.
+- Installed favicon, Apple touch, app and maskable icons plus the web manifest.
+- Added the supplied social preview to every page while preserving page-specific OG copy.
+
 ### October 2026 — Shareable forms
 
 - Added `/quote` and `/book` links that open the matching form for social visitors.

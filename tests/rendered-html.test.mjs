@@ -19,6 +19,16 @@ for (const route of routes) {
     assert.equal(response.status, 200);
     const html = await response.text();
     const nodes = elements(parse(html));
+    const meta = (attribute, value) => nodes.find(n => n.tagName === 'meta' && n.attrs?.some(a => a.name === attribute && a.value === value))?.attrs.find(a => a.name === 'content')?.value;
+    assert.equal(meta('property', 'og:image'), 'https://yaralabs.io/og-image.png');
+    assert.equal(meta('property', 'og:image:width'), '1200');
+    assert.equal(meta('property', 'og:image:height'), '630');
+    assert.equal(meta('property', 'og:site_name'), 'Yara Labs');
+    assert.equal(meta('property', 'og:type'), 'website');
+    assert.equal(meta('name', 'twitter:card'), 'summary_large_image');
+    assert.equal(meta('name', 'twitter:image'), 'https://yaralabs.io/og-image.png');
+    assert.equal(meta('name', 'theme-color'), '#2A62F5');
+    assert.ok(nodes.some(n => n.tagName === 'link' && n.attrs?.some(a => a.name === 'rel' && a.value === 'manifest') && n.attrs?.some(a => a.name === 'href' && a.value === '/site.webmanifest')));
     assert.equal(nodes.filter(n => n.tagName === 'h1').length, 1);
     const title = nodes.find(n => n.tagName === 'title');
     assert.ok(title?.childNodes[0]?.value.includes(route.title));

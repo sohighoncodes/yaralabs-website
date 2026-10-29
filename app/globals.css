@@ -15,8 +15,17 @@ img { max-width: 100%; }
 nav { max-width: calc(100% - 32px); }
 .site-nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 60; width: min(calc(100% - 32px), 980px); display: flex; align-items: center; gap: 20px; padding: 8px 8px 8px 22px; border-radius: 999px; background: #ffffff66; border: 1px solid #e4e7ec80; backdrop-filter: blur(16px) saturate(1.4); transition: background .5s, box-shadow .5s; }
 .site-nav.is-scrolled { background: #ffffffdd; border-color: #e4e7ec; box-shadow: 0 10px 30px -12px #0d13212e; }
-.site-brand { font-weight: 600; font-size: 17px; color: #0d1321; white-space: nowrap; }
-.site-brand span { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; font-weight: 400; color: #2a62f5; }
+.brand-link { display: inline-flex; align-items: center; flex: none; padding: 8px; line-height: 0; border-radius: 8px; }
+.brand-lockup { display: block; }
+.brand-lockup svg { display: block; width: 148.148px; height: 32px; }
+.brand-symbol { display: none; width: 28px; height: 28px; }
+footer .brand-link { padding: 16px; }
+@media (max-width: 899px) {
+  .brand-link--responsive { padding: 6px; }
+  .brand-link--responsive .brand-lockup { display: none; }
+  .brand-link--responsive .brand-symbol { display: block; }
+  footer .brand-link--responsive { padding: 14px; }
+}
 .site-links { display: flex; gap: 28px; margin: 0 auto; font-size: 14px; }
 .site-links a { color: #3a4252; }
 .nav-book { flex: none; margin-left: auto; border: 0; border-radius: 99px; padding: 10px 18px; background: linear-gradient(180deg,#2b3550,#131b2e 55%,#0b1120); color: white; font-size: 14px; font-weight: 500; box-shadow: inset 0 1px #ffffff47, inset 0 -2px #0005, 0 0 0 1px #0b1120, 0 12px 26px -10px #0d132199; }

@@ -17,6 +17,9 @@ The October 2026 website follows the supplied `Yara Labs website project.zip` ha
 
 ## Implementation
 
+The shared header/footer logo and favicon/app/social assets follow the fifth
+handoff. See `BRAND.md` for variants, dimensions, clear space and metadata wiring.
+
 Letter spacing remains neutral; hero sizes use explicit breakpoints. Page components are in `components/pages/`, shared controls in `components/`, and global styles in `app/globals.css`. The prototype runtime is not shipped.
 
 The home page's `#work` section follows the second handoff's project-panel design,

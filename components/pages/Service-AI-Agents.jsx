@@ -3,6 +3,7 @@ import React from "react";
 import AppBrand from "../AppBrand";
 import BookingLink from "../BookingLink";
 import SiteNav from "../SiteNav";
+import BrandLogo from "../BrandLogo";
 
 const SVC = [ { "n": "01", "title": "Lead qualifier", "line": "Scores and summarises every enquiry.", "tools": [ "OpenAI", "CRM" ] }, { "n": "02", "title": "Inbox assistant", "line": "Sorts email and drafts replies in your voice.", "tools": [ "Gmail", "Outlook" ] }, { "n": "03", "title": "Website chat", "line": "Answers questions and books calls, 24/7.", "tools": [ "Chat", "Calendars" ] }, { "n": "04", "title": "Call summaries", "line": "Notes and next steps, straight into your CRM.", "tools": [ "Transcripts", "HubSpot" ] } ];
 const STACK = [ "OpenAI", "Claude", "Gemini", "Zapier AI", "Make", "Gmail", "Outlook", "Slack", "HubSpot", "GoHighLevel", "Notion", "Any API" ];
@@ -805,12 +806,7 @@ render() { const {heroOuter,heroInner,storyRef,tilt,untilt,consoleStatus,pulse,s
 {" "}
 <footer style={{"maxWidth":"1200px","margin":"0 auto","padding":"32px clamp(20px, 5vw, 64px) 40px","display":"flex","gap":"20px","flexWrap":"wrap","justifyContent":"space-between","alignItems":"center","fontSize":"14px","color":"#5B6272","borderTop":"1px solid #E4E7EC"}}>
 {" "}
-<span style={{"fontWeight":"600","color":"#0D1321","letterSpacing":"0"}}>
-{"Yara"}
-<span style={{"fontFamily":"'Instrument Serif', serif","fontStyle":"italic","fontWeight":"400","color":"#2A62F5"}}>
-{" Labs"}
-</span>
-</span>
+<BrandLogo />
 {" "}
 <div style={{"display":"flex","gap":"24px","flexWrap":"wrap"}}>
 <a href={"/"} style={{"color":"#5B6272"}}>
