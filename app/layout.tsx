@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { BOOKING_URL } from "../lib/booking";
 import BookingModal from "../components/BookingModal";
+import Analytics from "../components/Analytics";
 import { brandOpenGraph, brandTwitter } from "../lib/brand-metadata";
 import "./globals.css";
 
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body>
         {children}
         <BookingModal />
+        <Analytics />
         <Script src="/assets/yara-pet.js?v=1" strategy="afterInteractive" data-booking-url={BOOKING_URL} />
       </body>
     </html>

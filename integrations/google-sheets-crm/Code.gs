@@ -8,7 +8,7 @@ var CRM = {
     Contacts: ['Name','Email','Phone','Company','Lifecycle','Owner','Last contacted','Next follow-up','Notes','Current tools','First seen','Last website activity','Contact ID'],
     Deals: ['Deal','Contact','Stage','Value','Currency','Expected close','Next action','Follow-up due','Last contacted','Owner','Priority','Notes','Form status','Booking time','Created','Enquiry ID','Contact ID','Email','Closed date','Lost reason'],
     Activities: ['Date','Contact email','Enquiry ID','Type','Summary','Next action','Due date','Status','Owner'],
-    Enquiries: ['Enquiry ID','Name','Email','Phone','Enquiry type','Form status','Current tools','Message','Source page','Created','Last activity','Details submitted','Booking confirmed','Booking start','Booking end','Abandoned at']
+    Enquiries: ['Enquiry ID','Name','Email','Phone','Enquiry type','Form status','Current tools','Message','Source page','Created','Last activity','Details submitted','Booking confirmed','Booking start','Booking end','Abandoned at','UTM source','UTM medium','UTM campaign','Landing page','Referrer']
   }
 };
 
@@ -65,6 +65,7 @@ function syncCRM() {
   var book, properties = PropertiesService.getScriptProperties();
   try {
     book = SpreadsheetApp.openById(properties.getProperty('CRM_SHEET_ID'));
+    ensureAttributionColumns_(book);
     prepareManualRows_(book);
     var cursor = properties.getProperty('CRM_CURSOR') || null, started = Date.now(), processed = 0;
     do {
@@ -134,8 +135,17 @@ function upsertLead_(book,index,lead) {
   dealSheet.getRange(deal.row,2).setValue(text_(lead.name));
   dealSheet.getRange(deal.row,13,1,6).setValues([[lead.lead_status,date_(lead.booking_start),date_(lead.created_at),lead.id,contactId,text_(email)]]);
   var source=book.getSheetByName('Enquiries'), record=[lead.id,text_(lead.name),text_(email),text_(lead.phone),lead.intent,lead.lead_status,text_(lead.tools),text_(lead.message),text_(lead.source),date_(lead.created_at),date_(lead.last_activity_at),date_(lead.details_submitted_at),date_(lead.completed_at),date_(lead.booking_start),date_(lead.booking_end),date_(lead.abandoned_at)];
+  ['utm_source','utm_medium','utm_campaign','landing_page','referrer'].forEach(function(key){record.push(text_(lead.attribution && lead.attribution[key] || ''));});
   var enquiry=row_(source,index.Enquiries,lead.id,record);
   source.getRange(enquiry.row,1,1,record.length).setValues([record]);
+}
+
+function ensureAttributionColumns_(book) {
+  var source=book.getSheetByName('Enquiries');
+  if(source.getRange('Q1').getValue()==='UTM source')return;
+  source.getRange(1,17,1,5).setValues([CRM.headers.Enquiries.slice(16)]).setFontWeight('bold').setBackground('#f1f3f4');
+  source.setColumnWidths(17,5,200);
+  source.getRange('Q:U').protect().setDescription('Website campaign attribution — synced automatically').setWarningOnly(true);
 }
 
 function formatCRM_(book) {

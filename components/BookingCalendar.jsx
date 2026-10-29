@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { BOOKING_URL } from '../lib/booking';
+import { trackEvent } from '../lib/analytics';
 
 const dateKey = (date, timeZone) => new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(date));
 const monthLabel = month => new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${month}-01T12:00:00Z`));
@@ -77,7 +78,7 @@ export default function BookingCalendar({ details, onConfirmed }) {
       const response = await fetch('/api/booking/reserve', { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: bookingRequest.current.signal, body: JSON.stringify({ ...details, start: selected }) });
       const result = await response.json();
       if (!active.current) return;
-      if (response.ok && result.confirmed) { setConfirmed(result); setUncertain(false); onConfirmed?.(); }
+      if (response.ok && result.confirmed) { trackEvent('booking_complete', { form_type: details.intent }, details.id); setConfirmed(result); setUncertain(false); onConfirmed?.(); }
       else {
         setError(result.error || 'We couldn’t confirm your booking. Please retry the same time.');
         setUncertain(response.status >= 500);

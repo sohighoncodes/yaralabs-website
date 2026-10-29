@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import BookingCalendar from './BookingCalendar';
 import { sharedBookingIntent } from '../lib/booking';
 import { createLeadCapture } from '../lib/lead-capture-client';
+import { trackEvent } from '../lib/analytics';
+import { attributionFields, browserAttribution } from '../lib/attribution';
 
 export default function BookingModal() {
   const [request, setRequest] = useState(null);
@@ -17,6 +19,7 @@ export default function BookingModal() {
       const link = event.target.closest?.('[data-booking-link]');
       if (!link) return;
       event.preventDefault();
+      trackEvent('book_call_click', { form_type: link.dataset.bookingIntent === 'quote' || /quote/i.test(link.textContent) ? 'quote' : 'call' });
       setRequest({ intent: link.dataset.bookingIntent === 'quote' || /quote/i.test(link.textContent) ? 'quote' : 'call', trigger: link });
     }
     document.addEventListener('click', open);
@@ -46,6 +49,7 @@ function BookingWindow({ request, onClose }) {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
   const quote = request.intent === 'quote';
+  const [attribution] = useState(browserAttribution);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -82,6 +86,7 @@ function BookingWindow({ request, onClose }) {
     try {
       const contact = await capture.current.submit();
       if (!contact) throw new Error('Unable to save your details.');
+      trackEvent('generate_lead', { form_type: request.intent }, contact.id);
       setDetails(contact);
       setStep('calendar');
     } catch {
@@ -89,7 +94,7 @@ function BookingWindow({ request, onClose }) {
     } finally { setPending(false); }
   }
 
-  return <dialog ref={dialog} className={`booking-window${step === 'calendar' ? ' booking-window--calendar' : ''}`} aria-labelledby="booking-heading" onCancel={onClose}>
+  return <dialog ref={dialog} data-clarity-mask="true" className={`booking-window${step === 'calendar' ? ' booking-window--calendar' : ''}`} aria-labelledby="booking-heading" onCancel={onClose}>
     <div className="booking-header">
       <div><p className="booking-eyebrow">Yara Labs · {quote ? 'Project enquiry' : 'Free discovery call'}</p>
         <h2 id="booking-heading" tabIndex={-1}>{step === 'calendar' ? 'Find a time that works.' : quote ? 'Let’s scope your project.' : 'Let’s talk about your business.'}</h2>
@@ -101,6 +106,7 @@ function BookingWindow({ request, onClose }) {
       <li aria-current={step === 'calendar' ? 'step' : undefined}><span>2</span>Choose a time</li>
     </ol>
     {step === 'details' ? <form ref={formRef} className="booking-form" onSubmit={submit} onInput={() => capture.current?.changed()} onBlur={() => capture.current?.blur()}>
+      {attributionFields.map(name => <input key={name} type="hidden" name={name} value={attribution?.[name] || ''} readOnly />)}
       <p className="booking-intro">{quote ? 'A little context helps us prepare a useful quote. Then choose a time to talk it through.' : 'Tell us a little about what you need, then book your free 30-minute call.'}</p>
       <fieldset className="booking-fields" disabled={pending}>
         <legend className="visually-hidden">Contact and project details</legend>

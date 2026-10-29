@@ -41,6 +41,16 @@ test('CRM uses stable IDs after row sorting and resumes partial writes without d
   assert.equal(h.tabs.Deals.length, 2); assert.equal(h.tabs.Contacts.length, 2);
 });
 
+test('CRM maps attribution to appended columns without shifting existing enquiry fields', () => {
+  const h = harness(), one = lead({ attribution: { utm_source: 'test', utm_medium: 'social', utm_campaign: 'launch', landing_page: '/quote', referrer: 'https://example.com' } });
+  h.sync([one]); h.sync([{ ...one, lead_status: 'completed' }]);
+  assert.equal(h.tabs.Enquiries.length, 1);
+  assert.deepEqual(Array.from(h.tabs.Enquiries[0].slice(16)), ['test','social','launch','/quote','https://example.com']);
+  assert.equal(h.tabs.Deals[0][15], one.id);
+  h.sync([lead({ email: 'legacy@example.com' })]);
+  assert.deepEqual(Array.from(h.tabs.Enquiries[1].slice(16)), ['','','','','']);
+});
+
 test('CRM neutralizes spreadsheet formulas and links manual entries without replacing sales input', () => {
   const h = harness(); h.sync([lead({ name: '=IMPORTXML("https://bad.example", "//a")', phone: '+1234567890' })]);
   assert.ok(h.tabs.Contacts[0][0].startsWith("'=")); assert.ok(h.tabs.Contacts[0][2].startsWith("'+"));
