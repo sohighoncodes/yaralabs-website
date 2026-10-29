@@ -17,11 +17,11 @@
 
 | Tool | Login account | IDs | Access / status |
 | --- | --- | --- | --- |
-| Google Tag Manager | cjgomba@yaralabs.io | GTM-TSFCKRDJ; account 6400901834; container 284195758 | Business account confirmed; unpublished workspace; full user list pending audit |
+| Google Tag Manager | cjgomba@yaralabs.io | GTM-TSFCKRDJ; account 6400901834; container 284195758 | Business account confirmed; draft verified in Preview; unpublished pending final owner approval; full user list pending audit |
 | Google Analytics 4 | cjgomba@yaralabs.io | G-69NQLKLSCS; Web stream 16226898565; account 413979792; property 561411943 | Property access verified: cjgomba@yaralabs.io is sole Administrator |
-| Microsoft Clarity | Google: cjgomba@yaralabs.io | z56q8zdiq6 | Team verified: cjgomba@yaralabs.io is sole Admin; Strict masking enabled; GA4 integration pending |
+| Microsoft Clarity | Google: cjgomba@yaralabs.io | z56q8zdiq6 | Team verified: cjgomba@yaralabs.io is sole Admin; Strict masking enabled; live session detected; GA4 link awaits owner approval for Google's requested scopes |
 | Search Console | cjgomba@yaralabs.io | sc-domain:yaralabs.io | Verified Domain property; cjgomba@yaralabs.io sole verified Owner; indexing data processing; no DNS change required |
-| Lead CRM | cjgomba@yaralabs.io | Sheet 1SLjKcYbZYkCQNoFWGJlgQJJT1C_xx6CdQfv_VzMVbn0 | Existing private CRM; attribution upgrade prepared locally |
+| Lead CRM | cjgomba@yaralabs.io | Sheet 1SLjKcYbZYkCQNoFWGJlgQJJT1C_xx6CdQfv_VzMVbn0 | Private CRM; five-field attribution upgrade live and verified end to end |
 
 No separate agent user is needed for this setup. For future reporting-only access,
 use GA4 Viewer, GTM Read, Search Console Restricted, and Clarity Member (verify the
@@ -59,12 +59,11 @@ lead/appointment counts: blockers, opt-outs and closed tabs can suppress browser
 - Honor Global Privacy Control, Do Not Track and the visitor's local analytics opt-out; do not load GTM when blocked.
 - The opt-out unloads vendor scripts and removes first-party GA/Clarity cookies on this host. The preference remains in this browser.
 
-Enhanced Measurement can collect page views, scroll depth, outbound clicks,
-site search, video engagement, file downloads and form interactions. Enable only
-relevant measurements; disable automatic form measurement (it is not reliable
-for this multi-step form), site-search query collection and duplicate outbound
-measurement. Configure page views with sanitized URLs. Confirm actual controls
-in the current GA4/GTM UI before publication.
+Enhanced Measurement is configured to collect only page views, scroll depth and
+file downloads. Automatic outbound clicks, site search, video engagement, form
+interactions and browser-history page changes are disabled. Page views use the
+sanitized data-layer URL. Email redaction is active, Google Signals and automatic
+user-provided-data collection are off, and no advertising integration is enabled.
 
 ## Source capture and CRM fields
 
@@ -127,38 +126,32 @@ search, not all website traffic. New data can take time to appear.
 7. Get final approval, then publish GTM with a clear version name. Do not claim a recording exists until Clarity shows it.
 
 Current verification: production build and 33 unit/render tests pass; lint and
-TypeScript pass. Local desktop form renders with the masking attribute and five
-hidden fields. Browser input inspection redacts hidden values, so first-touch
-values are covered by unit tests; the live UTM-to-CRM check is still required.
-The local quote modal also fits a 390×844 mobile viewport without horizontal
-overflow. Tag Assistant, GA4 and Clarity checks remain pending; do not treat these
-as passed. Live analytics and CRM-attribution checks require release approval.
+TypeScript pass. The booking form renders with the masking attribute and five
+hidden fields, and fits a 390×844 mobile viewport without horizontal overflow.
+The approved production verification passed: Tag Assistant connected to the GTM
+draft, the GA4 website-event tag sent `book_call_click`, DebugView and Realtime
+both showed the event, and Clarity detected the live session under Strict masking.
+A labelled UTM enquiry flowed through the native form, Supabase and all three CRM
+tabs with its source fields intact; its Google Calendar appointment, Supabase row
+and CRM rows were then removed and verified absent. No external guest was added.
 
-## Prepared release for approval
+## Live release and remaining approvals
 
-- Website: shared GTM loader, five event handlers, masked booking dialog, visitor
-  opt-out and 30-day first-touch source capture. Enable the public config only
-  for the approved release. No direct GA4/Clarity script is added separately.
-- Database: add optional attribution JSON to enquiries and return it through the
-  existing private CRM feed. Existing records keep blank historical sources.
-- CRM: append five source columns to Enquiries; preserve contact/deal IDs and sales edits.
-- GA4: retain page views, scrolls and file downloads; disable automatic form,
-  outbound, history and site-search measurement to avoid duplicate or private data.
-  Mark generate_lead and booking_complete as key events. Keep Google Signals and
-  user-provided data collection off. No advertising integration.
-- Clarity: switch masking from Balanced to Strict before the first test session.
-  GA4 linking may require a separate Google permission confirmation when its actual
-  requested scopes are shown.
-- Verification: use synthetic contact/source data in the production CRM and one
-  clearly labelled test appointment on the owner's calendar, then remove only
-  those test records after checking the results. Ask permission before this step.
-- GTM stays unpublished until Preview and end-to-end checks pass and the owner
-  gives the final publishing approval required by step 19 of the brief.
+- Website, database and CRM attribution changes are live. Existing historical
+  enquiries retain blank source fields; contact/deal IDs and sales edits are intact.
+- GA4's `generate_lead` and `booking_complete` key events are configured. The
+  built-in `purchase` key-event definition remains because GA4 does not allow it
+  to be unmarked, but the website does not emit purchase events.
+- Clarity is live with Strict masking. Linking it to GA4 is paused at Google's
+  OAuth screen because Microsoft Clarity requests ongoing read/download access
+  to Analytics data plus edit access to Analytics management entities.
+- GTM Preview and the end-to-end test passed, but the verified three-tag container
+  remains unpublished until the owner gives the final approval required by the brief.
 
 Native GTM import file: `integrations/analytics/gtm-container.json`.
 Imported successfully into Default Workspace as 12 unpublished additions
 (three tags, six data-layer variables, one trigger and two settings). GTM Preview
-opened Tag Assistant without a compilation error; connection and event firing
-verification are still pending. Published version remains the empty container.
+connected without a compilation error and verified the GA4 event tag and Clarity
+loader. Published version remains the empty container pending final approval.
 Google's [configuration reference](https://developers.google.com/analytics/devguides/collection/ga4/reference/config)
 documents global page_location settings; these are queued before GTM loads.
