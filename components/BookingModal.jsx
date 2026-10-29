@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import BookingCalendar from './BookingCalendar';
 import { sharedBookingIntent } from '../lib/booking';
+import { createLeadCapture } from '../lib/lead-capture-client';
 
 export default function BookingModal() {
   const [request, setRequest] = useState(null);
@@ -37,8 +38,9 @@ export default function BookingModal() {
 
 function BookingWindow({ request, onClose }) {
   const dialog = useRef(null);
-  const controller = useRef(null);
-  const submissionId = useRef(null);
+  const formRef = useRef(null);
+  const capture = useRef(null);
+  const [saveStatus, setSaveStatus] = useState('');
   const [step, setStep] = useState('details');
   const [details, setDetails] = useState(null);
   const [pending, setPending] = useState(false);
@@ -50,8 +52,18 @@ function BookingWindow({ request, onClose }) {
     document.body.style.overflow = 'hidden';
     dialog.current.showModal();
     dialog.current.querySelector('input[name="name"]')?.focus({ preventScroll: true });
+    capture.current = createLeadCapture(request.intent, () => formRef.current, setSaveStatus);
+    const flush = () => { void capture.current?.flush(); };
+    const hidden = () => { if (document.visibilityState === 'hidden') flush(); };
+    const retry = () => capture.current?.changed();
+    window.addEventListener('pagehide', flush);
+    window.addEventListener('online', retry);
+    document.addEventListener('visibilitychange', hidden);
     return () => {
-      controller.current?.abort();
+      capture.current?.dispose();
+      window.removeEventListener('pagehide', flush);
+      window.removeEventListener('online', retry);
+      document.removeEventListener('visibilitychange', hidden);
       document.body.style.overflow = previousOverflow;
       const focusTarget = request.trigger?.isConnected ? request.trigger : document.querySelector('.nav-book');
       focusTarget?.focus({ preventScroll: true });
@@ -67,27 +79,14 @@ function BookingWindow({ request, onClose }) {
     event.preventDefault();
     if (pending) return;
     setPending(true); setError('');
-    const form = new FormData(event.currentTarget);
-    submissionId.current ??= crypto.randomUUID();
-    controller.current = new AbortController();
-    const timer = setTimeout(() => controller.current?.abort(), 15000);
-    const contact = {
-      id: submissionId.current, intent: request.intent,
-      name: form.get('name'), email: String(form.get('email')).trim(), phone: form.get('phone'),
-      tools: form.get('tools'), message: form.get('message'), website: form.get('website'),
-      source: location.pathname,
-    };
     try {
-      const response = await fetch('/api/inquiries', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.current.signal,
-        body: JSON.stringify(contact),
-      });
-      if (!response.ok) throw new Error('Unable to save your details. Please try again.');
+      const contact = await capture.current.submit();
+      if (!contact) throw new Error('Unable to save your details.');
       setDetails(contact);
       setStep('calendar');
     } catch {
       setError('We couldn’t save your details. Please try again, or email cjgomba@yaralabs.io.');
-    } finally { clearTimeout(timer); setPending(false); }
+    } finally { setPending(false); }
   }
 
   return <dialog ref={dialog} className={`booking-window${step === 'calendar' ? ' booking-window--calendar' : ''}`} aria-labelledby="booking-heading" onCancel={onClose}>
@@ -101,10 +100,11 @@ function BookingWindow({ request, onClose }) {
       <li aria-current={step === 'details' ? 'step' : undefined}><span>{step === 'calendar' ? '✓' : '1'}</span>Your details</li>
       <li aria-current={step === 'calendar' ? 'step' : undefined}><span>2</span>Choose a time</li>
     </ol>
-    {step === 'details' ? <form className="booking-form" onSubmit={submit} onInput={() => { submissionId.current = null; }}>
+    {step === 'details' ? <form ref={formRef} className="booking-form" onSubmit={submit} onInput={() => capture.current?.changed()} onBlur={() => capture.current?.blur()}>
       <p className="booking-intro">{quote ? 'A little context helps us prepare a useful quote. Then choose a time to talk it through.' : 'Tell us a little about what you need, then book your free 30-minute call.'}</p>
       <fieldset className="booking-fields" disabled={pending}>
         <legend className="visually-hidden">Contact and project details</legend>
+        <p className="booking-privacy booking-message">Your contact details are saved as you type so we can respond to your enquiry, even if you don’t finish booking.</p>
         <label>Name<input name="name" autoComplete="name" required maxLength={120} placeholder="Your name" /></label>
         <label>Email<input name="email" type="email" autoComplete="email" required maxLength={254} placeholder="you@company.com" /></label>
         <label>Phone<input name="phone" type="tel" autoComplete="tel" required minLength={7} maxLength={40} placeholder="Include your country code" /></label>
@@ -112,11 +112,11 @@ function BookingWindow({ request, onClose }) {
         <label className="booking-message">How can we help?<textarea name="message" required minLength={10} maxLength={3000} rows={3} placeholder="What would you like to build, connect or improve?" /></label>
       </fieldset>
       <div className="booking-honeypot" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
-      <p className="booking-privacy">We’ll use these details to prepare for your call and respond to your enquiry.</p>
+      <p className="booking-privacy" role="status">{saveStatus}</p>
       {error && <p className="booking-error" role="alert">{error} <a href="mailto:cjgomba@yaralabs.io">Email CJ</a></p>}
       <div className="booking-form-footer"><span>Free · 30 minutes · Google Meet</span><button type="submit" className="booking-continue" disabled={pending}>{pending ? 'Saving…' : 'Continue to booking'}<span aria-hidden="true"> →</span></button></div>
-    </form> : <div className="booking-calendar-step">
-      <BookingCalendar details={details} />
+    </form> : <div className="booking-calendar-step" onClickCapture={() => capture.current?.activity()} onKeyDownCapture={() => capture.current?.activity()}>
+      <BookingCalendar details={details} onConfirmed={() => capture.current?.complete()} />
     </div>}
   </dialog>;
 }

@@ -14,6 +14,7 @@ try {
     await context.addInitScript(() => localStorage.setItem('yl-pet-hidden', '1'));
     const page = await context.newPage(); page.on('pageerror', e => errors.push(e.message));
     let payload, saves = 0, fail = false;
+    await page.route('**/api/leads', route => route.fulfill({ json: { saved: true, status: 'in_progress' } }));
     await page.route('**/api/inquiries', async route => {
       saves++; payload = route.request().postDataJSON();
       await route.fulfill({ status: fail ? 503 : 201, contentType: 'application/json', body: JSON.stringify(fail ? { error: 'Unavailable' } : { saved: true }) });

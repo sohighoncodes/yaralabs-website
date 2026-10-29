@@ -2,10 +2,12 @@
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
 import { handleCalendarRequest } from "../lib/calendar-api.js";
+import { handleLead } from "../lib/leads.js";
 
 interface Env {
   CALENDAR_SCRIPT_URL?: string;
   CALENDAR_SHARED_SECRET?: string;
+  LEAD_CAPTURE_SECRET?: string;
   ASSETS: Fetcher;
   DB: D1Database;
   IMAGES: {
@@ -33,8 +35,14 @@ const worker = {
     const url = new URL(request.url);
 
     if (url.pathname === '/api/booking/availability' || url.pathname === '/api/booking/reserve') {
-      return handleCalendarRequest(request, env);
+      const result = handleCalendarRequest(request, env);
+      // Finish recording Google's response even if the visitor closes their tab.
+      ctx.waitUntil(result.then(() => undefined));
+      return result;
     }
+
+    if (url.pathname === '/api/leads') return handleLead(request, env);
+    if (url.pathname === '/api/inquiries') return handleLead(request, env, fetch, true);
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];

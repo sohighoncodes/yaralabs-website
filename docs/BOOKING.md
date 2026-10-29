@@ -102,12 +102,52 @@ an outage/no-JavaScript fallback.
 
 https://supabase.com/dashboard/project/euahhliojookeumcvpem/editor
 
-Table: `public.website_inquiries`. Public access is insert-only with RLS and
-no read/update/delete grants. Saving intake is not proof of a confirmed meeting.
-Calendar confirmation is authoritative. There is no separate email notification
-or booking-status synchronization back into Supabase. The event description
-includes the submitted project details. No contact data is persisted to browser
-storage or logged by the application.
+Table: `public.website_inquiries`. Filter `lead_status` in the Table Editor:
+
+- `in_progress`: valid name, email and phone saved; appointment not confirmed yet.
+- `abandoned`: no saved activity for 30 minutes (a database job runs every minute).
+- `completed`: Google confirmed the appointment and the Worker saved confirmation.
+- `booking_pending`: a reservation started but its outcome has not yet been recorded.
+  Check the calendar before contacting the lead; this deliberately does not become abandoned.
+- `legacy_submitted`: intake received before tracking existed. Old rows are not relabeled
+  as completed without appointment evidence.
+
+Contact autosaves after 700 ms of idle typing once name, email and phone are valid,
+and flushes on field blur, modal close, page hide and backgrounding. Project fields
+can be empty. Failed saves display a status and retry; form progression requires a
+successful full save. Actual interactions on the calendar refresh activity, not its
+automatic availability polling. Returning to the same tab/session uses the same lead
+ID for up to 24 hours. Only opaque ID/token credentials are stored in sessionStorage;
+no contact/project data is stored there. A new session/device can create a new enquiry.
+The token is retired after confirmation. An on-form notice explains early capture.
+
+`details_submitted_at` records progression to booking; `completed_at`, `booking_start`
+and `booking_end` record confirmed appointments. Browser requests cannot mark a lead
+completed. Atomic database updates check a random 256-bit ownership token and revision
+ordering, so late saves cannot overwrite newer inputs or downgrade completed records.
+An abandoned lead that resumes changes back to in progress.
+
+The Worker uses its private `LEAD_CAPTURE_SECRET` to call the `lead-capture` Edge
+Function. The Edge runtime's built-in service credential calls a SECURITY INVOKER RPC,
+granted only to service_role, which checks a private digest of the Worker secret. The
+private config table intentionally has no public RLS policies (default deny). The
+[Supabase RLS advisory](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy)
+for this table is informational. No service credential is copied to Cloudflare or
+the browser. Legacy insert-only intake remains available for already-open old clients.
+
+The Worker finishes reservation tracking with `waitUntil` even on browser disconnect.
+Uncertain Google responses or a failed confirmation write stay `booking_pending`;
+retrying the same reservation safely resolves them. There is no automatic calendar
+reconciliation job, and bookings made through the external Google fallback are not
+automatically matched. No marketing/follow-up emails are sent automatically.
+As with any web form, details cannot be captured if the save never reaches the server
+(e.g. offline browser closes, blocked scripts, or invalid/incomplete contact fields).
+
+Deployment: apply the migration, generate a 32-byte random secret, store only its SHA-256
+hex digest in `private.lead_capture_config`, and set the original hex secret as the
+Cloudflare `LEAD_CAPTURE_SECRET` binding through secret stdin. Deploy
+`supabase/functions/lead-capture/index.ts` with JWT verification off: it authenticates
+its own private Worker credential. Never commit the raw secret. Then deploy the Worker.
 
 ## Verification
 
@@ -117,6 +157,8 @@ storage or logged by the application.
   saves/calendar operations. Never creates real appointments.
 - `node scripts/qa-calendar.mjs`: custom design, time zones, stale-slot removal,
   uncertain retries, confirmations and fail-closed outages using controlled fixtures.
+- `node scripts/qa-leads.mjs`: early contact capture, reload identity, failure/retry,
+  completion and close flush on desktop/mobile. All browser suites mock lead writes.
 - `node scripts/qa-milo.mjs`: guide and shared modal regression.
 - Live activation: verify real availability, a user-approved temporary appointment,
   conflict rejection and safe retry, then remove only that exact test event/hold.

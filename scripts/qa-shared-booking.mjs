@@ -12,6 +12,7 @@ try {
     const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
     page.on('pageerror', error => errors.push(error.message));
     let payload, saves = 0;
+    await page.route('**/api/leads', route => route.fulfill({ json: { saved: true, status: 'in_progress' } }));
     await page.route('**/api/inquiries', route => {
       saves++; payload = route.request().postDataJSON();
       return route.fulfill({ status: 201, json: { saved: true } });

@@ -6,7 +6,7 @@ const dateKey = (date, timeZone) => new Intl.DateTimeFormat('en-CA', { timeZone,
 const monthLabel = month => new Intl.DateTimeFormat('en', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${month}-01T12:00:00Z`));
 const fullDay = day => new Intl.DateTimeFormat('en', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(`${day}T12:00:00Z`));
 
-export default function BookingCalendar({ details }) {
+export default function BookingCalendar({ details, onConfirmed }) {
   const [zone, setZone] = useState(() => Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Manila');
   const [openedAt] = useState(Date.now);
   const [slots, setSlots] = useState([]);
@@ -77,7 +77,7 @@ export default function BookingCalendar({ details }) {
       const response = await fetch('/api/booking/reserve', { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: bookingRequest.current.signal, body: JSON.stringify({ ...details, start: selected }) });
       const result = await response.json();
       if (!active.current) return;
-      if (response.ok && result.confirmed) { setConfirmed(result); setUncertain(false); }
+      if (response.ok && result.confirmed) { setConfirmed(result); setUncertain(false); onConfirmed?.(); }
       else {
         setError(result.error || 'We couldn’t confirm your booking. Please retry the same time.');
         setUncertain(response.status >= 500);

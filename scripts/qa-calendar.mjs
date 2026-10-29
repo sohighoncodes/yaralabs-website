@@ -11,6 +11,7 @@ try {
     const page = await browser.newPage({ viewport: { width, height: 1000 }, timezoneId: 'Asia/Manila', reducedMotion: 'reduce' });
     let fixture = calendarFixture(), mode = 'taken', posted = [], unavailable = false;
     await page.addInitScript(() => localStorage.setItem('yl-pet-hidden', '1'));
+    await page.route('**/api/leads', route => route.fulfill({ json: { saved: true, status: 'in_progress' } }));
     await page.route('**/api/inquiries', route => route.fulfill({ status: 201, json: { saved: true } }));
     await page.route('**/api/booking/availability', route => route.fulfill({ status: unavailable ? 503 : 200, json: unavailable ? { error: 'Unavailable' } : fixture }));
     await page.route('**/api/booking/reserve', route => {

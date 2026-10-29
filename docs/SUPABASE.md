@@ -15,9 +15,14 @@ the appointment email to match the enquiry. Public visitors can insert validated
 rows but cannot select, update or delete them. Only project administrators or
 server-side service-role credentials can read these details.
 
-The website's server uses the existing publishable key through an insert-only
-REST call. No service-role key is required or exposed. Local migrations are in
-`supabase/migrations/`. See `BOOKING.md` for the complete flow and limitations.
+New forms autosave contact details and track `lead_status` through a private Worker
+to Edge Function gateway. The Edge Function uses its built-in server credential;
+it is never exposed to visitors. A service-only SECURITY INVOKER RPC checks ownership,
+prevents stale writes and records Google-confirmed completion. A pg_cron job tags
+inactive unfinished leads after 30 minutes. Public read/update/delete remain denied.
+The original insert-only endpoint supports already-loaded older clients.
+Local migrations are in `supabase/migrations/`. See `BOOKING.md` for statuses,
+secret provisioning, verification and operational limitations.
 
 ## Environment Variables
 

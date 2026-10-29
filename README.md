@@ -53,7 +53,8 @@ page components and route metadata. Keep the original handoff ZIP separately.
 `node scripts/qa-milo.mjs` checks tours, booking, dragging and hide/restore;
 `node scripts/qa-booking.mjs` checks both modal flows, and
 `node scripts/qa-shared-booking.mjs` checks social links, auto-opening, refresh and dismissal.
-`node scripts/qa-calendar.mjs` checks custom calendar conflicts, retries and time zones. Browser checks
+`node scripts/qa-calendar.mjs` checks custom calendar conflicts, retries and time zones.
+`node scripts/qa-leads.mjs` checks partial contact saves and lead lifecycle UI. Browser checks
 need `pnpm exec playwright install chromium`. Reports are ignored in `outputs/`.
 
 ## Work From Another Device

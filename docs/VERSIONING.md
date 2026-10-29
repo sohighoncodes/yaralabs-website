@@ -20,6 +20,13 @@ chore: update project metadata
 
 Track important public changes here until a formal changelog is needed.
 
+### October 2026 — Partial lead capture
+
+- Autosave valid name, email and phone before the visitor finishes the form.
+- Track in-progress, abandoned, pending and Google-confirmed completed enquiries.
+- Add private ownership checks, stale-write protection, retry/close flush and a saving notice.
+- Preserve old enquiries as legacy submissions and keep contact data out of browser storage.
+
 ### October 2026 — Brand asset rollout
 
 - Replaced header/footer branding with the supplied logo and responsive symbol.

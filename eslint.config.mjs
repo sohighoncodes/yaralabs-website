@@ -40,6 +40,7 @@ const eslintConfig = defineConfig([
         ...globals.browser,
         ...globals.node,
         ...globals.serviceworker,
+        Deno: 'readonly',
       },
     },
     settings: {
