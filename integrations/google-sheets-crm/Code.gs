@@ -17,14 +17,12 @@ function setupCRM() {
   var properties = PropertiesService.getScriptProperties();
   if (!properties.getProperty('CRM_FEED_SECRET')) throw new Error('Set CRM_FEED_SECRET in Script Properties first.');
   var existing = properties.getProperty('CRM_SHEET_ID');
-  if (existing) {
-    var savedBook=SpreadsheetApp.openById(existing);
-    if(properties.getProperty('CRM_INITIALIZED')!=='true')throw new Error('CRM setup was interrupted before formatting finished. Inspect the existing workbook before retrying.');
-    finishSetup_(savedBook); return;
-  }
-  var book = SpreadsheetApp.create('Yara Labs CRM', 1000, 20);
+  var book = existing ? SpreadsheetApp.openById(existing) : SpreadsheetApp.create('Yara Labs CRM', 1000, 20);
+  if (existing && properties.getProperty('CRM_INITIALIZED')==='true') { finishSetup_(book); return; }
+  if (existing && (book.getSheets().length!==1 || book.getSheets()[0].getLastRow()>0)) throw new Error('Inspect the partially initialized workbook before retrying.');
   properties.setProperty('CRM_SHEET_ID', book.getId());
-  book.setSpreadsheetTimeZone('Asia/Manila').setSpreadsheetLocale('en_US');
+  book.setSpreadsheetTimeZone('Asia/Manila');
+  book.setSpreadsheetLocale('en_US');
   book.getSheets()[0].setName('Pipeline');
   Object.keys(CRM.headers).forEach(function(name) {
     var sheet = book.insertSheet(name);

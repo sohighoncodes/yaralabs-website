@@ -1,5 +1,9 @@
 # Google Sheets CRM
 
+Live workbook: https://docs.google.com/spreadsheets/d/1SLjKcYbZYkCQNoFWGJlgQJJT1C_xx6CdQfv_VzMVbn0/edit
+
+Owner-run project: https://script.google.com/u/2/home/projects/1pu2afHUydjUmx7_8vdBnUB39rkU83B1_k3k02aK3L_Hb8hcKUwpyzWGd/edit
+
 Owner: `cjgomba@yaralabs.io`. The owner-run Apps Script polls the private website
 feed every five minutes. Website saves and bookings do not depend on Google Sheets
 availability. A failed sync retries on the next run.
@@ -73,3 +77,9 @@ without creating a duplicate. The Pipeline refresh checkbox invokes the same syn
 `node --test tests/crm.test.mjs` covers contact deduplication, repeat-sync behavior,
 sales-field preservation, row sorting, manual records and formula injection.
 `pnpm test`, lint and TypeScript checks cover the website regression surface.
+
+Activated on 2026-10-29 in the business account with restricted sharing, four
+native tables, and both time-driven and manual-refresh triggers. A synthetic
+website contact imported into all three record tabs. A repeat sync preserved
+its edited stage, value, and notes, and the Pipeline formulas reflected those
+changes. The synthetic record was removed from the website and CRM afterward.
