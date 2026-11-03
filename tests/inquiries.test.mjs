@@ -45,3 +45,17 @@ test('handles retries without duplicate records and preserves honest failure sta
     assert.equal(response.status, 503); assert.ok(!(await response.text()).includes('private backend error'));
   }
 });
+
+test('audit intake stores the six fields without a phone or calendar booking', async () => {
+  const data = {id:crypto.randomUUID(), intent:'audit', name:'Visitor', email:'owner@example.com', business:'Sample catering', businessUrl:'https://example.com', state:'WA', volume:'10–30', source:'/caterers'};
+  const result = await handleInquiry(request(data), async (url, options) => {
+    assert.ok(url.endsWith('/website_inquiries'));
+    const row = JSON.parse(options.body);
+    assert.equal(row.intent, 'audit'); assert.equal(row.phone,null);
+    for (const key of ['business','businessUrl','state','volume']) assert.ok(row.message.includes(data[key]));
+    return new Response(null,{status:201});
+  });
+  assert.equal(result.status,201);
+  for (const invalid of [{state:'invalid'},{volume:''},{businessUrl:'javascript:alert(1)'},{website:'spam'}])
+    assert.equal((await handleInquiry(request({...data,...invalid}), () => assert.fail('invalid audit saved'))).status,400);
+});

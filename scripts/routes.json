@@ -48,5 +48,10 @@
     "name": "Case-Inka",
     "route": "/projects/inka-arthouse",
     "title": "Inka Arthouse Case Study"
+  },
+  {
+    "name": "Caterers",
+    "route": "/caterers",
+    "title": "Catering enquiry automation, Australia \u00b7 Yara Labs"
   }
 ]

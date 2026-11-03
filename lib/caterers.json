@@ -1,0 +1,331 @@
+{
+  "route": "/caterers",
+  "meta": {
+    "title": "Catering enquiry automation, Australia · Yara Labs",
+    "description": "Every catering enquiry answered in under 60 seconds and every quote followed up. Live in 21 days. Built for Australian caterers."
+  },
+  "hero": {
+    "badge": {
+      "tag": "New",
+      "text": "3 founding spots for Aussie caterers",
+      "href": "#pricing"
+    },
+    "headline": {
+      "plain": [
+        "Enquiries",
+        "in."
+      ],
+      "italic": [
+        "Orders",
+        "out."
+      ]
+    },
+    "subheading": "Every catering enquiry answered in under 60 seconds, and every quote chased until it's won. Live in 21 days.",
+    "primaryCta": {
+      "label": "Get your free audit",
+      "bookingIntent": "audit"
+    },
+    "secondaryCta": {
+      "label": "See how it works",
+      "href": "#services"
+    },
+    "automationSteps": [
+      {
+        "label": "Quote request in",
+        "tag": "Website form"
+      },
+      {
+        "label": "Reply sent in 42 sec",
+        "tag": "SMS + email"
+      },
+      {
+        "label": "Quote sent",
+        "tag": "GoHighLevel"
+      },
+      {
+        "label": "Day 3 follow-up",
+        "tag": "Twilio"
+      },
+      {
+        "label": "Order won, review asked",
+        "tag": "Google"
+      }
+    ],
+    "runLog": [
+      {
+        "time": "14:02:07",
+        "text": "New enquiry · Sarah K. · 80 guests, Fri 14th"
+      },
+      {
+        "time": "14:02:49",
+        "text": "SMS + email reply sent (42 sec)"
+      },
+      {
+        "time": "14:03:10",
+        "text": "Added to GoHighLevel · stage: New"
+      },
+      {
+        "time": "16:30:00",
+        "text": "Quote sent · stage: Quoted"
+      },
+      {
+        "time": "Day 3",
+        "text": "Follow-up sent"
+      },
+      {
+        "time": "Day 4",
+        "text": "Order won · review request queued"
+      }
+    ]
+  },
+  "included": {
+    "id": "services",
+    "headline": {
+      "plain": [
+        "What's"
+      ],
+      "italic": [
+        "included."
+      ]
+    },
+    "items": [
+      {
+        "n": "01",
+        "title": "Instant reply",
+        "text": "SMS and email in under a minute, day or night, in your voice.",
+        "tags": [
+          "GoHighLevel",
+          "SMS + email"
+        ]
+      },
+      {
+        "n": "02",
+        "title": "Quote follow-ups",
+        "text": "Day 1, 3, 7 and 14 after every quote. Stops the moment they reply.",
+        "tags": [
+          "Twilio",
+          "Email"
+        ]
+      },
+      {
+        "n": "03",
+        "title": "Calls and reviews",
+        "text": "Missed-call text-back, plus Google review requests after the 1st and 3rd order.",
+        "tags": [
+          "Missed calls",
+          "Google reviews"
+        ]
+      },
+      {
+        "n": "04",
+        "title": "Owner dashboard",
+        "text": "Every enquiry, quote and win, tied to the ad that brought it.",
+        "tags": [
+          "Google Ads",
+          "Meta ads"
+        ]
+      }
+    ]
+  },
+  "howWeWork": {
+    "source": "homepage How-we-work component",
+    "steps": [
+      {
+        "n": "01",
+        "title": "Free audit",
+        "text": "We test your enquiry form and send a 3-minute video.",
+        "visual": {
+          "question": "How fast do you reply?",
+          "typing": "Test enquiry sent 2:14pm…",
+          "chip": "3-min video · free"
+        }
+      },
+      {
+        "n": "02",
+        "title": "21-day build",
+        "text": "45 minutes of your time. Live in 21 days."
+      },
+      {
+        "n": "03",
+        "title": "Run",
+        "text": "It works quietly. We watch for problems."
+      }
+    ]
+  },
+  "work": {
+    "source": "homepage Work component, unchanged"
+  },
+  "pricing": {
+    "id": "pricing",
+    "headline": {
+      "plain": [
+        "Simple"
+      ],
+      "italic": [
+        "pricing."
+      ]
+    },
+    "currencyNote": "Prices in AUD, ex GST. 50% to start, 50% at go-live.",
+    "guarantee": {
+      "tag": "Guarantee",
+      "text": "Live within 21 days of getting your logins, or month one of management is free."
+    },
+    "foundingSpotsLeft": 3,
+    "cards": [
+      {
+        "title": "Speed-to-Lead Lite",
+        "price": "A$1,650",
+        "suffix": "one-time",
+        "popular": false,
+        "items": [
+          "Instant SMS and email reply",
+          "7-day follow-up sequence",
+          "Missed-call text-back"
+        ],
+        "cta": {
+          "label": "Start with Lite",
+          "bookingIntent": "audit"
+        }
+      },
+      {
+        "title": "21-Day Quote Machine",
+        "price": "A$4,950",
+        "suffix": "setup + A$990/mo",
+        "popular": true,
+        "items": [
+          "Everything above, plus reviews and dashboard",
+          "Quote revival campaign",
+          "Founding: A$3,500 + A$690/mo, 3 spots"
+        ],
+        "cta": {
+          "label": "Claim a founding spot",
+          "bookingIntent": "audit"
+        }
+      },
+      {
+        "title": "Add-ons",
+        "price": "From A$990",
+        "suffix": "per month",
+        "popular": false,
+        "items": [
+          "Google and Meta ads, +A$990/mo",
+          "Kitchen ops automation, from A$3,500",
+          "Every lead tracked to its ad"
+        ],
+        "cta": {
+          "label": "Talk to us",
+          "bookingIntent": "call"
+        }
+      }
+    ]
+  },
+  "testimonials": {
+    "source": "CRM page Testimonials, unchanged; Kenny Eu first if configurable"
+  },
+  "faq": [
+    {
+      "q": "Do I need new software?",
+      "a": "Usually not. We build around your website, inbox and phone. A CRM is included if you need one."
+    },
+    {
+      "q": "How long does setup take?",
+      "a": "21 days from the day we get your logins, or month one of management is free."
+    },
+    {
+      "q": "Will it sound like a robot?",
+      "a": "No. Every message is written in your voice and approved by you before go-live."
+    },
+    {
+      "q": "Will my team actually use it?",
+      "a": "Most of it runs without them. We record a walkthrough built around their day."
+    },
+    {
+      "q": "What does A$4,950 include?",
+      "a": "Instant replies, quote follow-ups, missed-call text-back, review requests, the dashboard and a quote revival campaign."
+    }
+  ],
+  "otherServices": {
+    "source": "CRM page Other services, unchanged"
+  },
+  "finalCta": {
+    "headline": {
+      "plain": [
+        "Stop losing",
+        "orders"
+      ],
+      "italic": [
+        "to slow",
+        "replies."
+      ]
+    },
+    "cta": {
+      "label": "Get your free audit",
+      "bookingIntent": "audit"
+    }
+  },
+  "auditModal": {
+    "intent": "audit",
+    "title": "Get your free Quote Leak Audit",
+    "intro": "We send your website a test enquiry, time the reply, and email you a 3-minute video of what happened and how to fix it. Free, and no call needed.",
+    "fields": [
+      {
+        "name": "name",
+        "label": "Your name",
+        "type": "text",
+        "autocomplete": "name",
+        "required": true
+      },
+      {
+        "name": "business",
+        "label": "Business name",
+        "type": "text",
+        "autocomplete": "organization",
+        "required": true
+      },
+      {
+        "name": "website",
+        "label": "Website",
+        "type": "url",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "Email for the video",
+        "type": "email",
+        "autocomplete": "email",
+        "required": true
+      },
+      {
+        "name": "state",
+        "label": "State",
+        "type": "select",
+        "options": [
+          "NSW",
+          "VIC",
+          "QLD",
+          "WA",
+          "SA",
+          "TAS",
+          "ACT",
+          "NT"
+        ],
+        "required": true
+      },
+      {
+        "name": "volume",
+        "label": "Enquiries a month, roughly",
+        "type": "select",
+        "options": [
+          "Under 10",
+          "10–30",
+          "30–100",
+          "100+"
+        ],
+        "required": true
+      }
+    ],
+    "submit": "Send me my audit",
+    "smallPrint": "We use these details only to send your audit and one follow-up.",
+    "success": "Thanks. Your audit video arrives within 2 business days."
+  }
+}
