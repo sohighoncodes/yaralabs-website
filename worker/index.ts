@@ -8,6 +8,7 @@ interface Env {
   CALENDAR_SCRIPT_URL?: string;
   CALENDAR_SHARED_SECRET?: string;
   LEAD_CAPTURE_SECRET?: string;
+  GHL_SYNC_CONFIG?: string;
   ASSETS: Fetcher;
   DB: D1Database;
   IMAGES: {
@@ -35,14 +36,14 @@ const worker = {
     const url = new URL(request.url);
 
     if (url.pathname === '/api/booking/availability' || url.pathname === '/api/booking/reserve') {
-      const result = handleCalendarRequest(request, env);
+      const result = handleCalendarRequest(request, env, fetch, ctx);
       // Finish recording Google's response even if the visitor closes their tab.
       ctx.waitUntil(result.then(() => undefined));
       return result;
     }
 
-    if (url.pathname === '/api/leads') return handleLead(request, env);
-    if (url.pathname === '/api/inquiries') return handleLead(request, env, fetch, true);
+    if (url.pathname === '/api/leads') return handleLead(request, env, fetch, false, ctx);
+    if (url.pathname === '/api/inquiries') return handleLead(request, env, fetch, true, ctx);
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
