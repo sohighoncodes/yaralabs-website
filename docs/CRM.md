@@ -51,8 +51,12 @@ do not enter GHL. A 429, server failure, or timeout is retried once and then log
 the constant `GHL_SYNC_FAILED`; it never changes the visitor's successful Supabase or
 Google Calendar response.
 
-The code is committed on `codex/yara-ghl-integration` at `c433228` but is not deployed
-until `GHL_SYNC_CONFIG` is stored in the production Worker secret store.
+The bridge is deployed on the production `yaralabs-website` Worker. Deployment
+version `3b14f8b7-18d7-49d6-9e53-d76e451e93c2` includes the server-only
+`GHL_SYNC_CONFIG` binding; the PIT value is not committed. Production checks on
+2026-11-19 confirmed HTTP 200 for the homepage, booking page, Worker URL, and the
+read-only availability endpoint. No synthetic contact, opportunity, appointment,
+or email was created during deployment verification.
 
 ### Remaining calendar dependency
 
