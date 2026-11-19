@@ -139,7 +139,13 @@ The Worker finishes reservation tracking with `waitUntil` even on browser discon
 Uncertain Google responses or a failed confirmation write stay `booking_pending`;
 retrying the same reservation safely resolves them. There is no automatic calendar
 reconciliation job, and bookings made through the external Google fallback are not
-automatically matched. No marketing/follow-up emails are sent automatically.
+automatically matched. A complete website enquiry also upserts its contact and a New
+Enquiry opportunity in HighLevel. A confirmed booking moves that opportunity to
+Discovery Booked. HighLevel failures are isolated from successful Supabase and Google
+Calendar responses. The published HighLevel workflows send the new-enquiry welcome
+email when the opportunity enters New Enquiry and the client welcome email when it
+enters Onboarding. A confirmed website booking moves the opportunity to Discovery
+Booked and does not send the client welcome email by itself.
 As with any web form, details cannot be captured if the save never reaches the server
 (e.g. offline browser closes, blocked scripts, or invalid/incomplete contact fields).
 
