@@ -33,13 +33,41 @@ The dedicated sending domain `mail.yaralabs.io` is active with SSL issued and it
 initial warm-up in progress. Cloudflare DNS has non-proxied SPF, DKIM, tracking
 CNAME, two priority-10 MX records, and DMARC at `_dmarc.mail.yaralabs.io`.
 
-Reusable templates are previewed but have not sent mail:
+Reusable templates:
 
 - `Yara Labs - New Enquiry Welcome`: `6afd001797e6ce5fa4922728`
 - `Yara Labs - Client Welcome`: `6afd00185ddb9dde6e88ff38`
 
-HighLevel's Workflow Definition API is not enabled for this location. Keep both
-templates unsent until their UI workflows are reviewed and deliberately published.
+HighLevel's Workflow Definition API is not enabled for this location, so the matching
+workflows were built and published in the authenticated UI on 2026-11-19:
+
+- `Yara Labs - New Enquiry Welcome`: `0fd3aff0-597f-46de-81dd-ad78454a3208`.
+  A move into `New Enquiry` sends the new-enquiry template.
+- `Yara Labs - Client Welcome`: `333f992b-7860-46e4-a037-73b191d0949d`.
+  A move into `Onboarding` sends the client-welcome template.
+
+Both templates send as `Yara Labs <hello@yaralabs.io>` through the active
+`mail.yaralabs.io` dedicated domain. The lead template links to the website's
+`/book` flow; the client template links to the private Client Success Session
+calendar below.
+
+### Users and calendars
+
+Admin `CJ Gomba <cjgomba@yaralabs.io>` (`T4lAzfks44fEHIxsL9p9`) is assigned to
+the Yara Labs location and is the host for both active personal calendars:
+
+- `Free Discovery Call` (`1WjFvnzYTKls6rhvXbGt`): 30 minutes, two hours'
+  notice, 30-day booking window. Public GHL widget:
+  `https://api.leadconnectorhq.com/widget/bookings/yaralabs-free-discovery-call`.
+- `Client Success Session` (`o8vnFHmCWMZ07MOzck4i`): 60 minutes, 24 hours'
+  notice, 60-day booking window. Client-only link:
+  `https://api.leadconnectorhq.com/widget/bookings/yara-labs-client-success-i7m`.
+
+Availability schedule `Yara Labs Booking Hours` (`W9enxpvcXjesS62NeVRe`) applies
+to both calendars: Monday-Friday, 11:00-23:00 `Asia/Manila`. API free-slot checks
+on 2026-11-19 returned bookable slots for both calendars. The website retains its
+branded Google Calendar flow; its complete enquiries and confirmed bookings are
+connected to HighLevel through the Worker bridge below.
 
 ### Website bridge
 
@@ -57,12 +85,6 @@ version `3b14f8b7-18d7-49d6-9e53-d76e451e93c2` includes the server-only
 2026-11-19 confirmed HTTP 200 for the homepage, booking page, Worker URL, and the
 read-only availability endpoint. No synthetic contact, opportunity, appointment,
 or email was created during deployment verification.
-
-### Remaining calendar dependency
-
-The location currently has no assigned users. HighLevel requires a team member for
-personal/round-robin calendars, so `Free Discovery Call` and `Client Success Session`
-remain pending until the owner approves assigning an existing user to this location.
 
 ---
 

@@ -142,8 +142,10 @@ reconciliation job, and bookings made through the external Google fallback are n
 automatically matched. A complete website enquiry also upserts its contact and a New
 Enquiry opportunity in HighLevel. A confirmed booking moves that opportunity to
 Discovery Booked. HighLevel failures are isolated from successful Supabase and Google
-Calendar responses. Welcome templates exist in HighLevel, but no workflow is published,
-so no marketing/follow-up emails are sent automatically.
+Calendar responses. The published HighLevel workflows send the new-enquiry welcome
+email when the opportunity enters New Enquiry and the client welcome email when it
+enters Onboarding. A confirmed website booking moves the opportunity to Discovery
+Booked and does not send the client welcome email by itself.
 As with any web form, details cannot be captured if the save never reaches the server
 (e.g. offline browser closes, blocked scripts, or invalid/incomplete contact fields).
 
